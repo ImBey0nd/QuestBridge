@@ -183,3 +183,18 @@ The native PONG path separately samples transmit time after validation; a contro
 clock test checks distinct receive/send timestamps. Final tests and the PS5
 cross-build passed after that correction. The next action is hardware environment
 identification, not execution of the current build-only ELF.
+
+## Owner environment baseline and coauthor attribution — 2026-10-26
+
+Recorded the owner's PS5 Fat / 13.20 report separately from observed hardware.
+Rechecked upstream Relapse main/releases and KStuff Lite latest release/tag through
+GitHub. Saved immutable source references and the release API's asset SHA256; no
+release binary was downloaded, installed or executed. Actual installed versions
+and loader identity remain unknown. Updated HARDWARE_NEXT.md and HANDOFF.md.
+
+Added the requested Codex coauthor trailer to the unpublished native milestone,
+then published it on codex/ps5-native-discovery without changing main. Updated
+external build provenance to reference the amended source commit. This milestone
+changes metadata/documentation only; existing code test results remain applicable.
+Validation: JSON parsing, compatibility validator and git diff whitespace check.
+No hardware validation or PS VR2 compatibility is claimed.
