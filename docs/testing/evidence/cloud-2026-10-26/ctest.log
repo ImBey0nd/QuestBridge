@@ -1,0 +1,8 @@
+Internal ctest changing into directory: /workspace/QuestBridge/build-cloud
+Test project /workspace/QuestBridge/build-cloud
+    Start 1: native_models_wire_calibration_video_firmware
+1/1 Test #1: native_models_wire_calibration_video_firmware ...   Passed    0.00 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =   0.01 sec

@@ -1,4 +1,14 @@
 # Session record - 2026-10-26
+
+## Main consolidation and owner guide — 2026-10-26
+
+Integrated the Android probe branch with the already-merged PS5 native discovery work. Resolved conflicts in ignore rules, notices, README, handoff and this record, retaining both milestones. Removed tracked Windows build outputs as intended by the Android branch. Updated the feasibility assessment and added docs/LO_QUE_TENGO_QUE_HACER_YO.md with Spanish hardware steps and explicit PS5 build-only restrictions.
+
+Actual combined validation in managed Linux cloud: Node 20/20 passed; GCC 14.2.0 / CMake 3.31.10 Debug compilation passed with warnings as errors; OpenSSL 3.5.7 detected; CTest 4/4 passed, including real Node/native UDP interoperability. The Node/C++ tracking fixture and compatibility-record validation passed. Synthetic loopback: 127 tracking and 127 stereo packets, 0 rejects, 6 PONGs in 1.506s (84.33Hz); not hardware performance. Android source/configuration is retained from its validated branch; fresh combined Android build/lint is delegated to hosted CI because this session has no Android toolchain.
+
+Owner confirmed the historical Simon Alonso commits linked to ImNotBeyond are theirs and authorized correcting their attribution to ImBey0nd. No collaborator access changes were requested after clarification. Existing Codex coauthor identity is preserved. No console/headset deployment, exploit, kernel write or game test was performed.
+
+## Original local milestone (historical)
 Created the initial repository in the empty requested workspace.
 Implemented desktop authenticated UDP sessions, synthetic tracking/input, heartbeats, timestamp sampling, peer expiry/reconnect and tiny raw synthetic stereo packets.
 Implemented native models, quaternion/translation calibration, tracking serialization, bounded frame assembly and fail-closed firmware/runtime adapters.
@@ -18,14 +28,14 @@ Android runtime probe and PS5 SDK stdout probe remain scaffolds.
 - No PS5 ELF, Android APK, console log, headset test or game compatibility result.
 - Git initialized. No commit created because user.name/user.email were not configured. No remote created or code published.
 
-## Current blockers
+## Initial local blockers (historical; cloud update below)
 Android SDK/NDK/Gradle and a compatible JDK for the pinned Android plugin are unavailable. The installed JDK26 was used only for header syntax checking.
 PS5 SDK/POSIX Clang/lld environment is absent; WSL is not installed.
 No console/headset connection or physical testing was available.
 The supplied PS5VR repository was inaccessible live (404), despite a cached search listing. Its reported APIs cannot be audited.
 PS VR2 detection/tracking/controller ABI and native stereo surface access remain unverified.
 
-## Next concrete task
+## Initial next concrete task (historical)
 Provision the Android build toolchain, build and test the runtime probe on Quest2, then add an OpenXR session, controller actions and diagnostic projection renderer.
 Independently provision the selected PS5 SDK to compile the user-space stdout probe. Native receiver and VR integration require their own reviewed interfaces and evidence.
 
@@ -198,3 +208,22 @@ external build provenance to reference the amended source commit. This milestone
 changes metadata/documentation only; existing code test results remain applicable.
 Validation: JSON parsing, compatibility validator and git diff whitespace check.
 No hardware validation or PS VR2 compatibility is claimed.
+## Cloud continuation — 2026-10-26
+
+Worked entirely in managed Linux cloud from uploaded commit b72b393cf715162dec521f811b630a13bbca3de1. Full results, commands, logs and artifact hashes are in [CLOUD_2026-10-26.md](CLOUD_2026-10-26.md).
+
+- Node 24.19.0: `npm test` passed 9/9. Initial sandbox `bind EPERM` was resolved by granting the execution tool network access; test source was unchanged.
+- Installed host CMake 3.31.6 into the workspace. GCC 14.2.0 native C++17 build passed with warnings as errors; CTest passed 1/1. A fresh `build-cloud` directory avoided the uploaded Windows cache.
+- Node/C++ 156-byte tracking fixture round-trip and compatibility-record checks passed.
+- Synthetic cloud loopback: 133 tracking and 133 tiny stereo packets, 0 rejected, 6 PONG replies over 1.503s, about 88.46 Hz, last RTT 646us. No device/display/game inference.
+- Installed JDK 17.0.17+10, SDK 35, Build Tools 34.0.0/35.0.0, NDK 27.2.12479018, Android CMake 3.22.1 and platform-tools under `/workspace`. Explicit Java proxy, trusted CA and writable SDK/Gradle/Java homes were needed. No owner's workstation installation.
+- Real initial Android `assembleDebug` passed in 1m 56s. Initial lint found target SDK 32 expired (1 error, 5 warnings). Raised target SDK to 35; minimum SDK 29 remains unchanged. Explicitly pinned the observed plugin-default Build Tools 34.0.0.
+- Final `tools/build/android.sh clean` passed in 43s: 49 tasks executed, actual Java/native compilation and APK packaging. Lint: 0 errors, 5 warnings; no suppression.
+- Debug APK signature verification passed (v2). Static inspection confirmed ARM64 loader/probe libraries, ELF architecture, merged OpenXR permissions/runtime queries and packaged license notices.
+- APK snapshot: `/workspace/QuestBridge/artifacts/cloud-2026-10-26/questbridge-probe-debug.apk`, 2,112,889 bytes; SHA256 `70c1740343f49ef8ed1b1337a9b546ad374761b43be0a1e38f0593c744a9e256`.
+- Added checksummed Gradle 8.9 wrapper, Linux Android build/lint helper, CI workflow, ignore rules, license assets, build evidence and plain-language feasibility report. Removed 38 generated Windows build files from Git. No shared protocol/native runtime code changes.
+- Published draft [PR #1](https://github.com/ImBey0nd/QuestBridge/pull/1). Initial hosted CI reproduced desktop/native checks but failed on missing `sdkmanager`; fixed CI to install checksummed command-line tools 19.0 and SDK packages explicitly. [Corrected hosted CI](https://github.com/ImBey0nd/QuestBridge/actions/runs/40389132595) then passed all checks, Android assembly/lint (1m 19s, 46 tasks executed) and APK/report upload at code commit 555fd0b1dd4e7a13b11f2749c9e3b35e79b5976a. Hosted and managed-cloud artifacts/signing keys differ; see cloud evidence for download links. Dependency lock/verification metadata and deterministic signing remain future work.
+
+Current blockers: no headset/console access; no Android device execution, XR session/tracking/renderer or game compatibility result. PS5 ELF compilation is recorded separately above. PS5 VR interfaces and native stereo access on firmware 13.20 remain unverified. Unknown firmware remains disabled. No exploit, patch or console deployment was attempted.
+
+Next concrete experiment: install this exact APK on an authorized Quest 2 and capture runtime name/result, OS version and startup/lifecycle logs. Next independent cloud implementation: OpenXR session/actions/diagnostic rendering, the PS5 probes have since been compiled but remain build-only. Prioritize PS5 VR interface evidence as the central feasibility gate; see [FEASIBILITY.md](../FEASIBILITY.md).

@@ -23,7 +23,7 @@ Never invent Sony ABIs, exports, offsets or compatibility. No exploit execution,
 - Node built-in-only desktop UDP receiver/simulator: HMAC-SHA256 authentication, random sessions, sequence checks, tracking, controller input, heartbeat/clock estimates, expiry/reconnect and raw 2x2 RGB stereo diagnostic packets.
 - C++17 authenticated UDP receiver and thread-safe tracking freshness store: real Node interoperability tested on POSIX, cross-compiled to PS5 ELF with static OpenSSL/libc++. No Sony VR calls or game injection. See docs/testing/NATIVE_RECEIVER.md.
 - C++17 shared tracking/input models, payload codec, pose recentering, bounded frame assembly and unavailable PS5 runtime/firmware gates. MockVrRuntime is explicitly an offline test double.
-- Android Java/JNI OpenXR runtime probe scaffold; creates no XR session or tracking/rendering pipeline.
+- Android Java/JNI OpenXR probe: debug APK built, signed and linted in the separate cloud milestone; no headset execution, XR session, tracking or renderer. See docs/testing/CLOUD_2026-10-26.md.
 - PS5 SDK C stdout probe cross-compiled with pinned SDK / LLVM19.1.7; not a tracking receiver. Default SDK CRT performs kernel writes before main; compilation-only, no device execution. See docs/research/PS5_FEASIBILITY.md and docs/testing/PS5_BUILD.md.
 - C++17 offline ELF import reader and Node classifier: preserves relocation references, module/library identities and source-backed VR name candidates. No runtime hooks or firmware enablement. See docs/testing/PS5_IMPORTS.md.
 - Offline PS5VR log analyzer with bounded input, per-attempt status/failure reporting, and no inferred hardware/game success. See docs/testing/PSVR2_LOGS.md.
@@ -176,3 +176,7 @@ Next work still requires actual loader/build and authorized module/title metadat
 Codex coauthor trailer was added to the native diagnostic milestone and published
 on codex/ps5-native-discovery. Local checkout: /workspace/QuestBridge, branch work.
 The original 8a81c3c identifier was superseded by attribution amendment.
+
+## Main consolidation — 2026-10-26
+
+Owner requests integration of all functional work into main and an owner-facing Spanish manual. The native discovery branch was already merged as PR #2 (original main 4f04048ccaf4421616b8884f30542e6cbeea3c52). The Android branch's original tip a6b31d3d02adda7022d2397da4364fe7e9e7c4f6 is integrated with it, preserving the stronger PS5 build-only restriction. See docs/LO_QUE_TENGO_QUE_HACER_YO.md for manual steps. The owner clarified that Contributors names, not collaborator permissions, need correction, and explicitly confirmed that commits linked to ImNotBeyond are theirs and authorized correcting published history to ImBey0nd. Future commits use the verified ImBey0nd noreply identity and the existing Codex bot coauthor identity. Historical source URLs and evidence identifiers remain as originally recorded. No hardware work was performed.

@@ -42,12 +42,22 @@ Next evidence: owner-supplied module metadata (names/build IDs/export identifier
 - [ALVR build guide](https://github.com/alvr-org/ALVR/wiki/Building-From-Source): streaming/Android build reference. Codec and reprojection integration remains unimplemented here.
 No accessible evidence in this review demonstrates native PS5 VR compositor capture for an alternative headset. Hardware encoding availability, surface ownership and timing remain open questions.
 
-## Environment and dependency inventory
+## Initial local environment and dependency inventory
 Windows PowerShell, Git 2.56.0, CMake 4.4.4, Node 26.7.0 and JDK 26 detected. Python points to an unusable Windows Store alias. Visual Studio Build Tools lacks the C++ component. WSL is not installed. No Android SDK/NDK/Gradle/adb or PS5 SDK was detected in PATH or conventional checked locations.
 Portable [w64devkit 2.10.1](https://github.com/skeeto/w64devkit/releases/tag/v2.10.1) downloaded into ignored .tools; compiler reports GCC 16.2.0. Third-party tool licenses remain in its distribution, not copied into project code.
 Runtime desktop dependencies: Node built-ins only. Native common library: C++17 standard library only.
 Planned Android dependencies: Gradle 8.9/JDK17, Android plugin 8.7.3, SDK35/min29, NDK27.2.12479018, CMake3.22.1, Khronos loader1.1.65. Scaffold only, build unresolved.
 PS5 dependency: selected SDK at pinned SHA, bash/Clang18/lld18/make on POSIX. No Linux subsystem installation or exploit execution was performed.
+
+## Cloud build follow-up — 2026-10-26
+
+Compilation evidence, separate from the upstream claims above: baseline Node/native checks passed on Debian 13 (Node 24.19.0, GCC 14.2.0, CMake 3.31.6). A real Android ARM64 debug APK now builds and passes lint using JDK 17.0.17+10, Gradle 8.9, Android plugin 8.7.3, SDK/target 35, min SDK 29, Build Tools 34.0.0, NDK r27c, CMake 3.22.1 and loader 1.1.65. This supersedes the initial local Android toolchain blocker; there is still no device result.
+
+Inspected the official loader's published [1.1.65 POM](https://repo.maven.apache.org/maven2/org/khronos/openxr/openxr_loader_for_android/1.1.65/openxr_loader_for_android-1.1.65.pom) (Apache-2.0), [source release](https://github.com/KhronosGroup/OpenXR-SDK-Source/tree/21e4d76a37ebf8d3b46e466fb869a5cf17f48e4b), [loader manifest](https://github.com/KhronosGroup/OpenXR-SDK-Source/blob/21e4d76a37ebf8d3b46e466fb869a5cf17f48e4b/src/loader/AndroidManifest.xml.in) and [loader CMake file](https://github.com/KhronosGroup/OpenXR-SDK-Source/blob/21e4d76a37ebf8d3b46e466fb869a5cf17f48e4b/src/loader/CMakeLists.txt). The manifest supplies OpenXR runtime permissions and broker/service queries; these were confirmed in the final APK. Source references identify JsonCpp, jnipp and Android JNI wrappers; notices/license texts were retained in APK assets. Release-source inspection is not a provenance attestation for the Maven binary.
+
+Gradle distribution and wrapper JAR match the [official Gradle 8.9 checksums](https://services.gradle.org/distributions/). JDK archive checksum matches its [Temurin release](https://github.com/adoptium/temurin17-binaries/releases/tag/jdk-17.0.17%2B10); command-line tools match [Google repository metadata](https://dl.google.com/android/repository/repository2-1.xml). Actual hashes, observations and logs are in [cloud evidence](../testing/CLOUD_2026-10-26.md). GitHub Actions references are pinned to immutable commits observed from their v4 tags. A separate fresh hosted runner successfully reproduced the checks and Android build after fixing SDK provisioning; the evidence page links the exact run and uploaded artifact.
+
+No new PS5 source/interface or firmware claim was verified in this follow-up. The PS5 conclusions above remain unchanged.
 
 ## Feasibility assessment
 Desktop protocol and reusable models are independently achievable and tested. A Quest OpenXR client is technically conventional but still needs its toolchain and device tests. A user-space PS5 payload appears plausible based on SDK evidence, without guaranteeing the requested loader/firmware combination.

@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-26",
+  "evidence": "cloud compilation and static APK inspection only; no device execution",
+  "baseCommit": "b72b393cf715162dec521f811b630a13bbca3de1",
+  "branch": "questbridge/cloud-openxr-probe",
+  "architecture": "x86_64",
+  "artifacts": {
+    "apk": {
+      "bytes": 2112889,
+      "sha256": "70c1740343f49ef8ed1b1337a9b546ad374761b43be0a1e38f0593c744a9e256"
+    },
+    "gradle-wrapper.jar": {
+      "bytes": 43504,
+      "sha256": "498495120a03b9a6ab5d155f5de3c8f0d986a449153702fb80fc80e134484f17"
+    },
+    "gradle-8.9-bin.zip": {
+      "bytes": 136114148,
+      "sha256": "d725d707bfabd4dfdc958c624003b3c80accc03f7037b5122c4b1d0ef15cecab"
+    },
+    "commandlinetools-linux-13114758_latest.zip": {
+      "bytes": 164760899,
+      "sha256": "7ec965280a073311c339e571cd5de778b9975026cfcbe79f2b1cdcb1e15317ee"
+    },
+    "Temurin17-Linux-x64.tar.gz": {
+      "bytes": 192266948,
+      "sha256": "992f96e7995075ac7636bb1a8de52b0c61d71ed3137fafc979ab96b4ab78dd75"
+    },
+    "openxr_loader_for_android-1.1.65.aar": {
+      "bytes": 4171691,
+      "sha256": "a298c326085b09181c85235fb04d37510939bd30938ed4322c093c09780e8643"
+    },
+    "gradle-8.7.3.jar": {
+      "bytes": 12429787,
+      "sha256": "abb4f9e92c9838bd9989ba05968ec892189e16e23f42adba2e063843da04070d"
+    }
+  }
+}
