@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-26",
+  "kind": "public_source_audit",
+  "hardware_tested": false,
+  "elf_built": true,
+  "sources": [
+    {
+      "url": "https://github.com/ps5-payload-dev/sdk/blob/a7685ce8e97ce1f8a4f38253a41d54241c9124f1/crt/crt.c",
+      "git_blob_sha": "3192d78715a5534b104769a4915a21001b2826e6"
+    },
+    {
+      "url": "https://github.com/ps5-payload-dev/sdk/blob/a7685ce8e97ce1f8a4f38253a41d54241c9124f1/host/toolchain/prospero.mk",
+      "git_blob_sha": "383c3e7de0b3975ea61b1ca7bc629be19f5a29f8"
+    },
+    {
+      "url": "https://github.com/ps5-payload-dev/sdk/blob/a7685ce8e97ce1f8a4f38253a41d54241c9124f1/host/bin/prospero-clang",
+      "git_blob_sha": "0f91935aa784150a59a52eb62107e6608ea03f01"
+    },
+    {
+      "url": "https://github.com/ps5-payload-dev/sdk/blob/a7685ce8e97ce1f8a4f38253a41d54241c9124f1/Makefile.inc",
+      "git_blob_sha": "72ef7461bf4d92d7c4d2d95ac3b8b034f15571af"
+    },
+    {
+      "url": "https://github.com/ps5-payload-dev/sdk/blob/a7685ce8e97ce1f8a4f38253a41d54241c9124f1/samples/hello_world/Makefile",
+      "git_blob_sha": "f10f23ea10d92d8c0b861ee597b7ff2808db3e06"
+    },
+    {
+      "url": "https://github.com/ps5-payload-dev/sdk/blob/a7685ce8e97ce1f8a4f38253a41d54241c9124f1/crt/patch.c",
+      "git_blob_sha": "5c34c4a5910cf3c174fad26c1b1498ae752f033f"
+    },
+    {
+      "url": "https://github.com/ps5-payload-dev/sdk/blob/a7685ce8e97ce1f8a4f38253a41d54241c9124f1/crt/kernel.c",
+      "git_blob_sha": "dd41c55a765f3d3088335b66ca4838cb8a3e48f3"
+    },
+    {
+      "url": "https://github.com/ps5-payload-dev/sdk/blob/a7685ce8e97ce1f8a4f38253a41d54241c9124f1/samples/hello_dlfcn/main.c",
+      "git_blob_sha": "aeda41ba2c7deec3f428305cfa51d3545c66a725"
+    },
+    {
+      "url": "https://github.com/Rufidj/PS5_DEV_HOMEBREW/blob/bcd3ec8f665a1ca7e546eca8168b89616c588816/ps5_sdk/ps5_sdk_sysmodule_helpers.h",
+      "git_blob_sha": "bda0d5b01d55aa83ae0f1cecd1f34210bb7f22dc"
+    },
+    {
+      "url": "https://github.com/Rufidj/PS5_DEV_HOMEBREW/blob/bcd3ec8f665a1ca7e546eca8168b89616c588816/examples/ps5_sdk/sysmodule_resolve.c",
+      "git_blob_sha": "8b1a2e9bf375d562430412f435a569440ff8ae2e"
+    },
+    {
+      "url": "https://github.com/ntfargo/Relapse-Exploit/blob/dd8e4e0914c5e9d066ee1f9b056be76cb992c8e0/README.md",
+      "git_blob_sha": "61fe1b31ccefa6306533951b447dc0f2336f1a52"
+    },
+    {
+      "url": "https://github.com/EchoStretch/kstuff-lite/blob/aaf921e608c9a3aaff753d92d4b3b16d2724b32d/README.md",
+      "git_blob_sha": "d3012fb814e4350759499b7208f367b8ebc00494"
+    }
+  ],
+  "build_evidence": "../testing/PS5_BUILD.md"
+}

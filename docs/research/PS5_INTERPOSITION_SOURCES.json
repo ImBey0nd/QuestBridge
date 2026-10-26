@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-26",
+  "evidence_kind": "public_source_review",
+  "hardware_verified": false,
+  "runtime_bindings_enabled": false,
+  "sources": [
+    {
+      "repository": "ItsBlurf/PoorDS4",
+      "commit": "aa568a50ff9ef9797b08a61a6c248e1513333a31",
+      "path": "README.md",
+      "git_blob_sha": "6814388a8eadb1ca200a7048f528541e3ee5bb51",
+      "url": "https://github.com/ItsBlurf/PoorDS4/blob/aa568a50ff9ef9797b08a61a6c248e1513333a31/README.md"
+    },
+    {
+      "repository": "ItsBlurf/PoorDS4",
+      "commit": "aa568a50ff9ef9797b08a61a6c248e1513333a31",
+      "path": "docs/FIRMWARE_SUPPORT.md",
+      "git_blob_sha": "9c4223e51ec250263aea1f0b4f25497978c03da8",
+      "url": "https://github.com/ItsBlurf/PoorDS4/blob/aa568a50ff9ef9797b08a61a6c248e1513333a31/docs/FIRMWARE_SUPPORT.md"
+    },
+    {
+      "repository": "ItsBlurf/PoorDS4",
+      "commit": "aa568a50ff9ef9797b08a61a6c248e1513333a31",
+      "path": "docs/ARCHITECTURE.md",
+      "git_blob_sha": "58bc3d0b3acab7f3700c0c4eeacc7f66600f4c17",
+      "url": "https://github.com/ItsBlurf/PoorDS4/blob/aa568a50ff9ef9797b08a61a6c248e1513333a31/docs/ARCHITECTURE.md"
+    },
+    {
+      "repository": "jmelovich/ps5-gyroaim",
+      "commit": "3c62ed7041cdc6e113a1c6fcd523b3a1c146ea58",
+      "path": "README.md",
+      "git_blob_sha": "fd29537466181f8d54ad6b1e7fc28cf1e4244bc5",
+      "url": "https://github.com/jmelovich/ps5-gyroaim/blob/3c62ed7041cdc6e113a1c6fcd523b3a1c146ea58/README.md"
+    },
+    {
+      "repository": "jmelovich/ps5-gyroaim",
+      "commit": "3c62ed7041cdc6e113a1c6fcd523b3a1c146ea58",
+      "path": "payload/hook.c",
+      "git_blob_sha": "caf6849a0b8b1879e902fd1feb9e00fa2c8bc02b",
+      "url": "https://github.com/jmelovich/ps5-gyroaim/blob/3c62ed7041cdc6e113a1c6fcd523b3a1c146ea58/payload/hook.c"
+    },
+    {
+      "repository": "jmelovich/ps5-gyroaim",
+      "commit": "3c62ed7041cdc6e113a1c6fcd523b3a1c146ea58",
+      "path": "payload/inject.c",
+      "git_blob_sha": "5b2bc3c1e8bd3dac45bc9cdc827f38b935167256",
+      "url": "https://github.com/jmelovich/ps5-gyroaim/blob/3c62ed7041cdc6e113a1c6fcd523b3a1c146ea58/payload/inject.c"
+    },
+    {
+      "repository": "jmelovich/ps5-gyroaim",
+      "commit": "3c62ed7041cdc6e113a1c6fcd523b3a1c146ea58",
+      "path": "LICENSE",
+      "git_blob_sha": "f288702d2fa16d3cdf0035b15a9fcbc552cd88e7",
+      "url": "https://github.com/jmelovich/ps5-gyroaim/blob/3c62ed7041cdc6e113a1c6fcd523b3a1c146ea58/LICENSE"
+    },
+    {
+      "repository": "ThisIsAkill/PuckbridgePS5",
+      "commit": "78460113ef7c48502c765a1f83ba34d53c977134",
+      "path": "payload/game_hooks.c",
+      "git_blob_sha": "b00a07c9b27e965bbb897bfdc74c8fc1a01cdb93",
+      "url": "https://github.com/ThisIsAkill/PuckbridgePS5/blob/78460113ef7c48502c765a1f83ba34d53c977134/payload/game_hooks.c"
+    },
+    {
+      "repository": "ThisIsAkill/PuckbridgePS5",
+      "commit": "78460113ef7c48502c765a1f83ba34d53c977134",
+      "path": "README.md",
+      "git_blob_sha": "43d0865ac4aa2f3c8476587251ad9edb4e859265",
+      "url": "https://github.com/ThisIsAkill/PuckbridgePS5/blob/78460113ef7c48502c765a1f83ba34d53c977134/README.md"
+    },
+    {
+      "repository": "ThisIsAkill/PuckbridgePS5",
+      "commit": "78460113ef7c48502c765a1f83ba34d53c977134",
+      "path": "LICENSE",
+      "git_blob_sha": "f288702d2fa16d3cdf0035b15a9fcbc552cd88e7",
+      "url": "https://github.com/ThisIsAkill/PuckbridgePS5/blob/78460113ef7c48502c765a1f83ba34d53c977134/LICENSE"
+    },
+    {
+      "repository": "mtp-24/PS5VR",
+      "commit": "209eb7f0160000507a0ca017842941b8e8e88f46",
+      "path": "tools/ps5_dynlib.py",
+      "git_blob_sha": "13579a7e8b3d6ea5a7d5db27081d4866018c308a",
+      "url": "https://github.com/mtp-24/PS5VR/blob/209eb7f0160000507a0ca017842941b8e8e88f46/tools/ps5_dynlib.py"
+    },
+    {
+      "repository": "ps5-payload-dev/sdk",
+      "commit": "a7685ce8e97ce1f8a4f38253a41d54241c9124f1",
+      "path": "crt/nid.c",
+      "url": "https://github.com/ps5-payload-dev/sdk/blob/a7685ce8e97ce1f8a4f38253a41d54241c9124f1/crt/nid.c"
+    },
+    {
+      "repository": "ps5-payload-dev/sdk",
+      "commit": "a7685ce8e97ce1f8a4f38253a41d54241c9124f1",
+      "path": "samples/install_app/make_fself.py",
+      "url": "https://github.com/ps5-payload-dev/sdk/blob/a7685ce8e97ce1f8a4f38253a41d54241c9124f1/samples/install_app/make_fself.py"
+    }
+  ]
+}

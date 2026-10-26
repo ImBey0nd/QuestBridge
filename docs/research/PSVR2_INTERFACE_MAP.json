@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-26",
+  "evidence_kind": "public_source_review",
+  "runtime_bindings_enabled": false,
+  "questbridge_hardware_tested": false,
+  "firmware_13_20_verified": false,
+  "ps5vr_mirror": {
+    "repository": "mtp-24/PS5VR",
+    "commit": "209eb7f0160000507a0ca017842941b8e8e88f46",
+    "identity": "Public copy preserving the PS5VR project; original repository still returns 404",
+    "claims": {
+      "console_tested_firmwares": [
+        "12.40",
+        "13.60"
+      ],
+      "library_comparison_only_includes": [
+        "13.20"
+      ],
+      "questbridge_reproduced": false
+    }
+  },
+  "modules": [
+    {
+      "module": "libSceHmd2",
+      "role": "Headset initialization, state and reprojection",
+      "entry_points": [
+        "sceHmd2Initialize",
+        "sceHmd2Open",
+        "sceHmd2GetDeviceInformation",
+        "sceHmd2ReprojectionInitialize",
+        "sceHmd2ReprojectionEnableVrMode",
+        "sceHmd2ReprojectionBeginFrame",
+        "sceHmd2ReprojectionGetPredictedDisplayTime",
+        "sceHmd2ReprojectionSetParam"
+      ],
+      "contract_status": "Declarations and call sites inspected in public projects; not validated on target firmware"
+    },
+    {
+      "module": "libSceVrTracker2",
+      "role": "Tracking memory, device registration and results",
+      "entry_points": [
+        "sceVrTracker2QueryMemory",
+        "sceVrTracker2Initialize",
+        "sceVrTracker2RegisterDevice",
+        "sceVrTracker2GetResult"
+      ],
+      "contract_status": "Consumer path inspected; no external pose injection established"
+    },
+    {
+      "module": "libScePad",
+      "role": "Sense controller opening and state",
+      "entry_points": [
+        "scePadOpen",
+        "scePadVrControllerReadState"
+      ],
+      "contract_status": "PS5VR consumer path inspected; no Quest controller substitution established"
+    },
+    {
+      "module": "libSceVideoOut",
+      "role": "VR output port, buffers and flips",
+      "entry_points": [
+        "sceVideoOutOpen",
+        "sceVideoOutRegisterBuffers2",
+        "sceVideoOutConfigureOutput",
+        "sceVideoOutSubmitFlip"
+      ],
+      "contract_status": "PS5VR submits its own buffers; no access to another native game's buffers established"
+    },
+    {
+      "module": "libSceVrHand",
+      "role": "Opt-in hand tracking",
+      "entry_points": [
+        "sceVrHandInitialize",
+        "sceVrHandStart",
+        "sceVrHandGetResult"
+      ],
+      "contract_status": "Public call sites now accessible; separate from Sense controller input and unnecessary for the first Quest Touch milestone"
+    }
+  ],
+  "source_references": [
+    {
+      "repository": "boykopovar/AnyPS5",
+      "commit": "bfbc55a45b18e2002695043b8531cc4b6a162406",
+      "path": "docs/dev/debt/libSceHmd2.md",
+      "git_blob_sha": "e8cbc5eacd3f6e51d56a324412df83cc66266490",
+      "url": "https://github.com/boykopovar/AnyPS5/blob/bfbc55a45b18e2002695043b8531cc4b6a162406/docs/dev/debt/libSceHmd2.md"
+    },
+    {
+      "repository": "boykopovar/AnyPS5",
+      "commit": "bfbc55a45b18e2002695043b8531cc4b6a162406",
+      "path": "docs/dev/debt/libSceVrTracker2.md",
+      "git_blob_sha": "5bb664cbf1f0400147589da6c0cce998ae2148a4",
+      "url": "https://github.com/boykopovar/AnyPS5/blob/bfbc55a45b18e2002695043b8531cc4b6a162406/docs/dev/debt/libSceVrTracker2.md"
+    },
+    {
+      "repository": "boykopovar/AnyPS5",
+      "commit": "bfbc55a45b18e2002695043b8531cc4b6a162406",
+      "path": "core/libs/prx/libSceHmd2/Hmd2.hpp",
+      "git_blob_sha": "4623331f9182864541b67106c929d476bd0f015c",
+      "url": "https://github.com/boykopovar/AnyPS5/blob/bfbc55a45b18e2002695043b8531cc4b6a162406/core/libs/prx/libSceHmd2/Hmd2.hpp"
+    },
+    {
+      "repository": "boykopovar/AnyPS5",
+      "commit": "bfbc55a45b18e2002695043b8531cc4b6a162406",
+      "path": "core/libs/prx/libSceHmd2/include/Api.hpp",
+      "git_blob_sha": "141cd261280874654d2a3e7fb5cbc12408e61829",
+      "url": "https://github.com/boykopovar/AnyPS5/blob/bfbc55a45b18e2002695043b8531cc4b6a162406/core/libs/prx/libSceHmd2/include/Api.hpp"
+    },
+    {
+      "repository": "boykopovar/AnyPS5",
+      "commit": "bfbc55a45b18e2002695043b8531cc4b6a162406",
+      "path": "core/libs/prx/libSceHmd2/Export.cpp",
+      "git_blob_sha": "82c55782b71657b604d56f160b49dc417740f0ac",
+      "url": "https://github.com/boykopovar/AnyPS5/blob/bfbc55a45b18e2002695043b8531cc4b6a162406/core/libs/prx/libSceHmd2/Export.cpp"
+    },
+    {
+      "repository": "boykopovar/AnyPS5",
+      "commit": "bfbc55a45b18e2002695043b8531cc4b6a162406",
+      "path": "core/libs/prx/libSceVrTracker2/Export.cpp",
+      "git_blob_sha": "f9246da31046d489dc57340d401a26652a168606",
+      "url": "https://github.com/boykopovar/AnyPS5/blob/bfbc55a45b18e2002695043b8531cc4b6a162406/core/libs/prx/libSceVrTracker2/Export.cpp"
+    },
+    {
+      "repository": "boykopovar/AnyPS5",
+      "commit": "bfbc55a45b18e2002695043b8531cc4b6a162406",
+      "path": "docs/dev/debt/libSceVrSetupDialog.md",
+      "git_blob_sha": "6890166ca47b0bfc66b41fe9afb1a3a569455f16",
+      "url": "https://github.com/boykopovar/AnyPS5/blob/bfbc55a45b18e2002695043b8531cc4b6a162406/docs/dev/debt/libSceVrSetupDialog.md"
+    },
+    {
+      "repository": "mtp-24/PS5VR",
+      "commit": "209eb7f0160000507a0ca017842941b8e8e88f46",
+      "path": "README.md",
+      "git_blob_sha": "f080c8d266c6eeaed0699064a45d5d538df3a091",
+      "url": "https://github.com/mtp-24/PS5VR/blob/209eb7f0160000507a0ca017842941b8e8e88f46/README.md"
+    },
+    {
+      "repository": "mtp-24/PS5VR",
+      "commit": "209eb7f0160000507a0ca017842941b8e8e88f46",
+      "path": "app/src/app_vr.c",
+      "git_blob_sha": "7a39a99f682bc7d31f7ac6e041c08130b400196c",
+      "url": "https://github.com/mtp-24/PS5VR/blob/209eb7f0160000507a0ca017842941b8e8e88f46/app/src/app_vr.c"
+    },
+    {
+      "repository": "mtp-24/PS5VR",
+      "commit": "209eb7f0160000507a0ca017842941b8e8e88f46",
+      "path": "app/src/app_vr.h",
+      "git_blob_sha": "4cd0aceaab672022a9370123b9506faa3816b092",
+      "url": "https://github.com/mtp-24/PS5VR/blob/209eb7f0160000507a0ca017842941b8e8e88f46/app/src/app_vr.h"
+    },
+    {
+      "repository": "mtp-24/PS5VR",
+      "commit": "209eb7f0160000507a0ca017842941b8e8e88f46",
+      "path": "app/src/vr_system.c",
+      "git_blob_sha": "360f13042ce10091711257b9e7b79a8cbf0d15d4",
+      "url": "https://github.com/mtp-24/PS5VR/blob/209eb7f0160000507a0ca017842941b8e8e88f46/app/src/vr_system.c"
+    },
+    {
+      "repository": "mtp-24/PS5VR",
+      "commit": "209eb7f0160000507a0ca017842941b8e8e88f46",
+      "path": "app/src/vr_system.h",
+      "git_blob_sha": "070062371b3b02dc1e78ca1fa787420346a9ea1f",
+      "url": "https://github.com/mtp-24/PS5VR/blob/209eb7f0160000507a0ca017842941b8e8e88f46/app/src/vr_system.h"
+    },
+    {
+      "repository": "mtp-24/PS5VR",
+      "commit": "209eb7f0160000507a0ca017842941b8e8e88f46",
+      "path": "app/src/vr_exports.h",
+      "git_blob_sha": "b7c16f8ecf42b471d13ef048c805738997553441",
+      "url": "https://github.com/mtp-24/PS5VR/blob/209eb7f0160000507a0ca017842941b8e8e88f46/app/src/vr_exports.h"
+    },
+    {
+      "repository": "mtp-24/PS5VR",
+      "commit": "209eb7f0160000507a0ca017842941b8e8e88f46",
+      "path": "app/src/vr_exports_1360.h",
+      "git_blob_sha": "88d0bacf9630bb02dd95792cac80b23ebbceaddf",
+      "url": "https://github.com/mtp-24/PS5VR/blob/209eb7f0160000507a0ca017842941b8e8e88f46/app/src/vr_exports_1360.h"
+    },
+    {
+      "repository": "mtp-24/PS5VR",
+      "commit": "209eb7f0160000507a0ca017842941b8e8e88f46",
+      "path": "docs/firmware-support.md",
+      "git_blob_sha": "a0260f1c09d74401add9652ee44dfcd655f1b887",
+      "url": "https://github.com/mtp-24/PS5VR/blob/209eb7f0160000507a0ca017842941b8e8e88f46/docs/firmware-support.md"
+    },
+    {
+      "repository": "mtp-24/PS5VR",
+      "commit": "209eb7f0160000507a0ca017842941b8e8e88f46",
+      "path": "tools/gen_export_table.py",
+      "git_blob_sha": "8a76e482921d5ced08b7812d013521eb9ea9d2c3",
+      "url": "https://github.com/mtp-24/PS5VR/blob/209eb7f0160000507a0ca017842941b8e8e88f46/tools/gen_export_table.py"
+    },
+    {
+      "repository": "mtp-24/PS5VR",
+      "commit": "209eb7f0160000507a0ca017842941b8e8e88f46",
+      "path": "THIRD_PARTY_NOTICES.md",
+      "git_blob_sha": "fccafa0cffb363b1f12f38eba96cef41f8cbb50a",
+      "url": "https://github.com/mtp-24/PS5VR/blob/209eb7f0160000507a0ca017842941b8e8e88f46/THIRD_PARTY_NOTICES.md"
+    },
+    {
+      "repository": "mtp-24/PS5VR",
+      "commit": "209eb7f0160000507a0ca017842941b8e8e88f46",
+      "path": "LICENSE",
+      "git_blob_sha": "f288702d2fa16d3cdf0035b15a9fcbc552cd88e7",
+      "url": "https://github.com/mtp-24/PS5VR/blob/209eb7f0160000507a0ca017842941b8e8e88f46/LICENSE"
+    }
+  ]
+}

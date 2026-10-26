@@ -1,0 +1,27 @@
+name: Native and protocol validation
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  linux:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - run: sudo apt-get update && sudo apt-get install -y cmake g++ libssl-dev
+      - run: npm test
+      - run: cmake -S . -B "$RUNNER_TEMP/qb-build" -DCMAKE_BUILD_TYPE=Debug
+      - run: cmake --build "$RUNNER_TEMP/qb-build" --parallel 2
+      - run: ctest --test-dir "$RUNNER_TEMP/qb-build" --output-on-failure
+      - run: node tools/diagnostics/validate.mjs
+      - name: Sanitized native parsers and transport
+        run: |
+          c++ -std=c++17 -g -fsanitize=address,undefined -fno-omit-frame-pointer -I . tests/unit/elf_imports.cpp -o "$RUNNER_TEMP/import-sanitized"
+          "$RUNNER_TEMP/import-sanitized"
+          c++ -std=c++17 -g -fsanitize=address,undefined -fno-omit-frame-pointer -I . -I common tests/unit/transport.cpp -lcrypto -pthread -o "$RUNNER_TEMP/transport-sanitized"
+          "$RUNNER_TEMP/transport-sanitized"
+          c++ -std=c++17 -g -fsanitize=address,undefined -fno-omit-frame-pointer -I . -I common tests/unit/native.cpp -o "$RUNNER_TEMP/models-sanitized"
+          "$RUNNER_TEMP/models-sanitized"

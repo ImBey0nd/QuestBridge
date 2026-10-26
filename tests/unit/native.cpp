@@ -20,6 +20,13 @@ int main(int argc,char** argv){
   qb::Calibration recenter({{2,1,3},{0,s,0,s}});
   const auto p=recenter.apply({{3,1,3},{0,s,0,s}});
   CHECK(std::abs(p.position.x)<0.0001f&&std::abs(p.position.z-1)<0.0001f&&std::abs(p.orientation.w-1)<0.0001f);
+  CHECK(!qb::valid(qb::Quat{0.14142136f,0,0,1}));
+  CHECK(qb::valid(qb::Quat{0.14142135f,0,0,1}));
+  qb::Calibration scaled({{0,0,0},{0,0,0,1.005f}});
+  const auto unchanged=scaled.apply({{1,2,3},{0,0,0,1.005f}});
+  CHECK(std::abs(unchanged.position.x-1)<0.00001f&&std::abs(unchanged.orientation.w-1)<0.00001f);
+  rejects([&]{qb::Calibration bad({{std::numeric_limits<float>::quiet_NaN(),0,0},{0,0,0,1}});});
+  rejects([&]{scaled.apply({{0,std::numeric_limits<float>::infinity(),0},{0,0,0,1}});});
   qb::FrameAssembler a;a.begin(5,2,100);CHECK(a.add(5,1,{3,4},110));CHECK(!a.add(5,1,{3,4},120));
   CHECK(!a.add(6,0,{1},120));CHECK(!a.complete());CHECK(a.add(5,0,{1,2},130));
   CHECK(a.take()==std::vector<uint8_t>({1,2,3,4}));rejects([&]{a.take();});
