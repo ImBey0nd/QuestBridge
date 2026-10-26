@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "checked_date": "2026-10-26",
+  "kind": "owner_report_and_public_reference_metadata",
+  "hardware_tested": false,
+  "owner_report": {
+    "model_family": "PS5 Fat",
+    "model_revision": null,
+    "firmware_short": "13.20",
+    "firmware_full_build": null,
+    "installed_relapse_commit": null,
+    "installed_kstuff_version": null,
+    "installed_loader_identity": null,
+    "preference": "Latest upstream versions; owner may update if needed",
+    "update_performed": false
+  },
+  "upstream_references": {
+    "relapse": {
+      "repository": "https://github.com/ntfargo/Relapse-Exploit",
+      "source_commit": "dd8e4e0914c5e9d066ee1f9b056be76cb992c8e0",
+      "source_url": "https://github.com/ntfargo/Relapse-Exploit/tree/dd8e4e0914c5e9d066ee1f9b056be76cb992c8e0",
+      "release_query_url": "https://api.github.com/repos/ntfargo/Relapse-Exploit/releases?per_page=5",
+      "published_releases_found": 0,
+      "firmware_support_upstream_claim": "7.00 through 13.60",
+      "claim_source_url": "https://github.com/ntfargo/Relapse-Exploit/blob/dd8e4e0914c5e9d066ee1f9b056be76cb992c8e0/README.md",
+      "bundled_loader": {
+        "path": "payloads/elfldr-ps5-1360.elf",
+        "git_blob_sha": "6a3aef359659ce185d852405f81795c206df40f4",
+        "bytes": 397024,
+        "source_url": "https://github.com/ntfargo/Relapse-Exploit/blob/dd8e4e0914c5e9d066ee1f9b056be76cb992c8e0/payloads/elfldr-ps5-1360.elf",
+        "actual_console_loader_verified": false,
+        "note": "Git blob identity is not a SHA256 digest; filename does not establish loader compatibility or startup ABI."
+      }
+    },
+    "kstuff_lite": {
+      "release_url": "https://github.com/EchoStretch/kstuff-lite/releases/tag/v1.11",
+      "release_api_url": "https://api.github.com/repos/EchoStretch/kstuff-lite/releases/latest",
+      "tag": "v1.11",
+      "name": "Kstuff Lite 1.11 Beta",
+      "published_at": "2026-09-20T19:08:36Z",
+      "updated_at": "2026-09-23T23:29:37Z",
+      "release_immutable": false,
+      "tag_commit_at_check": "85fb88a526e58e357d6f1e626ce05af4acdb8b5d",
+      "tag_source_url": "https://github.com/EchoStretch/kstuff-lite/tree/85fb88a526e58e357d6f1e626ce05af4acdb8b5d",
+      "firmware_support_upstream_claim": "1.00 through 13.60",
+      "asset": {
+        "name": "kstuff.elf",
+        "id": 584760938,
+        "bytes": 1737080,
+        "sha256_from_release_api": "ab9a6cb4d3b1daf139d4d646e402b1cf569071acd64599c936d7a3a6164dc779",
+        "locally_downloaded_or_hashed": false
+      },
+      "note": "Beta title retained even though GitHub prerelease flag is false. Tag resolution does not prove which source produced the release binary."
+    }
+  },
+  "integration": {
+    "runtime_bindings_enabled": false,
+    "deployment_allowed": false,
+    "game_compatibility_verified": false
+  },
+  "next_required_evidence": [
+    "Full console firmware/build and exact model revision",
+    "Actual installed Relapse/KStuff identifiers",
+    "Actual loader identity/source and existing stdout logs",
+    "Authorized VR module/title metadata"
+  ],
+  "interpretation": "Owner report is not a hardware observation. Public support claims do not establish QuestBridge compatibility. No update, console contact, deployment or exploit execution occurred."
+}

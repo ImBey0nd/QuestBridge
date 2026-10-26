@@ -1,0 +1,7 @@
+SYNTHETIC FIXTURE. Invented statuses; no console or headset was tested.
+vr: sceHmd2Initialize -> 0x00000000
+vr: FOV rc 0x00000000 out 1.0 in 1.0 top 1.0 bottom 1.0
+vr: sceHmd2Open -> 0x00000001; device status 2 worn 0 lens 0 mm
+vr: tracker init 0xffffffff register 0xffffffff
+vr: headset setup failed
+vr: frame 0 submitted (buf 0)

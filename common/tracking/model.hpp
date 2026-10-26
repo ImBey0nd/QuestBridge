@@ -17,8 +17,15 @@ inline Vec3 rotate(Quat q,Vec3 p) {
  auto r=multiply(multiply(q,{p.x,p.y,p.z,0}),inverse(q));return {r.x,r.y,r.z};
 }
 inline bool valid(Quat q) {
- const float n=q.x*q.x+q.y*q.y+q.z*q.z+q.w*q.w;
- return std::isfinite(n)&&std::abs(n-1)<0.02f;
+ // Match Node's validation of decoded float32 values using double arithmetic.
+ const double n=double(q.x)*q.x+double(q.y)*q.y+double(q.z)*q.z+double(q.w)*q.w;
+ return std::isfinite(n)&&std::abs(n-1)<=0.02;
+}
+inline bool finite(Vec3 p) {return std::isfinite(p.x)&&std::isfinite(p.y)&&std::isfinite(p.z);}
+inline Quat normalized(Quat q) {
+ if(!valid(q))throw std::invalid_argument("quaternion");
+ const double n=std::sqrt(double(q.x)*q.x+double(q.y)*q.y+double(q.z)*q.z+double(q.w)*q.w);
+ return {float(q.x/n),float(q.y/n),float(q.z/n),float(q.w/n)};
 }
 struct Pose { Vec3 position; Quat orientation; };
 // Flags: position valid, orientation valid, position tracked, orientation tracked.
@@ -29,8 +36,13 @@ struct HapticRequest { uint32_t hand=0; float amplitude=0,frequency_hz=0; uint64
 class Calibration {
  Pose origin_;
 public:
- explicit Calibration(Pose origin):origin_(origin) {if(!valid(origin.orientation))throw std::invalid_argument("quaternion");}
+ explicit Calibration(Pose origin):origin_(origin) {
+  if(!finite(origin.position))throw std::invalid_argument("calibration position");
+  origin_.orientation=normalized(origin.orientation);
+ }
  Pose apply(Pose p) const {
+  if(!finite(p.position))throw std::invalid_argument("pose position");
+  p.orientation=normalized(p.orientation);
   const auto q=inverse(origin_.orientation);
   return {rotate(q,{p.position.x-origin_.position.x,p.position.y-origin_.position.y,p.position.z-origin_.position.z}),multiply(q,p.orientation)};
  }

@@ -1,21 +1,21 @@
 # Architecture and feasibility
 Status: 2026-10-26. End-to-end native PS VR2 replacement feasibility is unresolved.
 
-The intended flow is headset OpenXR tracking -> authenticated transport -> PS5 receiver -> verified VR runtime adapter -> native game. Native stereo surfaces would flow through a platform encoder -> frame transport -> Android hardware decoder -> OpenXR projection layers. Only the desktop substitute for the first transport path currently runs.
+The intended flow is headset OpenXR tracking -> authenticated transport -> PS5 receiver -> verified VR runtime adapter -> native game. Native stereo surfaces would flow through a platform encoder -> frame transport -> Android hardware decoder -> OpenXR projection layers. The desktop substitute and the C++ native receiver for the first transport path run on a POSIX host. The receiver cross-compiles to PS5 but has not run there.
 The desktop receiver consumes tracking for diagnostics; it is not a Sony runtime.
 
 Implemented:
 - Device-neutral native models, capabilities and haptic request representation.
 - Rigid coordinate recentering (translation and unit quaternion inverse).
 - Equivalent C++/Node tracking payload formats with explicit validation.
-- Authenticated desktop UDP, session lifecycle, heartbeat and four-timestamp clock estimates.
+- Authenticated Node/C++ UDP, session lifecycle, heartbeat and four-timestamp clock messages; C++ local-age tracking snapshots neutralize stale data.
 - Tiny raw synthetic stereo datagrams and bounded standalone chunk assembly.
 - Firmware gate: all versions unavailable for PS VR2 operations.
 - Abstract runtime, unavailable PS5 adapter and explicitly labeled offline mock.
 
 Scaffolds:
 - Android Activity/JNI loader and OpenXR instance probe only; no XR session/render loop/tracking or Android network transport.
-- PS5 SDK stdout probe only; no module loading, process inspection or network receiver.
+- PS5 stdout probe and authenticated receiver compile to ELF; target execution is untested and blocked by current default-CRT constraints. Native VR module integration and live process inspection remain unimplemented.
 
 Proposed interfaces (not demonstrated Sony integration):
 HeadsetBackend produces Tracking with capabilities. VrRuntime accepts tracking only after platform evidence. A future capture interface must specify ownership, pixel format, GPU fences, stereo view configuration and presentation time before an encoder can be selected.
@@ -43,8 +43,10 @@ Resident Evil Village is an untested database entry with no invented regional ti
 1. Desktop communication baseline: implemented and locally tested; security/negotiation remains experimental.
 2. Android runtime probe: scaffold; build after provisioning JDK 17, SDK, NDK and Gradle.
 3. OpenXR tracking/actions and diagnostic renderer: pending.
-4. PS5 SDK smoke test: source/build recipe only; establish POSIX toolchain, compile and retain console logs.
-5. Native PS5 authenticated tracking receiver: pending native crypto/dependency decision and SDK validation.
+4. PS5 SDK compilation: stdout and native receiver ELFs built and inspected; no console logs.
+5. Native authenticated receiver: OpenSSL-backed implementation tested on host and cross-compiled with pinned runtimes/crypto. Target entropy, sockets, clocks and lifecycle require hardware.
 6. VR interface experiments: blocked on verifiable ABI/service evidence; no patching work is authorized implicitly.
 7. Synthetic encoded stereo/Android decode: pending; tiny raw UDP samples are only transport diagnostics.
 8. First game experiment: only after runtime and capture evidence. No compatibility claim at any prior milestone.
+
+Current hardware boundary and evidence procedure: docs/testing/HARDWARE_NEXT.md. The next native VR milestone needs actual loader/build and target module/title metadata.

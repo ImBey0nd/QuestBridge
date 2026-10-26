@@ -1,7 +1,13 @@
 # QuestBridge
 Experimental open-source foundations for investigating standalone headsets with native PS5 VR games.
 
-**No PS VR2 game compatibility is implemented or demonstrated.** This repository currently provides a tested desktop communication prototype, native data/math/video utilities, and untested Android and PS5 probe scaffolds. Resident Evil Village VR Mode is an untested reference target.
+**No PS VR2 game compatibility is implemented or demonstrated.** This repository currently provides a tested desktop communication prototype, native data/math/video utilities, an untested Android scaffold, and a cross-compiled PS5 probe with audited startup limitations. Resident Evil Village VR Mode is an untested reference target.
+
+Native receiver milestone: [authenticated C++ transport and freshness handling](docs/testing/NATIVE_RECEIVER.md) now passes Node interoperability and cross-compiles to PS5. The ELF remains build-only. [Hardware evidence needed next](docs/testing/HARDWARE_NEXT.md).
+
+Native discovery implementation: [read-only ELF import inventory](docs/testing/PS5_IMPORTS.md), with [interposition research](docs/research/PS5_INTERPOSITION.md). This identifies candidate call boundaries; no runtime hook is installed.
+
+Latest PS5 investigation: [PS VR2 detection and initialization](docs/research/PSVR2_DETECTION.md). Public PS5VR source recovered through a fork; native headset substitution remains unimplemented. [Offline log diagnostic](docs/testing/PSVR2_LOGS.md) separates logged statuses from hardware evidence.
 
 ## Run the working demo
 Requires Node.js 22 or newer. No npm dependencies or install step.
@@ -40,15 +46,16 @@ Both default to 127.0.0.1:42420. For a private LAN experiment explicitly set QB_
 - desktop/: real UDP diagnostic receiver and synthetic sender.
 - tests/: malformed packet, replay, network lifecycle and native validation checks.
 - headset/android-openxr/: Gradle/JNI OpenXR runtime probe scaffold, **unbuilt and untested**.
-- ps5/host/: SDK smoke test, **not a network host**, no ELF produced.
+- ps5/host/native/: authenticated C++ receiver, cross-compiled PS5 ELF; no VR integration.
+- ps5/host/: cross-compiled SDK probe, **build-only** because default SDK startup patches kernel state; see docs/testing/PS5_BUILD.md.
 - ps5/runtime/: unavailable adapter and explicitly named offline mock.
 - docs/research/RESEARCH.md: pinned upstream findings and unresolved VR interfaces.
 - docs/architecture/ARCHITECTURE.md: implemented boundaries, risks and milestones.
 - docs/testing/HARDWARE.md: evidence needed before device claims.
 - docs/testing/SESSION.md: actual validation results.
 
-Android needs Android SDK/NDK, compatible JDK and Gradle; PS5 needs a POSIX toolchain and the selected homebrew SDK. See each scaffold README. There is no installable APK or PS5 ELF in this milestone.
+Android needs Android SDK/NDK, compatible JDK and Gradle; PS5 needs a POSIX toolchain and the selected homebrew SDK. See each scaffold README. There is no installable APK. The PS5 ELF is a compilation artifact, not approved for device execution.
 
 License: GPL-3.0-or-later for original project code. Upstream projects remain under their respective terms; no upstream implementation or proprietary Sony content is bundled.
 
-Latest validation: 9 Node tests, 1 native CTest and a C++/Node payload fixture pass locally. The Windows demo measured about63 tracking updates/s against a nominal90Hz setting; see docs/testing/SESSION.md.
+Latest cloud validation: 20 Node tests and 4 native CTests pass. Native ELF metadata and transport tests also pass AddressSanitizer/UndefinedBehaviorSanitizer; VR fixtures are synthetic. Earlier local C++/Node payload fixture validation also passed. The Windows demo measured about63 tracking updates/s against a nominal90Hz setting; see docs/testing/SESSION.md.

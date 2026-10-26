@@ -1,10 +1,18 @@
 # Research snapshot
+
+Latest native transport: [C++ receiver and hardware boundary](../testing/NATIVE_RECEIVER.md). Pinned libc++/OpenSSL cross-builds produce a PS5 receiver ELF; host interoperability is tested, target behavior is unverified.
+
+Latest native development: [import interposition research](PS5_INTERPOSITION.md) and [offline C++ import inventory](../testing/PS5_IMPORTS.md). Public controller-hook code is available; no QuestBridge runtime interposition was executed.
+
+Latest VR follow-up: [detection and initialization](PSVR2_DETECTION.md), [pinned interface map](PSVR2_INTERFACE_MAP.json). A public PS5VR fork is now accessible and was reviewed; the original URL still returns 404. Source candidates do not enable firmware support.
+
+PS5 follow-up: [feasibility/startup audit](PS5_FEASIBILITY.md) and [actual cloud build](../testing/PS5_BUILD.md). The default SDK CRT performs kernel writes before main; the probe is compilation-only. Earlier environment notes below describe the initial Windows session.
 Date: 2026-10-26. Public repository API metadata and pinned READMEs were inspected. JSON files in upstream/ record immutable SHAs, branches, upstream push dates, archive state and API license classification. No upstream payload was executed.
 Confidence: HIGH=direct source/metadata; MEDIUM=upstream author's claim without local reproduction; UNKNOWN=no accessible confirming evidence. These are not QuestBridge hardware results.
 
 | Repository/source | Commit, branch | Findings and confidence |
 | --- | --- | --- |
-| [ps5-payload-dev/sdk](https://github.com/ps5-payload-dev/sdk) | a7685ce8e97ce1f8a4f38253a41d54241c9124f1, master | HIGH: dynamic-linking payload SDK, POSIX tools, Clang/lld and bash. Examples use toolchain/prospero.mk and C main. README lists elfldr/websrv among loaders; no blanket 13.20 certification. GPLv3+ except separately licensed BSD headers. Selected for a future minimal probe. |
+| [ps5-payload-dev/sdk](https://github.com/ps5-payload-dev/sdk) | a7685ce8e97ce1f8a4f38253a41d54241c9124f1, master | HIGH: dynamic-linking payload SDK, POSIX tools, Clang/lld and bash. Examples use toolchain/prospero.mk and C main. README lists elfldr/websrv among loaders; no blanket 13.20 certification. GPLv3+ except separately licensed BSD headers. Selected for the compilation probe; default CRT startup is unsuitable for the no-kernel-write execution constraint. |
 | [PS5Dev/PS5SDK](https://github.com/PS5Dev/PS5SDK) | a2e03a2a0231a3a3397fa6cd087a01ca6d04f273, main | HIGH: beta, CMake/Ninja/Clang/lld, payload_main(struct payload_args*), no STL. Documented kernel helper targets 3.xx/4.xx, not 13.20. GPLv2. Much older push date than selected SDK; payload ABI must not be mixed between SDKs. |
 | [Rufidj/PS5_DEV_HOMEBREW](https://github.com/Rufidj/PS5_DEV_HOMEBREW) | bcd3ec8f665a1ca7e546eca8168b89616c588816, main | MEDIUM: author reports user-space examples and dynamic module resolution tested on 13.00/13.20. Universal support is an author assertion, not demonstrated here. Make/shell examples; compiler requirements need source audit. MIT per metadata and README. |
 | [PS5Dev/Byepervisor-Reborn](https://github.com/PS5Dev/Byepervisor-Reborn) | ea04f7132b837087f552c57261cb800481a3a910, main | MEDIUM: developer hypervisor exploit, lists 13.20/13.60 and untested 13.00, uses payload-dev SDK and elfldr/rest-resume behavior. Does not ship HEN patches. API license unclassified; per-file review required before reuse. Not needed for desktop work and not run. |
@@ -18,6 +26,8 @@ Confidence: HIGH=direct source/metadata; MEDIUM=upstream author's claim without 
 All accessible repositories had archived=false at retrieval. A recent push does not guarantee maintenance or functionality. Metadata license labels are not a substitute for per-file review. Each source can be pinned using https://github.com/OWNER/REPO/tree/SHA from the table.
 
 ## VR module evidence
+
+Update: [mtp-24/PS5VR at 209eb7f0160000507a0ca017842941b8e8e88f46](https://github.com/mtp-24/PS5VR/tree/209eb7f0160000507a0ca017842941b8e8e88f46) is a GitHub-identified fork of the original. Its Hmd2, VrTracker2 and VrHand call sites are accessible; source declarations/layouts remain unverified on our target. Its documentation claims 13.20 library checks, not a console test on 13.20. [AnyPS5 at bfbc55a45b18e2002695043b8531cc4b6a162406](https://github.com/boykopovar/AnyPS5/tree/bfbc55a45b18e2002695043b8531cc4b6a162406) provides additional source and explicit missing-runtime documentation. GPL/license review performed; no implementation imported. Details and limits are in PSVR2_DETECTION.md. The following paragraphs preserve the initial evidence state.
 Search index of the unavailable PS5VR repository mentions libSceHmd2, libSceVrTracker2 and libSceVrHand. Because live source is unavailable, this does not verify callable exports or any function signature.
 [Public developer directory listing](https://gist.github.com/psxdev/deb4de8d311aa9fda5dea4f39fad4e20) names libSceHmd2.sprx. This supports a filename, not a PS VR2 ABI or 13.20 behavior.
 [Public AnyPS5 tester discussion](https://github.com/boykopovar/AnyPS5/discussions/4697) reports Hmd2 and VrTracker2 initialization/reprojection symbols. It is a third-party experiment in a different environment; no implementation from it has been imported.
