@@ -1,6 +1,6 @@
 # QuestBridge cloud handoff
 
-Updated: 2026-10-26. This file preserves the engineering context of the initial local conversation; it is a summary, not a complete chat transcript.
+Updated: 2026-10-26. Latest owner direction: investigate PS5 before further Quest app development. This file preserves the engineering context of the initial local conversation; it is a summary, not a complete chat transcript.
 
 ## Read first
 
@@ -14,19 +14,22 @@ Updated: 2026-10-26. This file preserves the engineering context of the initial 
 
 Develop an open-source compatibility system for standalone VR headsets replacing PS VR2 hardware while games execute natively on PS5. Initial requested hardware is original PS5, firmware 13.20, Relapse/KStuff, Quest 2 and Touch controllers. Resident Evil Village VR Mode is the reference title, not the whole scope. None of this hardware configuration has been tested by QuestBridge.
 
-The owner does not program. Make routine engineering choices and continue useful independent work. Avoid repeatedly requesting permission for ordinary edits, builds, tests and permitted dependency installation. Ask only for genuinely missing credentials, physical actions or irreversible operations. Obey the active environment's approval restrictions. The owner wants cloud execution to keep their PC available.
+The owner does not program. Make routine engineering choices and continue useful independent work. Avoid repeatedly requesting permission for ordinary edits, builds, tests and permitted dependency installation. Ask only for genuinely missing credentials, physical actions or irreversible operations. Obey the active environment's approval restrictions. The owner wants cloud execution to keep their PC available. Explanations must be in Spanish and concise (caveman style); code, commands and repository documents may remain in English.
 
 Never invent Sony ABIs, exports, offsets or compatibility. No exploit execution, kernel writes, automatic patches or console deployment. Networking and synthetic stereo do not demonstrate native game compatibility. Keep unknown firmware disabled.
 
 ## Existing implementation
 
 - Node built-in-only desktop UDP receiver/simulator: HMAC-SHA256 authentication, random sessions, sequence checks, tracking, controller input, heartbeat/clock estimates, expiry/reconnect and raw 2x2 RGB stereo diagnostic packets.
+- C++17 authenticated UDP receiver and thread-safe tracking freshness store: real Node interoperability tested on POSIX, cross-compiled to PS5 ELF with static OpenSSL/libc++. No Sony VR calls or game injection. See docs/testing/NATIVE_RECEIVER.md.
 - C++17 shared tracking/input models, payload codec, pose recentering, bounded frame assembly and unavailable PS5 runtime/firmware gates. MockVrRuntime is explicitly an offline test double.
 - Android Java/JNI OpenXR runtime probe scaffold; creates no XR session or tracking/rendering pipeline.
-- PS5 SDK C stdout probe scaffold; not a tracking receiver and not built into an ELF.
+- PS5 SDK C stdout probe cross-compiled with pinned SDK / LLVM19.1.7; not a tracking receiver. Default SDK CRT performs kernel writes before main; compilation-only, no device execution. See docs/research/PS5_FEASIBILITY.md and docs/testing/PS5_BUILD.md.
+- C++17 offline ELF import reader and Node classifier: preserves relocation references, module/library identities and source-backed VR name candidates. No runtime hooks or firmware enablement. See docs/testing/PS5_IMPORTS.md.
+- Offline PS5VR log analyzer with bounded input, per-attempt status/failure reporting, and no inferred hardware/game success. See docs/testing/PSVR2_LOGS.md.
 - CI, research, protocol docs, evidence procedures and untested compatibility records.
 
-The desktop protocol is experimental: no encryption, codec negotiation, production denial-of-service protection or native transport implementation. See V1.md before extending it.
+The desktop protocol is experimental: no encryption, codec negotiation, production denial-of-service protection. The native v1 transport now builds and passes host interoperability; its PS5 execution remains untested. See V1.md before extending it.
 
 ## Verified local evidence, not cloud evidence
 
@@ -36,7 +39,7 @@ The desktop protocol is experimental: no encryption, codec negotiation, producti
 - Compatibility record validation passed.
 - Android JNI syntax-only check passed against published OpenXR headers and desktop JNI headers. No Android linking, Gradle build, APK or headset result.
 - One Windows loopback run measured about 63 Hz against nominal 90 Hz, with 95 tracking and 95 stereo test packets in about 1.505 seconds. This is not device or display performance.
-- No PS5 ELF, console execution, native stereo capture, tracking injection or game compatibility evidence.
+- No console execution, native stereo capture, tracking injection or game compatibility evidence. A later cloud PS5 ELF build is recorded separately below.
 
 ## Git and cloud transition
 
@@ -64,14 +67,97 @@ npm run demo
 
 Record cloud results separately from previous local evidence. Do not rely on a Windows CMake cache or the ignored portable compiler.
 
-## Next scoped task
+## Current PS5 milestone and next task
 
-First reproduce the baseline in the cloud. Then provision the Android build toolchain in the cloud and attempt a real debug APK build of headset/android-openxr. The scaffold pins Android plugin 8.7.3, Gradle 8.9, JDK 17, SDK 35, NDK 27.2.12479018, CMake 3.22.1 and Khronos loader 1.1.65. Verify current official build requirements and fix concrete build failures. Preserve build logs and artifact hashes. APK compilation does not prove headset operation.
+The owner explicitly deferred Quest work in favor of PS5 investigation. The cloud
+baseline plus research diagnostics pass: 20 Node tests and 4 native CTests. The selected SDK was built from
+commit a7685ce8e97ce1f8a4f38253a41d54241c9124f1 using workspace-local LLVM19.1.7.
+The stdout probe compiled into an ELF, with build logs/hash in
+/workspace/questbridge-cloud/ps5-probe and tracked evidence in docs/testing/PS5_BUILD.md.
 
-After a verified build, develop a real OpenXR session, controller actions and diagnostic projection renderer. Device execution still requires the owner's headset. In parallel milestones, the pinned ps5-payload-dev SDK can be provisioned on Linux to compile the user-space stdout probe; deployment remains separate and requires physical evidence.
+Critical source and disassembly finding: default SDK startup initializes kernel
+access and calls __patch_init before main. It changes credential and syscall
+permission state. This contradicts the earlier harmless-probe characterization;
+the artifact must not be deployed under AGENTS.md. Firmware13.20 appears in SDK
+source, but no console compatibility is established. The original PS5VR repository
+returns 404; its public fork mtp-24/PS5VR at 209eb7f0160000507a0ca017842941b8e8e88f46
+is accessible and was reviewed. It claims library checks for 13.20, with console
+tests only on 12.40/13.60. No verified external tracking injection or native stereo
+capture interface exists.
 
-Cloud work can implement, research and compile; it cannot establish hardware compatibility without authorized access to the actual devices. Update research when source accessibility changes; the provided PS5VR URL returned live 404 during the initial session despite a cached search listing.
+Current research priority: identify PS5 headset detection/initialization and the
+native game's runtime consumer boundary. The owner clarified that replacing
+PS VR2 is the goal; SDK startup redesign is a deployment constraint, not the main
+VR milestone. Read docs/research/PSVR2_DETECTION.md and PSVR2_INTERFACE_MAP.json.
+The public fork exposes Hmd2/Tracker2 lifecycle calls, Sense input and VR VideoOut
+submission for its own buffers. These are source facts, not target-firmware ABI
+verification or interception of a game's buffers. AnyPS5 explicitly lacks a
+working VR runtime. No upstream code or offset table was imported.
 
-## Prompt for the first cloud task
+Further investigation found public native-controller interposition implementations:
+PoorDS4 at aa568a50ff9ef9797b08a61a6c248e1513333a31 and ps5-gyroaim at
+3c62ed7041cdc6e113a1c6fcd523b3a1c146ea58. The latter reports a 13.20 console test;
+we reviewed source but did not reproduce it. Read docs/research/PS5_INTERPOSITION.md
+and PS5_INTERPOSITION_SOURCES.json. This is a candidate runtime boundary for input,
+not proof of VR tracking, headset detection replacement or stereo capture.
 
-> Continue QuestBridge. Read AGENTS.md, docs/HANDOFF.md, docs/PROJECT_BRIEF.md and docs/testing/SESSION.md before editing. Work entirely in this cloud environment. Reproduce the existing Node/native tests, then provision the Android toolchain and build the OpenXR probe into a debug APK. Fix actual build failures and preserve evidence. Do not claim device or PS5 VR game compatibility. Continue routine edits and permitted dependency installs autonomously. Update the handoff and session results, and return a reviewable branch or pull request with the APK artifact location and remaining blockers.
+Development has started on the supported discovery component: qb_import_scan
+reads bounded stripped ELF64 metadata without section headers or code execution;
+ps5-imports.mjs maps source-catalog candidate names through NIDs and declarations.
+The known stdout probe yields only puts and zero VR candidates. Synthetic metadata
+checks recover an invented Hmd2 identity and two relocation references. Sanitized
+native malformed-input tests pass. No proprietary binaries were read or imported.
+
+Next concrete task: apply this read-only discovery to authorized actual 13.20
+module/title metadata, then validate the native game's detection/tracking/input
+and stereo submission contract. Actual module identity, live slot contents,
+callable ABIs, process context and GPU ownership remain unknown. Do not create
+runtime shims from source candidates or return false success to advance a game.
+Further public evidence can narrow these contracts; physical results remain missing.
+No invented Sony calls, automatic patches, remote syscalls or console deployment.
+Quest work remains deferred.
+
+## Latest milestone: native receiver and hardware boundary
+
+The owner authorized continued development until real hardware evidence is needed.
+Implemented native v1 HMAC/session handling using OpenSSL 3, a POSIX receiver,
+monotonic/sequence validation, expiry and thread-safe locally aged tracking. Stale
+samples become neutral. Private bounded file configuration avoids assuming the loader
+provides environment variables; no key is embedded or generated in the ELF. The same receiver source compiled to a PS5 ELF after
+provisioning pinned SDK C++ runtimes and OpenSSL 3.5.7. No console execution.
+Calibration now normalizes accepted quaternions and rejects nonfinite positions;
+quaternion tolerance arithmetic matches Node's float32 boundary behavior.
+
+Validation: 20 Node tests, 4 CTests, real native/Node UDP malformed/replay/endpoint/
+oversized/restart scenarios, and native AddressSanitizer/UndefinedBehaviorSanitizer
+passed. A local pinned-action CI workflow was added; no remote run is claimed.
+
+The actual hardware/loading environment is the next required evidence. Read
+docs/testing/HARDWARE_NEXT.md before any physical test. Both current PS5 ELFs retain the SDK's
+automatic kernel patch startup and are build-only under project constraints.
+No custom startup was guessed from a field name: public loader arguments can carry
+a getpid stub where other loaders provide a resolver. Need actual loader/build,
+console firmware/model and authorized module/title metadata to choose the next
+observation path. No deploy command was added. No PS VR2 compatibility is enabled.
+
+This is the current stopping boundary, not permission to simulate Sony success
+responses or to continue Quest app development without PS5-side evidence.
+
+## Cloud build locations
+
+Use existing checkout /workspace/QuestBridge; preserve tracked Windows build/.
+CMake: /workspace/questbridge-cloud/tools/bin/cmake.
+PS5 source: /workspace/questbridge-cloud/research/sdk.
+Installed SDK: /workspace/questbridge-cloud/ps5-sdk.
+LLVM: /workspace/questbridge-cloud/llvm/usr/lib/llvm-19/bin.
+Commands and required environment selectors: docs/testing/PS5_BUILD.md.
+Shell network operations need the supported additional network permission in
+this execution environment; do not bypass the configured proxy.
+
+The Git transition description above is historical: this checkout now has commits.
+Source changes are kept in the current isolated branch; no console or headset was contacted.
+
+Native receiver artifact: /workspace/questbridge-cloud/ps5-native-host/questbridge-native-host.elf.
+Build provenance: /workspace/questbridge-cloud/ps5-native-host/build-evidence.json.
+Target crypto: /workspace/questbridge-cloud/ps5-crypto; C++ runtime source/build logs
+and exact versions: docs/dependencies/NATIVE_TOOLCHAIN.md.
