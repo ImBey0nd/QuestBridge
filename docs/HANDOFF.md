@@ -40,7 +40,7 @@ The desktop protocol is experimental: no encryption, codec negotiation, producti
 
 ## Git and cloud transition
 
-The initial local handoff had no commit or remote. This cloud session started from uploaded commit b72b393cf715162dec521f811b630a13bbca3de1 with origin https://github.com/ImBey0nd/QuestBridge.git and an existing Git author. Cloud changes are on questbridge/cloud-openxr-probe. Check Git and the task's final review link for publication state; do not infer a push from a local branch name.
+The initial local handoff had no commit or remote. This cloud session started from uploaded commit b72b393cf715162dec521f811b630a13bbca3de1 with origin https://github.com/ImBey0nd/QuestBridge.git and an existing Git author. Cloud changes are pushed on questbridge/cloud-openxr-probe in draft PR https://github.com/ImBey0nd/QuestBridge/pull/1. The first hosted CI run passed desktop/native checks and exposed missing sdkmanager; CI now installs its own checksummed SDK tools. Check the PR for subsequent hosted CI results; the managed-cloud build evidence remains separate.
 
 The upload included generated Windows build files and omitted .gitignore and CI. This milestone removes generated build files from Git and adds .gitignore, CI and the Android wrapper. Toolchains, caches, keys and APKs must stay out of Git. Upstream README downloads are ignored going forward; existing uploaded research files were preserved. Durable source SHAs/URLs and the complete user brief remain tracked.
 

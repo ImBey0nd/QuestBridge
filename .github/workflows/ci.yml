@@ -25,6 +25,22 @@ jobs:
           npm run demo
       - name: Install Android packages
         run: |
+          export ANDROID_HOME="$RUNNER_TEMP/questbridge-android-sdk"
+          export ANDROID_SDK_ROOT="$ANDROID_HOME"
+          export ANDROID_USER_HOME="$RUNNER_TEMP/questbridge-android-user"
+          mkdir -p "$ANDROID_HOME/cmdline-tools" "$ANDROID_USER_HOME"
+          tools_zip="$RUNNER_TEMP/android-commandlinetools.zip"
+          curl --fail --location --retry 3 -o "$tools_zip" https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip
+          printf '7ec965280a073311c339e571cd5de778b9975026cfcbe79f2b1cdcb1e15317ee  %s\n' "$tools_zip" | sha256sum --check
+          unzip -q "$tools_zip" -d "$ANDROID_HOME/cmdline-tools"
+          mv "$ANDROID_HOME/cmdline-tools/cmdline-tools" "$ANDROID_HOME/cmdline-tools/19.0"
+          export PATH="$ANDROID_HOME/cmdline-tools/19.0/bin:$PATH"
+          printf 'ANDROID_HOME=%s\nANDROID_SDK_ROOT=%s\nANDROID_USER_HOME=%s\n' "$ANDROID_HOME" "$ANDROID_HOME" "$ANDROID_USER_HOME" >> "$GITHUB_ENV"
+          set +o pipefail
+          yes | sdkmanager --licenses > /dev/null
+          sdk_result=${PIPESTATUS[1]}
+          set -o pipefail
+          test "$sdk_result" -eq 0
           sdkmanager 'platforms;android-35' 'build-tools;34.0.0' 'ndk;27.2.12479018' 'cmake;3.22.1'
       - name: Build and lint Android runtime probe
         run: tools/build/android.sh

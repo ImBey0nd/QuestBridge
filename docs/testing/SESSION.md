@@ -43,7 +43,7 @@ Worked entirely in managed Linux cloud from uploaded commit b72b393cf715162dec52
 - Debug APK signature verification passed (v2). Static inspection confirmed ARM64 loader/probe libraries, ELF architecture, merged OpenXR permissions/runtime queries and packaged license notices.
 - APK snapshot: `/workspace/QuestBridge/artifacts/cloud-2026-10-26/questbridge-probe-debug.apk`, 2,112,889 bytes; SHA256 `70c1740343f49ef8ed1b1337a9b546ad374761b43be0a1e38f0593c744a9e256`.
 - Added checksummed Gradle 8.9 wrapper, Linux Android build/lint helper, CI workflow, ignore rules, license assets, build evidence and plain-language feasibility report. Removed 38 generated Windows build files from Git. No shared protocol/native runtime code changes.
-- CI workflow is newly added; GitHub-hosted execution is not part of these cloud observations. Dependency lock/verification metadata and deterministic signing remain future work.
+- Published draft [PR #1](https://github.com/ImBey0nd/QuestBridge/pull/1). Initial hosted CI reproduced desktop/native checks but failed on missing `sdkmanager`; fixed CI to install checksummed command-line tools 19.0 and SDK packages explicitly. Hosted runs are separate from the recorded managed-cloud APK build. Dependency lock/verification metadata and deterministic signing remain future work.
 
 Current blockers: no headset/console access; no Android device execution, XR session/tracking/renderer, PS5 ELF or game compatibility result. PS5 VR interfaces and native stereo access on firmware 13.20 remain unverified. Unknown firmware remains disabled. No exploit, patch or console deployment was attempted.
 
