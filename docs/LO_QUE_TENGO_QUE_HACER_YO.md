@@ -27,6 +27,12 @@ Mándame esa ficha y cualquier log existente del cargador, quitando direcciones 
 
 **No cargues los ELF actuales en PS5.** Se descubrió que el arranque del SDK cambia estado del kernel antes de entrar al programa. Ambos artefactos PS5 siguen siendo solo de compilación. Primero hace falta resolver y revisar ese arranque y el contrato del cargador. No hay un puerto/IP de PS5 que debas configurar ahora.
 
+### Contributors y copias antiguas del repositorio
+
+Confirmaste que los commits que GitHub vinculaba a `ImNotBeyond` eran tuyos y autorizaste corregir su historial a `ImBey0nd`. La identidad de Codex usada en los trailers es `chatgpt-codex-connector[bot]`, no una cuenta humana llamada `codex`. GitHub calcula y actualiza la sección Contributors; no hay una lista manual que puedas editar y su caché puede tardar en reflejar la corrección.
+
+Si tienes una copia antigua en tu PC, conserva cualquier cambio local y vuelve a clonar en una carpeta nueva después de la corrección. No fusiones ni vuelvas a subir las ramas antiguas, porque reintroducirían la atribución anterior. No necesitas hacerlo si solo usas GitHub y Codex. Se guarda un respaldo `.bundle` y un mapa de commits fuera del checkout en el entorno cloud; descárgalos si quieres conservar esa recuperación, ya que el entorno no es almacenamiento permanente. Las referencias históricas de evidencia se mantienen como fueron registradas.
+
 ## 2. Opcional: probar la APK de diagnóstico en mi Quest 2
 
 Puedes hacerlo después de la ficha PS5. Si prefieres seguir primero con PS5, esta prueba puede esperar.
