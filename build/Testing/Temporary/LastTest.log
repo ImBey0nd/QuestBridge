@@ -1,0 +1,19 @@
+Start testing: Oct 26 15:52 Hora verano Sudamérica Pacífico
+----------------------------------------------------------
+1/1 Testing: native_models_wire_calibration_video_firmware
+1/1 Test: native_models_wire_calibration_video_firmware
+Command: "C:/Users/beyondd/Desktop/QUEST 2 PS5/build/qb_native_tests.exe"
+Directory: C:/Users/beyondd/Desktop/QUEST 2 PS5/build
+"native_models_wire_calibration_video_firmware" start time: Oct 26 15:52 Hora verano Sudamérica Pacífico
+Output:
+----------------------------------------------------------
+native validation, calibration, frame assembly, firmware gates passed
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"native_models_wire_calibration_video_firmware" end time: Oct 26 15:52 Hora verano Sudamérica Pacífico
+"native_models_wire_calibration_video_firmware" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 26 15:52 Hora verano Sudamérica Pacífico

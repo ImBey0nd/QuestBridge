@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "firmware": "13.20",
+  "status": "requested_target_unverified",
+  "runtime_identification": "not_implemented",
+  "console_hardware": "original PS5 requested by owner",
+  "features": {
+    "payload_execution": "upstream_claim_not_locally_tested",
+    "tracking_injection": false,
+    "stereo_capture": false,
+    "vr_module_abi_verified": false
+  },
+  "tested": false,
+  "evidence": []
+}

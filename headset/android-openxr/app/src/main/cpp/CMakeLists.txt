@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.22.1)
+project(questbridge_probe LANGUAGES CXX)
+find_package(OpenXR REQUIRED CONFIG)
+add_library(questbridge_probe SHARED probe.cpp)
+target_compile_features(questbridge_probe PRIVATE cxx_std_17)
+target_link_libraries(questbridge_probe PRIVATE OpenXR::openxr_loader android log)

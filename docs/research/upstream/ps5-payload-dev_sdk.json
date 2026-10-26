@@ -1,0 +1,15 @@
+﻿{
+    "pushed_at":  "2026-10-21T17:43:01Z",
+    "repository":  "ps5-payload-dev/sdk",
+    "sha":  "a7685ce8e97ce1f8a4f38253a41d54241c9124f1",
+    "description":  "An SDK for PS5 payloads that uses dynamic linking",
+    "branch":  "master",
+    "archived":  false,
+    "license":  {
+                    "key":  "gpl-3.0",
+                    "name":  "GNU General Public License v3.0",
+                    "spdx_id":  "GPL-3.0",
+                    "url":  "https://api.github.com/licenses/gpl-3.0",
+                    "node_id":  "MDc6TGljZW5zZTk="
+                }
+}

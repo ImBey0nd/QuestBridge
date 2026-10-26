@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "profile": "Quest 2 intended backend",
+  "implementation_status": "not_connected_to_runtime",
+  "capabilities": {
+    "head_pose": true,
+    "controller_pose": true,
+    "buttons": true,
+    "analog_sticks": true,
+    "triggers": true,
+    "grip": true,
+    "controller_haptics": true,
+    "eye_tracking": false,
+    "headset_haptics": false,
+    "adaptive_triggers": false
+  },
+  "fallback_policy": {
+    "eye_tracking": "report_unsupported",
+    "headset_haptics": "report_unsupported",
+    "adaptive_triggers": "report_unsupported"
+  },
+  "note": "Device profile describes intended physical capabilities, not implemented QuestBridge functionality."
+}

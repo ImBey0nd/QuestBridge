@@ -1,0 +1,15 @@
+{
+  "name": "questbridge",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test tests/protocol/*.test.mjs tests/integration/*.test.mjs",
+    "demo": "node desktop/diagnostics/demo.mjs",
+    "host": "node desktop/diagnostics/host.mjs",
+    "simulator": "node desktop/simulator/main.mjs"
+  }
+}

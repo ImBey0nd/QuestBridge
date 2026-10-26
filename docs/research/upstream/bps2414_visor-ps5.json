@@ -1,0 +1,15 @@
+﻿{
+    "pushed_at":  "2026-10-11T21:37:09Z",
+    "repository":  "bps2414/visor-ps5",
+    "sha":  "b932610be7dfdd18b7d0ed3423b5ad59494a7582",
+    "description":  "Mirror a Meta Quest 2 to the TV from a jailbroken PS5 - no PC, nothing to install on the headset",
+    "branch":  "main",
+    "archived":  false,
+    "license":  {
+                    "key":  "gpl-3.0",
+                    "name":  "GNU General Public License v3.0",
+                    "spdx_id":  "GPL-3.0",
+                    "url":  "https://api.github.com/licenses/gpl-3.0",
+                    "node_id":  "MDc6TGljZW5zZTk="
+                }
+}

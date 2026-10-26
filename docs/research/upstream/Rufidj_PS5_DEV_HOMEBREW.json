@@ -1,0 +1,15 @@
+﻿{
+    "pushed_at":  "2026-05-11T08:52:44Z",
+    "repository":  "Rufidj/PS5_DEV_HOMEBREW",
+    "sha":  "bcd3ec8f665a1ca7e546eca8168b89616c588816",
+    "description":  "A lightweight, standalone C SDK for PS5, featuring multi-firmware compatibility with a focus on dynamic RAM EH_offset alignment. It supports automated module handle resolution and direct system interaction without standard libc dependencies, battle-tested on firmwares 13.00 and 13.20.",
+    "branch":  "main",
+    "archived":  false,
+    "license":  {
+                    "key":  "mit",
+                    "name":  "MIT License",
+                    "spdx_id":  "MIT",
+                    "url":  "https://api.github.com/licenses/mit",
+                    "node_id":  "MDc6TGljZW5zZTEz"
+                }
+}

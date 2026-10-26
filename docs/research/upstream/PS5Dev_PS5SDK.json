@@ -1,0 +1,15 @@
+﻿{
+    "pushed_at":  "2024-04-09T01:19:45Z",
+    "repository":  "PS5Dev/PS5SDK",
+    "sha":  "a2e03a2a0231a3a3397fa6cd087a01ca6d04f273",
+    "description":  "An SDK to build payloads/ELF files compatible with the loader in the PS5 WebKit+Kernel Exploit chain. ",
+    "branch":  "main",
+    "archived":  false,
+    "license":  {
+                    "key":  "gpl-2.0",
+                    "name":  "GNU General Public License v2.0",
+                    "spdx_id":  "GPL-2.0",
+                    "url":  "https://api.github.com/licenses/gpl-2.0",
+                    "node_id":  "MDc6TGljZW5zZTg="
+                }
+}
