@@ -1,0 +1,28 @@
+QuestBridge runtime probe
+Original project source: https://github.com/ImBey0nd/QuestBridge
+Original project code is licensed under GPL-3.0-or-later;
+see licenses/QuestBridge-GPL-3.0.txt and the repository LICENSE.
+
+This APK packages the unmodified Khronos OpenXR loader for Android 1.1.65,
+published at:
+https://repo.maven.apache.org/maven2/org/khronos/openxr/openxr_loader_for_android/1.1.65/
+Its published POM specifies Apache-2.0. See licenses/Apache-2.0.txt.
+
+Release source inspected for notices:
+https://github.com/KhronosGroup/OpenXR-SDK-Source/tree/21e4d76a37ebf8d3b46e466fb869a5cf17f48e4b
+Copyright (c) 2017-2026 The Khronos Group Inc.
+Copyright (c) 2017-2019 Valve Corporation
+Copyright (c) 2017-2019 LunarG, Inc.
+Copyright (c) 2020-2021, Collabora, Ltd.
+
+The Android loader release source also includes:
+- JsonCpp: Copyright (c) 2007-2010 Baptiste Lepilleur and The JsonCpp Authors;
+  public-domain/MIT terms reproduced in licenses/JsonCpp-LICENSE.txt.
+- jnipp: Copyright (c) 2016 Mitchell Dowd; MIT terms in licenses/jnipp-LICENSE.txt.
+- Android JNI wrappers: Copyright 2020-2021, Collabora, Ltd.;
+  Boost Software License 1.0 in licenses/BSL-1.0.txt.
+
+The probe is compiled with Android NDK r27c. LLVM runtime code embedded by
+compilation is covered by Apache-2.0 with LLVM exceptions (including the
+embedded-object exception); the complete notices remain in the NDK distribution.
+https://github.com/llvm/llvm-project/blob/llvmorg-18.1.8/LICENSE.TXT

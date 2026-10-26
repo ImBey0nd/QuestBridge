@@ -1,0 +1,34 @@
+
+> questbridge@0.1.0 demo
+> node desktop/diagnostics/demo.mjs
+
+{
+  "elapsedMs": 1503.482373,
+  "trackingHz": 88.46129651298546,
+  "receivedMbps": 0.23231399733876362,
+  "event": "loopback_demo",
+  "host": {
+    "accepted": 272,
+    "rejected": 0,
+    "tracking": 133,
+    "expired": 0,
+    "gaps": 0,
+    "video": 133,
+    "wireBytes": 43660
+  },
+  "simulator": {
+    "welcomes": 1,
+    "sent": 133,
+    "pongs": 6,
+    "rejected": 0,
+    "reconnects": 0,
+    "rttUs": 646,
+    "offsetUs": 188
+  },
+  "syntheticStereoOnly": true
+}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

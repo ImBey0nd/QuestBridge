@@ -1,0 +1,26 @@
+
+> questbridge@0.1.0 test
+> node --test tests/protocol/*.test.mjs tests/integration/*.test.mjs
+
+✔ real UDP pairing, tracking, stereo, clock, peer expiry and reconnect (797.171114ms)
+✔ replay, wrong key and malformed tracking never advance accepted state (43.839416ms)
+✔ running simulator obtains a fresh session after receiver restart (1572.892418ms)
+✔ stable big endian header and tracking roundtrip (2.330014ms)
+✔ reject every truncation, corruption, trailing data, bad key (10.770814ms)
+✔ semantic validation rejects NaN, scale, range, flag and button errors (0.62475ms)
+✔ clock sample uses all four timestamps (1.003524ms)
+✔ pairing key must be strong length and valid encoding (0.420966ms)
+✔ bounded deterministic malformed datagram corpus (21.388456ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4683.064199
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

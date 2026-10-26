@@ -1,0 +1,18 @@
+Archive:  artifacts/cloud-2026-10-26/questbridge-probe-debug.apk
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+       56  1981-01-01 01:01   META-INF/com/android/build/gradle/app-metadata.properties
+      768  1981-01-01 01:01   classes.dex
+     1856  1981-01-01 01:01   classes2.dex
+  1661048  1981-01-01 01:01   lib/arm64-v8a/libopenxr_loader.so
+   396584  1981-01-01 01:01   lib/arm64-v8a/libquestbridge_probe.so
+     1463  1981-01-01 01:01   assets/THIRD_PARTY_NOTICES.txt
+    10283  1981-01-01 01:01   assets/licenses/Apache-2.0.txt
+     1338  1981-01-01 01:01   assets/licenses/BSL-1.0.txt
+     2714  1981-01-01 01:01   assets/licenses/JsonCpp-LICENSE.txt
+    35149  1981-01-01 01:01   assets/licenses/QuestBridge-GPL-3.0.txt
+     1070  1981-01-01 01:01   assets/licenses/jnipp-LICENSE.txt
+     3828  1981-01-01 01:01   AndroidManifest.xml
+       40  1981-01-01 01:01   resources.arsc
+---------                     -------
+  2116197                     13 files
