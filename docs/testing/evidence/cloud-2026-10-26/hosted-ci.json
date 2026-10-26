@@ -1,0 +1,29 @@
+{
+  "repository": "ImBey0nd/QuestBridge",
+  "head_sha": "555fd0b1dd4e7a13b11f2749c9e3b35e79b5976a",
+  "run_id": 40389132595,
+  "run_url": "https://github.com/ImBey0nd/QuestBridge/actions/runs/40389132595",
+  "status": "completed",
+  "conclusion": "success",
+  "job_id": 121805200865,
+  "android_build": "BUILD SUCCESSFUL in 1m 19s; 46 actionable tasks: 46 executed",
+  "artifact": {
+    "id": 12682650116,
+    "name": "questbridge-probe-debug",
+    "size_in_bytes": 696491,
+    "url": "https://api.github.com/repos/ImBey0nd/QuestBridge/actions/artifacts/12682650116",
+    "archive_download_url": "https://api.github.com/repos/ImBey0nd/QuestBridge/actions/artifacts/12682650116/zip",
+    "expired": false,
+    "created_at": "2026-10-26T19:45:00Z",
+    "expires_at": "2027-01-24T19:42:32Z",
+    "updated_at": "2026-10-26T19:45:00Z",
+    "digest": "sha256:6911189e9ec89268206fe0016e73054fbf53e084baeb94012909326e80973a7f",
+    "workflow_run": {
+      "id": 40389132595,
+      "repository_id": 1434814512,
+      "head_repository_id": 1434814512,
+      "head_branch": "questbridge/cloud-openxr-probe",
+      "head_sha": "555fd0b1dd4e7a13b11f2749c9e3b35e79b5976a"
+    }
+  }
+}
