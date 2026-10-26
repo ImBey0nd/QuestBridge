@@ -161,3 +161,18 @@ Native receiver artifact: /workspace/questbridge-cloud/ps5-native-host/questbrid
 Build provenance: /workspace/questbridge-cloud/ps5-native-host/build-evidence.json.
 Target crypto: /workspace/questbridge-cloud/ps5-crypto; C++ runtime source/build logs
 and exact versions: docs/dependencies/NATIVE_TOOLCHAIN.md.
+
+## Owner environment and attribution — 2026-10-26
+
+Owner reports PS5 Fat / firmware 13.20 and prefers latest upstream Relapse/KStuff.
+This is self-reported; exact revision/full build, installed versions and loader
+identity remain unknown. Public baseline: Relapse main
+dd8e4e0914c5e9d066ee1f9b056be76cb992c8e0 (no published releases), KStuff Lite
+1.11 Beta (tag currently resolves to 85fb88a526e58e357d6f1e626ce05af4acdb8b5d).
+See docs/research/PS5_ENVIRONMENT_BASELINE.json for source URLs and asset identity.
+No update or console execution occurred; runtime compatibility remains disabled.
+Next work still requires actual loader/build and authorized module/title metadata.
+
+Codex coauthor trailer was added to the native diagnostic milestone and published
+on codex/ps5-native-discovery. Local checkout: /workspace/QuestBridge, branch work.
+The original 8a81c3c identifier was superseded by attribution amendment.

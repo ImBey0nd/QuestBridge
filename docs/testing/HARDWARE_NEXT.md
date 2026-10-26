@@ -16,8 +16,8 @@ Use the console's own system-information screen and existing loader/homebrew log
 
 | Item | Record | Current evidence |
 | --- | --- | --- |
-| Console | Exact model/revision | Owner requested original PS5; not observed |
-| Firmware | Full displayed version/build | Owner requested 13.20; not observed |
+| Console | Exact model/revision | Owner reports PS5 Fat; exact revision not observed |
+| Firmware | Full displayed version/build | Owner reports 13.20; full build not observed |
 | Relapse/KStuff | Exact installed version/build or source commit | Unknown |
 | ELF loader | Actual loader name, build/source, stdout behavior and existing logs | Unknown |
 | VR modules | Names, sizes, build identifiers/hashes if available through existing authorized tooling | Public-source candidates only |
@@ -33,6 +33,20 @@ run where that file resides. [PS5_IMPORTS.md](PS5_IMPORTS.md) describes the comm
 It changes no input bytes and produces metadata only. SELF/encrypted inputs are
 unsupported; this project does not extract or decrypt them. Missing data should be
 reported as unavailable, not replaced with assumptions.
+
+## Recorded owner environment and upstream baseline
+
+The owner reports a PS5 Fat running firmware 13.20 and prefers current upstream
+Relapse/KStuff versions. Installed versions and any completed update remain unknown.
+The full system build, exact revision and actual loader identity are still needed.
+
+[PS5_ENVIRONMENT_BASELINE.json](../research/PS5_ENVIRONMENT_BASELINE.json) separates
+this report from the public reference metadata checked on 2026-10-26. KStuff Lite's
+latest published release is **1.11 Beta**, with its API-reported asset digest retained.
+Relapse has no published releases; its current main source is pinned by commit.
+These are reference identities, not an installation instruction or proof of console
+compatibility. A bundled loader filename does not establish its startup contract.
+No console update or hardware test has been performed by this project.
 
 ## Why the exact loader matters
 
