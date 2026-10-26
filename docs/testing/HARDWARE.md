@@ -6,6 +6,21 @@ Provision JDK17, Gradle8.9, Android SDK35, NDK27.2.12479018 and CMake3.22.1. Bui
 Record dependency resolution/build logs and APK SHA256. Compilation is separate from device testing.
 On an authorized developer-mode headset, install via adb only when ready for device testing. Capture adb logcat with QuestBridge/Xr loader messages, headset OS version and runtime name.
 Probe success means only loader initialization, instance creation and HMD system discovery. There is no tracking renderer yet.
+
+The cloud build is now available; see [exact APK hash and build evidence](CLOUD_2026-10-26.md). Build via the checked-in wrapper/helper rather than a global Gradle installation. It targets SDK 35 and still supports installation from SDK 29. Signature verification is complete; installation and runtime operation remain untested.
+
+For the owner-operated developer-mode Quest experiment, select the intended headset in ADB, verify the APK hash against the evidence and then use the following commands. If multiple devices are attached, add `-s SERIAL` to each command. Do not record device serials in public evidence.
+
+```sh
+adb install -r /path/to/questbridge-probe-debug.apk
+# Start capture in one terminal before launching the app; stop with Ctrl+C.
+adb logcat -v threadtime QuestBridge:I OpenXR-Loader:V '*:S' > questbridge-probe-logcat.txt
+# In another terminal:
+adb shell am start -W -n org.questbridge.probe/.MainActivity
+```
+
+Retain the install/start result, on-screen probe result, headset model/OS version and runtime name/error code. Repeat app launch after closing/reopening it and after headset sleep/wake; record crashes or lifecycle failures. An error is useful evidence and must not be replaced by a guessed success. The tag filter may miss vendor-specific loader diagnostics; widen capture locally if needed and remove unrelated private information before sharing logs. No commands in this procedure were run against hardware during the cloud session.
+
 Future tracking test: verify stationary pose, +/- axes, controller actions, validity during occlusion, recenter and lifecycle pause/resume before networking.
 
 ## PS5 SDK smoke test

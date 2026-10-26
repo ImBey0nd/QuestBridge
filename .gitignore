@@ -1,0 +1,21 @@
+# Generated outputs and local toolchains
+/build/
+/build-*/
+.tools/
+.gradle/
+.cxx/
+/headset/android-openxr/build/
+/headset/android-openxr/app/build/
+**/.gradle/
+**/.cxx/
+**/local.properties
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# Downloaded research references (pinned findings live in docs/research)
+docs/research/upstream/*.README.md
+
+# Full build artifacts remain available in the workspace; curated evidence is tracked.
+artifacts/

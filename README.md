@@ -1,7 +1,7 @@
 # QuestBridge
 Experimental open-source foundations for investigating standalone headsets with native PS5 VR games.
 
-**No PS VR2 game compatibility is implemented or demonstrated.** This repository currently provides a tested desktop communication prototype, native data/math/video utilities, and untested Android and PS5 probe scaffolds. Resident Evil Village VR Mode is an untested reference target.
+**No PS VR2 game compatibility is implemented or demonstrated.** This repository provides a tested desktop communication prototype, native data/math/video utilities, an Android OpenXR probe built into a debug APK, and an unbuilt PS5 probe scaffold. The Android probe has not run on a headset. Resident Evil Village VR Mode is an untested reference target.
 
 ## Run the working demo
 Requires Node.js 22 or newer. No npm dependencies or install step.
@@ -11,7 +11,7 @@ npm run demo
 ```
 The demo uses an ephemeral random key, loopback UDP and generated tracking plus 2x2 RGB images per eye. It prints tracking counts, stereo packet counts and a clock round-trip estimate, then exits. No headset or console is contacted.
 
-## Native build on this workstation
+## Native build
 ```powershell
 powershell -ExecutionPolicy Bypass -File tools/build/native.ps1
 ```
@@ -39,7 +39,7 @@ Both default to 127.0.0.1:42420. For a private LAN experiment explicitly set QB_
 - common/: C++17 models, calibration, tracking wire codec, frame assembly; Node authenticated packet codec.
 - desktop/: real UDP diagnostic receiver and synthetic sender.
 - tests/: malformed packet, replay, network lifecycle and native validation checks.
-- headset/android-openxr/: Gradle/JNI OpenXR runtime probe scaffold, **unbuilt and untested**.
+- headset/android-openxr/: Gradle/JNI OpenXR runtime probe, **APK built; headset execution untested**.
 - ps5/host/: SDK smoke test, **not a network host**, no ELF produced.
 - ps5/runtime/: unavailable adapter and explicitly named offline mock.
 - docs/research/RESEARCH.md: pinned upstream findings and unresolved VR interfaces.
@@ -47,8 +47,10 @@ Both default to 127.0.0.1:42420. For a private LAN experiment explicitly set QB_
 - docs/testing/HARDWARE.md: evidence needed before device claims.
 - docs/testing/SESSION.md: actual validation results.
 
-Android needs Android SDK/NDK, compatible JDK and Gradle; PS5 needs a POSIX toolchain and the selected homebrew SDK. See each scaffold README. There is no installable APK or PS5 ELF in this milestone.
+Android needs JDK 17 and the SDK/NDK packages listed in [its README](headset/android-openxr/README.md); a verified Gradle 8.9 wrapper is included. From Linux, run `tools/build/android.sh` after configuring those tools. It builds and lints `headset/android-openxr/app/build/outputs/apk/debug/app-debug.apk`. PS5 still needs its POSIX toolchain and selected homebrew SDK; no PS5 ELF has been built.
 
-License: GPL-3.0-or-later for original project code. Upstream projects remain under their respective terms; no upstream implementation or proprietary Sony content is bundled.
+[Cloud build evidence](docs/testing/CLOUD_2026-10-26.md) records the actual APK, signature checks, hashes and logs. [Feasibility report](docs/FEASIBILITY.md) explains what the milestone means for the owner's goal. The CI workflow repeats desktop/native checks and Android build/lint, and retains an APK artifact when it runs.
 
-Latest validation: 9 Node tests, 1 native CTest and a C++/Node payload fixture pass locally. The Windows demo measured about63 tracking updates/s against a nominal90Hz setting; see docs/testing/SESSION.md.
+License: GPL-3.0-or-later for original project code. The Android APK packages the Apache-2.0 Khronos loader and its notices; Gradle wrapper files use Apache-2.0. Other upstream projects retain their respective terms. No proprietary Sony content is bundled.
+
+Latest cloud validation: 9 Node tests, 1 native CTest, C++/Node payload round-trip and compatibility records passed. Android debug APK assembly and lint passed (5 warnings). The Linux loopback demo measured about 88 tracking updates/s; this is synthetic desktop traffic, not headset or game performance. See [session results](docs/testing/SESSION.md).

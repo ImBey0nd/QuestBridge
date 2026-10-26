@@ -1,0 +1,4 @@
+headset/android-openxr/gradlew text eol=lf
+headset/android-openxr/gradlew.bat text eol=crlf
+# Preserve command output verbatim, including tool-generated trailing spaces.
+docs/testing/evidence/** -whitespace
