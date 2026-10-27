@@ -305,3 +305,14 @@ source and generated text disassembly were reviewed; only validated libkernel
 function/stub transfers remain. Host observer tests use inert callbacks. Native
 CTest 6/6 passed. Actual loader mode/stdout/completion is still unverified; candidate
 is not labeled console-tested or a PS5 receiver/runtime. CI now retains it separately.
+
+Compiled observer follow-up: Unicorn2.1.4 executed the actual ELF in 19 synthetic
+syscall-model cases. Full/short/error/zero/overreported writes, getpid failure,
+null arguments and all 12 prefix mutations passed, with stack-only guest writes
+and no unexpected syscall sites/numbers. Unsupported profiles trap without calls;
+valid profiles exit the standalone guest process. This is CPU-model evidence, not
+PS5 execution. The fresh hosted observer ELF from Actions run40591865118 exactly
+matches the local artifact SHA256 da11946e155bdbab9ad18d810d3577856b6efe811d56d7a79d21f46f24fec661.
+The default raw-ELF server branch also calls a function using rfork_thread in the
+bundled image; documented separately from bootstrap injection. CI now runs the
+compiled-ELF model and retains its report.

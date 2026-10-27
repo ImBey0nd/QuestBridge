@@ -51,6 +51,9 @@ jobs:
           export QB_LLD="$ANDROID_HOME/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/bin/ld.lld"
           bash tools/build/ps5-observer.sh "$RUNNER_TEMP/questbridge-observer"
           git rev-parse HEAD > "$RUNNER_TEMP/questbridge-observer/source-commit.txt"
+          python3 -m venv "$RUNNER_TEMP/observer-emulation"
+          "$RUNNER_TEMP/observer-emulation/bin/python" -m pip install unicorn==2.1.4
+          "$RUNNER_TEMP/observer-emulation/bin/python" tools/diagnostics/test-ps5-observer.py "$RUNNER_TEMP/questbridge-observer/questbridge-observer.elf" > "$RUNNER_TEMP/questbridge-observer/emulation.json"
       - name: Retain standalone observer candidate and inspection
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

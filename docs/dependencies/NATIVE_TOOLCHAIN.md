@@ -74,3 +74,11 @@ The generated source/dependency/artifact hashes are in
 `/workspace/questbridge-cloud/ps5-native-host/build-evidence.json` and SHA256SUMS.
 These are cloud evidence, not device or game compatibility. The GitHub workflow is
 configured locally; a successful remote CI run is not claimed.
+
+## Observer CPU-model test dependency
+
+Unicorn Python package 2.1.4 is an optional host-test dependency, pinned in CI.
+The wheel's binding metadata reports BSD licensing; the upstream emulator contains
+additional core/component licenses. No Unicorn runtime/binary is linked or packaged
+into the Android app or PS5 ELF. It is installed separately in an ephemeral venv
+and used only for synthetic syscall CPU-model checks of the compiled observer.

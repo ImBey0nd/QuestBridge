@@ -86,6 +86,44 @@ status mapping. It does not execute FreeBSD syscalls on Linux or prove loader AB
 The source tests and target ELF are separate artifacts. CI builds the candidate and
 uploads its inspection files under questbridge-observer-candidate.
 
+## Compiled machine-code emulation
+
+The actual compiled ELF also passed 19 isolated Unicorn 2.1.4 CPU-emulation cases
+with a synthetic libkernel-shaped getpid stub. The model intercepts every syscall;
+only getpid, bounded stdout and standalone exit are permitted. Guest memory writes
+must stay within its stack; argument memory and image code are read-only. Cases
+cover complete/short/error/zero/overreported stdout, failed getpid, null arguments
+and mutation of every accepted prefix byte. Unsupported input must trap without
+making any syscall. Success must emit the exact report and exit 0; operational
+failures exit 1. A return into the placeholder address is a failed test.
+
+```sh
+python3 -m venv /path/to/emulation-venv
+/path/to/emulation-venv/bin/python -m pip install unicorn==2.1.4
+/path/to/emulation-venv/bin/python tools/diagnostics/test-ps5-observer.py /path/to/questbridge-observer.elf
+```
+
+This executes guest machine instructions inside a CPU model, **not** FreeBSD/PS5
+syscalls on the host. It validates the generated entry and helper register/stack
+flow beyond inert callback tests. The synthetic syscall model is not a PS5 kernel,
+loader, memory map, getpid implementation or physical result. CI retains its JSON
+report with the exact ELF hash. Neither emulation nor matching hashes establish
+actual target syscall permissions.
+
+## Default socket-server evidence
+
+The pinned socksrv.c selects elfldr_spawn for raw ELF input and pipes stdout through
+the client socket by default. In the bundled image above, the raw ELF magic branch
+at image 0xd65 calls the function at 0x31d0. That function invokes rfork_thread
+through its dynamic import at 0x14a90, corroborating new-process creation. This
+narrows the default server path; it is distinct from the bootstrap's injection
+into an existing system process. These are offline artifact addresses only.
+
+Source: https://github.com/ps5-payload-dev/elfldr/blob/2a8da002e5292481ea964daa7342bbf4855f4c33/socksrv.c
+Do not apply the standalone exit policy to the bootstrap, an injection tool or
+an existing-process target. No exact code-build provenance or installed-mode
+observation is inferred merely from similar code.
+
 ## Current physical-test gate
 
 Before any physical run, the loader mode must be established as a new standalone

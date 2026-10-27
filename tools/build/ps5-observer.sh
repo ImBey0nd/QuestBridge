@@ -20,6 +20,7 @@ flags=(-target x86_64-unknown-freebsd -ffreestanding -fno-builtin -fPIC -mno-red
 python3 - "$out/questbridge-observer.elf" "$out/audit.json" <<'PY_AUDIT'
 import sys,struct,hashlib,json
 from pathlib import Path
+if not __debug__:raise RuntimeError('ELF audit requires Python assertions enabled')
 artifact=Path(sys.argv[1]);data=artifact.read_bytes()
 assert data[:6]==b'\x7fELF\x02\x01'
 assert struct.unpack_from('<HH',data,16)==(3,62)
