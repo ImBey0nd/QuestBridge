@@ -19,6 +19,7 @@ jobs:
           npm test
           cmake -S . -B build
           cmake --build build
+          node tools/diagnostics/test-android-transport.mjs build/qb_native_receiver
           ctest --test-dir build --output-on-failure
           node tools/diagnostics/cross-language.mjs
           node tools/diagnostics/validate.mjs

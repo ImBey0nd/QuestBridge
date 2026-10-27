@@ -1,5 +1,21 @@
 # QuestBridge cloud handoff
 
+## Current implementation — Quest client 0.2.0 (2026-10-27)
+
+The Android app now has a real OpenXR session, stereo diagnostic renderer, head/Touch
+actions and optional authenticated v1 tracking transport. It is no longer merely
+the discovery-only APK described in older milestones. See docs/testing/QUEST_CLIENT.md.
+Physical Quest execution remains untested. No Sony runtime adapter, native stereo
+capture or PS5 game compatibility is enabled. The old SDK-based PS5 ELFs remain
+build-only; there is no new console-ready ELF. Do not request the owner inventory.
+
+Real host JVM tests exercise the exact Android transport with Node and C++ receivers,
+restarts, stale neutralization and forged/uncorrelated replies. Render math has a
+new native CTest. CI runs the Java interop test with the native receiver argument.
+The client owns no raw Sony structures or offsets. Pairing settings are consumed
+from process-local memory, not task Intent extras or saved preferences.
+
+
 ## Owner correction — 2026-10-27
 
 Accept the confirmed environment: PS5 Fat / 13.20; Kstuff Lite 1.11 Beta; latest

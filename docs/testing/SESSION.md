@@ -264,3 +264,27 @@ Owner now explicitly requests both Quest and PS5 test artifacts; Quest work is n
 Reviewed physical display/USB separation, public host tracking streams, sensor/head calibration, authentication uncertainty and native runtime consumers. Pinned sources and evidence limits: docs/research/PSVR2_CONNECTION.md. Added original offline tools/diagnostics/psvr2-slam.mjs plus three synthetic tests. Native raw coordinates and unknown validity remain explicit; no device emulation/runtime replacement is claimed. Node 27/27 and native CTest 4/4 passed with loopback network permission. Sony headset kernel archive browser fetch timed out; no claim of reviewing its source. Native PS5 ABI/service/GPU ownership evidence remains missing.
 
 Authentication source follow-up: recovered public Sony module mirror orumin/psvr2-sie-kernel-modules at 9eab2ca28f2c63038a8743b93b5357d945faaad8. Reviewed device authentication interface/state and ioctl boundary to user-space response handling. This does not supply the user-space response algorithm or establish PS5 13.20 host policy. Official package equality remains unverified. Updated connection report; no authentication implementation imported or executed.
+
+## Actual Quest client development — 2026-10-27
+
+Implemented OpenXR NativeActivity with EGL/GLES3, two eye swapchains, predicted-time
+view/head/Touch pose sampling, canonical tracking flags, analog/button actions and
+fixed geometry/grip markers. Added optional Java HMAC/session tracking sender using
+the existing protocol and C++ encoder, stale neutralization, reply timeout/re-pair,
+pause invalidation and lifecycle teardown without an Activity-monitor deadlock.
+Receiver settings are one-use process memory, never Intent extras/preferences.
+
+Host validation: Node 27/27, native CTest 5/5 (including new inverse-view/asymmetric
+projection test), JVM transport interop with Node/C++ receivers, receiver restart,
+invalid samples, stale neutralization and adversarial receive cases passed.
+Android assembly/lint passed during development. Final clean build/signature/hash
+will be recorded with the packaged APK evidence. This recreated environment uses
+Java 21.0.12.1 with JDK compiler modules, Gradle 8.9, AGP 8.7.3, SDK35, Build Tools
+34.0.0 and NDK 27.2.12479018. No physical headset or console was contacted.
+
+Offline follow-up on the bundled Relapse loader: its nested image at file offset
+0x40000 has a code reference to getpid NID HoLVWNanBBc and stores that resolver's
+result into argument offset zero, corroborating the public reference loader's
+getpid convention. This narrows the contract; it does not verify the live installed
+loader or make the SDK CRT's automatic kernel patches acceptable. No speculative
+replacement startup or console deployment was added.
