@@ -227,3 +227,16 @@ Worked entirely in managed Linux cloud from uploaded commit b72b393cf715162dec52
 Current blockers: no headset/console access; no Android device execution, XR session/tracking/renderer or game compatibility result. PS5 ELF compilation is recorded separately above. PS5 VR interfaces and native stereo access on firmware 13.20 remain unverified. Unknown firmware remains disabled. No exploit, patch or console deployment was attempted.
 
 Next concrete experiment: install this exact APK on an authorized Quest 2 and capture runtime name/result, OS version and startup/lifecycle logs. Next independent cloud implementation: OpenXR session/actions/diagnostic rendering, the PS5 probes have since been compiled but remain build-only. Prioritize PS5 VR interface evidence as the central feasibility gate; see [FEASIBILITY.md](../FEASIBILITY.md).
+# Environment intake continuation — 2026-10-27
+
+Added an offline JSON environment completeness checker, blank template, developer
+instructions and four tests. Rejects malformed schema, invalid origins, oversized
+input and invalid UTF-8; public references cannot fill installed-environment gaps.
+Complete declarations remain awaiting source review, with runtime/deployment off.
+Summaries omit submitted values and evidence references.
+
+Actual checks: Node 24/24; fresh GCC 14.2/OpenSSL 3.5.7 host build; native CTest
+4/4; blank-template CLI; compatibility validator; git diff whitespace check.
+Initial default-sandbox Node integration tests failed on bind EPERM at loopback;
+rerun with additional network permission passed, as did native/Node UDP CTest.
+No hardware access, firmware enabling, console execution or Quest changes.

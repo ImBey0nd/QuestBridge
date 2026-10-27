@@ -1,5 +1,21 @@
 # QuestBridge cloud handoff
 
+## Latest continuation — 2026-10-27
+
+Added tools/diagnostics/ps5-environment.mjs, a bounded offline environment intake
+checker, with a blank template and instructions in docs/testing/PS5_ENVIRONMENT.md.
+It reports missing installed-environment declarations and does not count upstream
+references as installed evidence. All declarations still require source review;
+runtime/deployment flags remain false. The owner can continue using the Spanish
+text form; no JSON editing or new console action is required.
+
+Validation on this checkout: Node 24/24 and native CTest 4/4 passed, using the
+additional network permission for loopback UDP after the default sandbox returned
+bind EPERM. Fresh GCC 14.2/OpenSSL 3.5.7 host build in ignored build-intake/ passed.
+Blank-template CLI and compatibility validator passed. No console or Quest test,
+source/ABI verification, or game compatibility is claimed. Next PS5 integration
+step still needs the actual loader/build and authorized module/title metadata.
+
 Updated: 2026-10-26. Latest owner direction: investigate PS5 before further Quest app development. This file preserves the engineering context of the initial local conversation; it is a summary, not a complete chat transcript.
 
 ## Read first

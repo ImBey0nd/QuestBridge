@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "fields": {
+    "model_revision": null,
+    "firmware_full_build": null,
+    "relapse_identity": null,
+    "kstuff_identity": null,
+    "loader_identity": null,
+    "loader_source": null,
+    "loader_stdout": null,
+    "game_identity": null,
+    "module_metadata": null
+  }
+}

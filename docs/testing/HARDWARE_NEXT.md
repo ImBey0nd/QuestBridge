@@ -7,6 +7,11 @@ None establishes PS VR2 replacement or execution on the owner's PS5.
 
 ## First hardware-dependent step
 
+For development-side intake, [PS5_ENVIRONMENT.md](PS5_ENVIRONMENT.md) provides a
+bounded offline completeness checker and a blank JSON template. The owner's text
+form remains sufficient. A complete declaration still requires source review and
+does not enable execution or prove hardware compatibility.
+
 Record the actual console/loading environment and obtain authorized local metadata.
 Do not transmit the current receiver or old stdout ELF: both link the SDK CRT that
 patches kernel state before main. Existing no-kernel-write/no-deployment constraints
