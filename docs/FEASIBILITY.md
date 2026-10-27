@@ -28,6 +28,6 @@ Even if access is possible, comfortable VR will require low-delay video encoding
 
 After consolidating the branches, the authenticated C++ receiver is host-tested and both PS5 probes have been cross-compiled. Compilation does not establish console execution. Their SDK startup writes kernel state before main, so the current ELF files remain build-only; do not deploy them. See [PS5 source audit](research/PS5_FEASIBILITY.md).
 
-The owner's current priority is PS5 research. The next physical step is to record the exact console firmware/build and installed loader environment using existing information, per [HARDWARE_NEXT.md](testing/HARDWARE_NEXT.md). The Quest probe is an optional independent device experiment. See the [Spanish owner guide](LO_QUE_TENGO_QUE_HACER_YO.md) for concrete steps. Only hardware observations can settle the central compatibility question.
+The owner requests continued PS5 research and Quest development using the already confirmed environment. Do not request the inventory again. See [connection research](research/PSVR2_CONNECTION.md) for physical versus native-runtime boundaries and current evidence gaps.
 
 No Quest/headset, console or game was contacted in this cloud session. Unknown firmware remains disabled, and no exploit, memory patch or console deployment was performed. See [research](research/RESEARCH.md), [hardware evidence procedure](testing/HARDWARE.md) and [cloud build results](testing/CLOUD_2026-10-26.md).
