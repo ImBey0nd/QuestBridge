@@ -26,7 +26,8 @@ Quest 2 profile should report no eye tracking, no headset vibration and no adapt
 
 ## Firmware and compatibility
 13.20 is the requested initial target, with no QuestBridge console tests. Runtime firmware discovery remains unimplemented. Descriptors express requested target and evidence separately; no patch offsets exist. Unknown versions fail closed.
-Resident Evil Village is an untested database entry with no invented regional title ID. Schema versioning allows future titles and evidence.
+The target is a reusable runtime layer for any native PS VR2 game. No reference title is required or installed for testing yet; the game evidence database is empty. Per-title records will be added after a title is selected, without invented IDs or compatibility results.
+The owner has Quest 2 with original Touch controllers and no physical PS VR2. Target current Quest 2 system software; no connected PS VR2 baseline or purchase is a prerequisite for cloud development. Missing Quest 2 capabilities remain explicit per-title constraints.
 
 ## Risk register
 | Risk | Impact | Next evidence |

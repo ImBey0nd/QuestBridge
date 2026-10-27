@@ -1,7 +1,7 @@
 # QuestBridge
 Experimental open-source foundations for investigating standalone headsets with native PS5 VR games.
 
-**No PS VR2 game compatibility is implemented or demonstrated.** This repository currently provides a tested desktop communication prototype, native data/math/video utilities, a built Android OpenXR diagnostic APK (not tested on a headset), and a cross-compiled PS5 probe with audited startup limitations. Resident Evil Village VR Mode is an untested reference target.
+**No PS VR2 game compatibility is implemented or demonstrated.** This repository currently provides a tested desktop communication prototype, native data/math/video utilities, a built Android OpenXR diagnostic APK (not tested on a headset), and a cross-compiled PS5 probe with audited startup limitations. The goal is a reusable layer for any native PS VR2 game, with no required reference title.
 
 Native receiver milestone: [authenticated C++ transport and freshness handling](docs/testing/NATIVE_RECEIVER.md) now passes Node interoperability and cross-compiles to PS5. The ELF remains build-only. [Hardware evidence needed next](docs/testing/HARDWARE_NEXT.md).
 

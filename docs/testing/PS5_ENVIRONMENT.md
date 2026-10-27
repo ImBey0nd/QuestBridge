@@ -1,5 +1,11 @@
 # Offline PS5 environment intake
 
+This is an optional developer tool, not a prerequisite for continued cloud research.
+The owner's confirmed hardware is already recorded in
+[PS5_ENVIRONMENT_BASELINE.json](../research/PS5_ENVIRONMENT_BASELINE.json). Do not
+request it again. Game/module fields concern later source or physical review;
+leaving them null does not block independent development.
+
 This tool checks whether the environment information needed for source review has
 been supplied. It does not contact the console, inspect a module binary, verify
 the truth of a declaration, choose an ABI, or authorize execution.

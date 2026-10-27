@@ -1,31 +1,34 @@
 # Lo que tengo que hacer yo — QuestBridge
 
-Fecha: 26 de octubre de 2026. Esta guía es para el dueño del proyecto; no necesitas programar.
+Actualizada: 27 de octubre de 2026. Esta guía es para el dueño del proyecto; no necesitas programar.
 
 **Todavía no puedes jugar juegos de PS5 VR con QuestBridge.** Hay un prototipo de comunicación probado en PC, herramientas de investigación, una APK Android de diagnóstico y programas PS5 compilados. No hay una prueba real en Quest/PS5 ni sustitución de PS VR2 demostrada.
 
-## 1. Primero: anotar mi PS5, sin instalar nada
+## 1. Tu equipo ya está registrado
 
-Tu siguiente tarea prioritaria es rellenar esta ficha mirando la información del sistema y los registros que ya tengas. No actualices firmware, Relapse o KStuff para completar la ficha. Si no sabes algo, escribe «no sé».
+No tienes que volver a completar la ficha. Confirmaste:
 
-```text
-Fecha y zona horaria:
-Modelo exacto de PS5 (no número de serie):
-Versión completa de firmware que muestra la consola:
-Versión instalada de Relapse (si se conoce):
-Versión instalada de KStuff (si se conoce):
-Nombre y versión del cargador ELF que utilizo:
-¿Ese cargador permite ver/guardar mensajes stdout?:
-Quest: modelo y versión del sistema:
-Mandos que tengo:
-¿Tengo PS VR2 físico disponible? (no hace falta comprarlo):
-Resident Evil Village: región, versión y VR Mode instalado:
-Identificador del juego, solo si está verificado:
-```
+- PS5 Fat con firmware 13.20.
+- [Kstuff Lite 1.11 Beta](https://github.com/EchoStretch/kstuff-lite/releases/tag/v1.11).
+- Última versión de Relapse.
+- Quest 2; el proyecto debe funcionar con la última versión de su sistema.
+- Mandos originales de Quest 2.
+- No tienes PS VR2 físico.
+- Resident Evil 8 todavía no está instalado.
 
-Mándame esa ficha y cualquier log existente del cargador, quitando direcciones privadas, números de serie y credenciales. Que upstream tenga una versión nueva no significa que esté instalada ni probada en tu consola. Detalles: [HARDWARE_NEXT.md](testing/HARDWARE_NEXT.md).
+El objetivo es que una capa reutilizable permita jugar cualquier juego PS VR2
+nativo de PS5. No necesitas instalar Resident Evil 8 ni comprar PS VR2 para que
+continúe el desarrollo. La compatibilidad de cada juego se comprobará cuando
+exista la integración; hoy ninguno está demostrado como compatible.
 
-**No cargues los ELF actuales en PS5.** Se descubrió que el arranque del SDK cambia estado del kernel antes de entrar al programa. Ambos artefactos PS5 siguen siendo solo de compilación. Primero hace falta resolver y revisar ese arranque y el contrato del cargador. No hay un puerto/IP de PS5 que debas configurar ahora.
+Seguiré investigando las interfaces PS5 con esos datos. Si una prueba concreta
+requiere conocer el build exacto del cargador o un log, pediré solo ese dato y
+explicaré para qué sirve. La herramienta JSON de inventario es opcional para el
+desarrollo y no es una tarea que tengas que realizar.
+
+**No cargues los ELF actuales en PS5.** El arranque del SDK cambia estado del
+kernel antes de entrar al programa; siguen siendo artefactos de compilación.
+No hay una prueba física nueva que debas ejecutar ahora.
 
 ### Contributors y copias antiguas del repositorio
 
@@ -35,7 +38,7 @@ Si tienes una copia antigua en tu PC, conserva cualquier cambio local y vuelve a
 
 ## 2. Opcional: probar la APK de diagnóstico en mi Quest 2
 
-Puedes hacerlo después de la ficha PS5. Si prefieres seguir primero con PS5, esta prueba puede esperar.
+Esta prueba es opcional y puede esperar mientras se investiga la integración PS5.
 
 ### Preparar el visor y obtener la APK
 
@@ -88,7 +91,7 @@ Si la app se cierra y el archivo no explica por qué, captura localmente `adb lo
 ## 3. Qué devolverme para que yo pueda seguir
 
 ```text
-Ficha PS5 de la sección 1:
+Cambios de equipo/versiones desde lo ya confirmado, solo si los hay:
 Prueba Quest realizada: sí / no
 URL de GitHub Actions y commit del APK:
 SHA256 del APK instalado:
@@ -113,6 +116,6 @@ Estas etapas requieren más trabajo de desarrollo e investigación; no son instr
 | Vídeo | Vídeo estéreo nativo, latencia, pérdidas y sincronización medidos; el vídeo sintético no acredita compatibilidad |
 | Primer juego | Versión/región exactas, inicio VR, imagen por ojo, respuesta a cabeza/mandos y registros reproducibles |
 
-Cuando esas condiciones estén cubiertas, prepararé una prueba física específica con pasos, resultados esperados y criterio para detenerse. Si hay comportamiento inesperado, se para y se conservan los registros. Hoy no hay una prueba de Resident Evil Village que puedas completar con QuestBridge.
+Cuando esas condiciones estén cubiertas, prepararé una prueba física específica con pasos, resultados esperados y criterio para detenerse. Si hay comportamiento inesperado, se para y se conservan los registros. Hoy no hay una prueba de juego PS VR2 que puedas completar con QuestBridge.
 
-No necesitas programar, adivinar APIs, compilar SDKs en tu PC ni comprar PS VR2 para avanzar con la ficha inicial. Las pruebas automáticas y builds se pueden seguir haciendo en cloud.
+No necesitas programar, adivinar APIs, compilar SDKs en tu PC ni comprar PS VR2 para que continúe el desarrollo. Las pruebas automáticas y builds se pueden seguir haciendo en cloud.

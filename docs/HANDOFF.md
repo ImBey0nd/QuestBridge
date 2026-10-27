@@ -1,5 +1,19 @@
 # QuestBridge cloud handoff
 
+## Owner correction — 2026-10-27
+
+Accept the confirmed environment: PS5 Fat / 13.20; Kstuff Lite 1.11 Beta; latest
+Relapse; Quest 2 targeting latest system software; original Quest 2 Touch controllers;
+no physical PS VR2. Resident Evil Village is not installed. The objective is a
+reusable system-level layer for ANY native PS VR2 game, with no required reference
+title. Universal compatibility remains a goal, not demonstrated functionality.
+Do not request the hardware inventory again or require buying PS VR2/installing
+a game to continue cloud research. Public source can be pinned independently of
+the owner's declaration of latest. Request a particular installed-build detail
+only when a concrete experiment depends on it. The previous intake tool is optional
+and must not become an artificial gate for ongoing research. See the updated
+PS5_ENVIRONMENT_BASELINE.json. Older entries below preserve historical evidence.
+
 ## Latest continuation — 2026-10-27
 
 Added tools/diagnostics/ps5-environment.mjs, a bounded offline environment intake
@@ -28,7 +42,7 @@ Updated: 2026-10-26. Latest owner direction: investigate PS5 before further Ques
 
 ## Objective and owner preferences
 
-Develop an open-source compatibility system for standalone VR headsets replacing PS VR2 hardware while games execute natively on PS5. Initial requested hardware is original PS5, firmware 13.20, Relapse/KStuff, Quest 2 and Touch controllers. Resident Evil Village VR Mode is the reference title, not the whole scope. None of this hardware configuration has been tested by QuestBridge.
+Develop an open-source compatibility system for standalone VR headsets replacing PS VR2 hardware while games execute natively on PS5. Initial requested hardware is original PS5, firmware 13.20, Relapse/KStuff, Quest 2 and Touch controllers. The target is any native PS VR2 game; no specific reference title is required. None of this hardware configuration has been tested by QuestBridge.
 
 The owner does not program. Make routine engineering choices and continue useful independent work. Avoid repeatedly requesting permission for ordinary edits, builds, tests and permitted dependency installation. Ask only for genuinely missing credentials, physical actions or irreversible operations. Obey the active environment's approval restrictions. The owner wants cloud execution to keep their PC available. Explanations must be in Spanish and concise (caveman style); code, commands and repository documents may remain in English.
 

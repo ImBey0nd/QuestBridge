@@ -240,3 +240,17 @@ Actual checks: Node 24/24; fresh GCC 14.2/OpenSSL 3.5.7 host build; native CTest
 Initial default-sandbox Node integration tests failed on bind EPERM at loopback;
 rerun with additional network permission passed, as did native/Node UDP CTest.
 No hardware access, firmware enabling, console execution or Quest changes.
+
+## Owner environment and scope correction — 2026-10-27
+
+Recorded the owner's installed Kstuff Lite 1.11 Beta and latest Relapse declaration,
+Quest 2/latest-system target, original Touch controllers, no PS VR2 and no installed
+Resident Evil Village. Updated AGENTS, handoff, master brief, architecture, hardware
+procedure and Spanish owner guide so subsequent sessions do not repeat the inventory
+request. The intake tool is optional, not a gate for continued cloud work.
+
+Scope is ANY native PS VR2 game through reusable runtime integration. Removed the
+unselected Resident Evil reference entry; games.json is empty until a real test
+candidate is selected. No game compatibility or hardware result is asserted.
+Validation: compatibility/firmware validator, JSON parsing and git diff whitespace.
+Documentation/data changes only; no runtime or transport code changed.
