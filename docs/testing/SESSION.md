@@ -254,3 +254,7 @@ unselected Resident Evil reference entry; games.json is empty until a real test
 candidate is selected. No game compatibility or hardware result is asserted.
 Validation: compatibility/firmware validator, JSON parsing and git diff whitespace.
 Documentation/data changes only; no runtime or transport code changed.
+
+## Test artifact recovery and loader research — 2026-10-27
+
+Owner now explicitly requests both Quest and PS5 test artifacts; Quest work is no longer deferred. Applied uploaded caveman skill for concise chat. Recovered the verified hosted Quest APK and prepared artifacts/questbridge-quest-test-kit.zip with instructions. Source comparison and artifact hash recorded in docs/research/TEST_READINESS_2026-10-27.md. Rechecked pinned Relapse/SDK/PS5VR; inspected bundled Relapse loader offline. Its bootstrap argument block is distinct from application ELF arguments. The bundled loader source/ABI match remains unresolved; no PS5 ELF is labeled execution-ready. No hardware execution or compatibility claim. Research and artifact packaging only; no runtime code changed.
