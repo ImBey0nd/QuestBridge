@@ -73,7 +73,30 @@ would skip these steps. It also sets tracking flags in its host history without 
 fully decoded wire validity field; QuestBridge's decoder preserves that unknown.
 Do not copy PS VR2 sensor calibration into Quest 2 calibration.
 
-## Authentication uncertainty
+## Device-side authentication source follow-up
+
+After the official package fetch timed out, GitHub code search located the public
+mirror orumin/psvr2-sie-kernel-modules at
+`9eab2ca28f2c63038a8743b93b5357d945faaad8`. Inspected include/sieusb.h and
+sieusb/authentication.c:
+https://github.com/orumin/psvr2-sie-kernel-modules/blob/9eab2ca28f2c63038a8743b93b5357d945faaad8/sieusb/authentication.c
+
+This is a mirror, not a verified byte-for-byte copy of the unavailable official
+6.10 package; do not assign it to the owner's PS5 or headset firmware. Source
+headers carry GPL terms and Sony copyright. Source was reviewed without importing
+implementation into QuestBridge.
+
+The gadget defines an authentication interface and states for waiting on host
+challenge, preparing device response, host response verification and success/error.
+Its ioctl path copies host challenge data to user space and accepts device response
+data from user space. Authentication success/error is set through separate ioctls.
+Consequently the USB kernel transport is not itself the complete authentication
+implementation. Cloning its descriptors does not provide the missing user-space
+response producer or demonstrate console acceptance. No secrets, cryptographic
+response algorithm or accepted 13.20 transcript were established. No authentication
+state was changed or bypassed.
+
+## PC versus console authentication uncertainty
 
 The Linux adapter documentation says its PC host does not exercise authentication.
 This is specific to that path. The original researcher describes console peripheral
@@ -125,8 +148,9 @@ future headset firmware must preserve those bytes.
 
 ## Next research dependencies
 
-Inspect the published headset source's device control/authentication definitions
-when accessible, keeping it separate from PC driver behavior. Resolve the actual
+The mirrored device authentication transport has now been inspected. Its user-space
+response producer and the console host policy remain unresolved; keep these separate
+from PC driver behavior. Resolve the actual
 loader startup contract before creating an executable observation payload. Then
 obtain native module/consumer observations sufficient to define one justified runtime
 experiment. These are concrete unknowns, not a request for another hardware inventory.
