@@ -316,3 +316,11 @@ matches the local artifact SHA256 da11946e155bdbab9ad18d810d3577856b6efe811d56d7
 The default raw-ELF server branch also calls a function using rfork_thread in the
 bundled image; documented separately from bootstrap injection. CI now runs the
 compiled-ELF model and retains its report.
+
+Final client lifecycle review corrected normal runtime-requested exit: NativeActivity
+is now explicitly finished when XR requests exit before Android destruction. Without
+that request, returning from the native thread could leave an inactive activity.
+This needs device observation alongside the other lifecycle tests. The alternative
+PS5SDK CRT was also reviewed: it assumes a resolver callback and is not a replacement
+for the observed getpid-first loader convention. No code was imported. A finite
+owner-run hardware experiment is documented without any cloud console connection.

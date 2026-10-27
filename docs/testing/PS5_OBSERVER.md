@@ -139,3 +139,25 @@ path are resolved, the finite physical experiment is one candidate invocation,
 recording its hash, exact stdout and completion. A failure requires review rather
 than repeated invocation or removing instruction checks. It would establish only
 user-space startup/stdout, not native receiver or PS VR2 functionality.
+
+For the owner's reported default Relapse standalone server, a narrowly scoped
+manual first-run procedure is now prepared in [OWNER_FIRST_RUN.md](OWNER_FIRST_RUN.md).
+It is not an automatic deployment tool or a claim that hardware testing occurred.
+It must not be used as a bootstrap replacement or existing-process injection. The
+physical stdout and observed completion remain missing evidence.
+
+## Alternative SDK startup review
+
+PS5Dev/PS5SDK at a2e03a2a0231a3a3397fa6cd087a01ca6d04f273 has a smaller CRT
+which initializes a supplied dlsym callback, then libkernel/libc, calls payload_main
+and writes payloadout. Its crt/dlsym.c directly delegates to that callback; it is
+not an adapter for the getpid-first convention observed here. Its symbol helper
+also does not check the resolver result before returning its output address.
+Therefore copying that CRT would not establish a correct startup for this loader.
+No implementation was imported. The observer instead has an explicit instruction
+profile and no symbol resolver/dependent library initialization. Extending it into
+an authenticated native receiver requires additional target evidence and runtime
+work; the existence of an alternative CRT does not resolve Sony VR contracts.
+
+https://github.com/PS5Dev/PS5SDK/blob/a2e03a2a0231a3a3397fa6cd087a01ca6d04f273/crt/crt.c
+https://github.com/PS5Dev/PS5SDK/blob/a2e03a2a0231a3a3397fa6cd087a01ca6d04f273/crt/dlsym.c

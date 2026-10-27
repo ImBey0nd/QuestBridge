@@ -294,5 +294,6 @@ extern "C" void android_main(android_app* app){
    if(client.instance){client.events();if(client.running&&!client.done)client.frame();}
   }
   app->onAppCmd=nullptr;app->userData=nullptr;
+  if(!app->destroyRequested)ANativeActivity_finish(app->activity);
  }catch(const std::exception& error){log(std::string("XR diagnostic failed: ")+error.what());app->onAppCmd=nullptr;app->userData=nullptr;ANativeActivity_finish(app->activity);}
 }

@@ -250,3 +250,5 @@ Reviewed physical display/USB separation, public host tracking streams, sensor/h
 Authentication source follow-up: recovered public Sony module mirror orumin/psvr2-sie-kernel-modules at 9eab2ca28f2c63038a8743b93b5357d945faaad8. Reviewed device authentication interface/state and ioctl boundary to user-space response handling. This does not supply the user-space response algorithm or establish PS5 13.20 host policy. Official package equality remains unverified. Updated connection report; no authentication implementation imported or executed.
 
 Final clean Android build, signature, source commit and APK hash: docs/testing/QUEST_CLIENT_BUILD_2026-10-27.md. The owner explicitly authorized publishing this work to ImBey0nd/QuestBridge in a new branch with a draft PR after automatic review initially rejected an unapproved push.
+
+A finite, optional owner-run first test for the new Quest client and standalone observer candidate is prepared in docs/testing/OWNER_FIRST_RUN.md. It makes no console connection during development. Do not confuse this new observer with the previous SDK-linked receiver or Relapse bootstrap. Physical reports remain pending.
