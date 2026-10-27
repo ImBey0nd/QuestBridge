@@ -1,5 +1,17 @@
 # QuestBridge cloud handoff
 
+## Current PS5 observer candidate — 2026-10-27
+
+New ps5/host/observer is a freestanding, no-SDK-CRT standalone observation candidate.
+It checks the getpid instruction profile, reports via the existing libkernel stub,
+and terminates its new observation process. Never use it for game/system-process
+injection. No target execution occurred; actual standalone loader mode and stdout/
+completion remain the physical-test gate. See docs/testing/PS5_OBSERVER.md.
+The old SDK-linked native receiver/stdout ELFs retain their build-only restriction.
+This new candidate does not enable any VR API/firmware capability. Host callbacks
+are inert and ELF metadata/disassembly were inspected; no kernel-write code or
+SDK dynamic dependencies/relocations are linked. CI builds the target candidate.
+
 ## Current implementation — Quest client 0.2.0 (2026-10-27)
 
 The Android app now has a real OpenXR session, stereo diagnostic renderer, head/Touch

@@ -288,3 +288,20 @@ result into argument offset zero, corroborating the public reference loader's
 getpid convention. This narrows the contract; it does not verify the live installed
 loader or make the SDK CRT's automatic kernel patches acceptable. No speculative
 replacement startup or console deployment was added.
+
+## Standalone observer candidate — 2026-10-27
+
+Added original freestanding observer C/AMD64 startup, outside the SDK CRT. Reviewed
+getpid first-argument evidence in the bundled Relapse image and public loader.
+Checks the supplied stub instruction profile before calls; reports through bounded
+stdout writes; new standalone process exits rather than returning into an unknown
+placeholder entry. Unsupported profiles trap in the standalone process. Must never
+be injected into a game/system process. No physical execution or upload occurred.
+
+Built with NDK r27c clang/lld targeting freestanding x86_64-unknown-freebsd. Automated
+ELF audit confirms DYN/AMD64, 16 KiB-aligned load segments, executable entry, no
+interpreter, no WX load segment, zero dynamic dependencies/relocations. Original
+source and generated text disassembly were reviewed; only validated libkernel
+function/stub transfers remain. Host observer tests use inert callbacks. Native
+CTest 6/6 passed. Actual loader mode/stdout/completion is still unverified; candidate
+is not labeled console-tested or a PS5 receiver/runtime. CI now retains it separately.
