@@ -252,3 +252,11 @@ Authentication source follow-up: recovered public Sony module mirror orumin/psvr
 Final clean Android build, signature, source commit and APK hash: docs/testing/QUEST_CLIENT_BUILD_2026-10-27.md. The owner explicitly authorized publishing this work to ImBey0nd/QuestBridge in a new branch with a draft PR after automatic review initially rejected an unapproved push.
 
 A finite, optional owner-run first test for the new Quest client and standalone observer candidate is prepared in docs/testing/OWNER_FIRST_RUN.md. It makes no console connection during development. Do not confuse this new observer with the previous SDK-linked receiver or Relapse bootstrap. Physical reports remain pending.
+
+Final functional snapshot d7f2f629ad8bbb0304b4e0e52b168b437ede85ba passed both
+hosted workflows (40593745905/40593745916). PR #3 is draft and attached to this chat.
+Local test packages are artifacts/questbridge-client-0.2.0-test-kit.zip and
+artifacts/questbridge-observer-candidate.zip. APK has real stereo/tracking/transport;
+observer is a standalone startup candidate, not a native receiver or VR adapter.
+Physical Quest result was requested asynchronously and remains pending. Do not
+claim target execution or re-request the hardware inventory.

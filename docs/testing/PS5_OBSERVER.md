@@ -57,7 +57,7 @@ Syscall identifiers for exit(1), write(4), getpid(20) are public header facts:
 https://github.com/PS5Dev/PS5SDK/blob/a2e03a2a0231a3a3397fa6cd087a01ca6d04f273/include/sys/syscall.h
 These sources are not proof of target execution.
 
-No SDK CRT, kernel access/patch initialization, imports, library loading, remote
+No SDK CRT, kernel-memory primitives/patch initialization, imports, library loading, remote
 process operations or firmware address tables are linked. The complete original
 source is observer.c, observer.h and entry.S. `_start` aligns the stack, invokes the
 bounded diagnostic, then its standalone termination routine. Returning into an

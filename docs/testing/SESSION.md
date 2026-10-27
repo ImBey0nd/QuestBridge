@@ -324,3 +324,10 @@ This needs device observation alongside the other lifecycle tests. The alternati
 PS5SDK CRT was also reviewed: it assumes a resolver callback and is not a replacement
 for the observed getpid-first loader convention. No code was imported. A finite
 owner-run hardware experiment is documented without any cloud console connection.
+
+Final clean Quest APK from d7f2f629ad8bbb0304b4e0e52b168b437ede85ba:
+9c57a6b0dd5abdecbca4c461c69f4dc897d90854f2b35e4c38fa747df64a255e.
+Clean assembly/lint and signature verification passed after the normal-exit fix.
+Both hosted workflows for that functional snapshot passed, including JVM transport
+and compiled observer CPU-model checks. Run40593745916 retains APK12775202859 and
+observer12775512264 separately. No physical test result has been received.
