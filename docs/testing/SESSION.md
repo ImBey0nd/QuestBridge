@@ -331,3 +331,74 @@ Clean assembly/lint and signature verification passed after the normal-exit fix.
 Both hosted workflows for that functional snapshot passed, including JVM transport
 and compiled observer CPU-model checks. Run40593745916 retains APK12775202859 and
 observer12775512264 separately. No physical test result has been received.
+# 2026-10-28 — native VR interception method
+
+Investigated the application consumer boundary, comparing pinned PS5VR call sites,
+AnyPS5 Hmd2/Tracker2 debt and exports, public controller interposition research and
+the mutable upstream consumer report at AnyPS5 issue 7649, comment 6274215852.
+Selected process-local VR interface substitution with virtual HMD output as the
+implementation target; no native support is claimed. Report and provenance:
+docs/research/PSVR2_NATIVE_METHOD.md and PSVR2_NATIVE_METHOD_SOURCES.json.
+
+Concrete correction: explicit title flips are not universal; buffer registration
+and both SetParam variants must be correlated with the actual submission/GPU
+completion path. Nested GPU descriptors cannot be treated as linear pixels.
+Expanded offline symbol catalog and added the boundary auditor with conflict and
+forged-evidence tests. No upstream implementation, proprietary material, native
+hooks, firmware offsets, console action or runtime shim was added.
+
+Actual validation on this checkout: npm test 31/31; fresh build-runtime-investigation
+CMake Debug build with GCC 14.2/OpenSSL 3.5.7; CTest 6/6. The default sandbox failed
+loopback UDP cases and timed out spawnSync of the import scanner. Both passed with
+supported additional network permission; no test or sandbox check was disabled.
+End-to-end ELF scanner/classifier/boundary CLI used our own qb_render_tests ELF,
+reported no VR candidates and left every runtime/hardware flag false.
+
+No physical results. Exact 13.20 ABIs, real process binding, GPU ownership/retirement,
+video encoding and latency remain unresolved. Existing owner hardware tests are
+optional for independent research, not a prerequisite to continue it.
+
+## 2026-10-28 — contracts, metadata capture prototypes and real host encoding
+
+Recovered the eight-file fcae046 milestone from the recorded file changes and
+commands in Codex chat "Find PSVR2 interception method". Neither this checkout nor
+GitHub had that Git object; no claim of identical commit recovery. Owner explicitly
+withdrew the absent caveman skill requirement. No personal skill files changed.
+
+Reviewed/pinned 23 public text files and checked their cached text against Git
+blob IDs. Primary-source findings: Tracker2 legacy/current 32/48-byte forms, Pad
+timestamp disagreement (+72 in source versus +96 in consumer report), and the
+PS5VR GPU timeout falling through to submission without confirmed completion.
+Native 13.20 ABIs/init/GPU/encoder remain unverified; no runtime flag enabled.
+
+Implemented original C++17 bounded offline layer snapshots for explicitly selected
+registration/plain/buffered source profiles (304/328/472-byte layers), a host CLI,
+actual linear CPU RGBA stereo crop/copy, and an offline frame/generation ordering
+validator. No texture decoding, live interception, GPU copy/fence or Sony calls.
+Tested all header/layer truncations, saved-range bounds/overlap/overflow, option
+truncation, distinct eye pixels/pitch/owned copies and out-of-order/stale completion.
+
+Implemented real host FFmpeg/libx264 encoding with completed-packet timestamps,
+bounded pending input, H.264 output, full decode count/reordering and first-frame
+eye-content checks. Four final synthetic-input comparisons: full 4000x2040 at
+2/4 threads, reduced 2000x1020 and noisy 640x240. Two-equivalent cloud CPU quota;
+full-size host path did not reach 90 fps. Results include exact commands, binary/
+library/output hashes and limitations in PSVR2_NATIVE_RESULTS.json. Initial
+framecrc parser failed on valid side-data/flag suffixes; fixed against pinned
+FFmpeg source. Removed unnecessary per-pixel work from the bars generator and
+repeated the measured cases. Earlier exploratory timings are excluded. Subsequent
+executable-path provenance reporting does not change the four saved measurements.
+
+Actual final checks: npm test 33/33; GCC14.2/OpenSSL3.5.7 CMake Debug build;
+CTest 8/8 with QB_TEST_HOST_ENCODER=ON, including real small codec execution;
+ASan/UBSan of new C++ tests passed. CLI registration/plain/buffered synthetic
+snapshots passed; every one-byte layer truncation and >1-MiB input was rejected.
+Own qb_vr_capture_tests Linux ELF scanned/classified/audited end to end: zero VR
+candidates, all runtime/hardware flags false. Compatibility validator passed.
+Loopback/subprocess checks used supported additional network permission. No remote
+CI run claimed; workflow now installs FFmpeg/enables the codec test and new sanitizer.
+
+No console/Quest contacted, no injection/deployment/exploit/kernel write, no upstream
+implementation or proprietary material imported. Decision and independent native
+experiments C1–C6 are documented; all remaining decisive native conclusions require
+the concrete external evidence listed there. No new console-ready artifact.

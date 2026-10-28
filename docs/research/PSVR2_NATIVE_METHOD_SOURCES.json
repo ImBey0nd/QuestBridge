@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-28",
+  "evidence_kind": "public_source_review_and_upstream_report",
+  "hardware_verified": false,
+  "runtime_bindings_enabled": false,
+  "sources": [
+    {
+      "repository": "mtp-24/PS5VR",
+      "commit": "209eb7f0160000507a0ca017842941b8e8e88f46",
+      "path": "app/src/app_vr.c",
+      "git_blob_sha": "7a39a99f682bc7d31f7ac6e041c08130b400196c",
+      "url": "https://github.com/mtp-24/PS5VR/blob/209eb7f0160000507a0ca017842941b8e8e88f46/app/src/app_vr.c",
+      "observations": [
+        "VR registration uses nested layer/AGC texture descriptors, not pixel pointers.",
+        "Consumer calls SetParam then an explicit flip; engine polls its GPU marker but can continue after timeout without observed completion (see continuation).",
+        "Tracker query in this consumer uses a 32-byte input."
+      ]
+    },
+    {
+      "repository": "boykopovar/AnyPS5",
+      "commit": "bfbc55a45b18e2002695043b8531cc4b6a162406",
+      "path": "docs/dev/debt/libSceHmd2.md",
+      "git_blob_sha": "e8cbc5eacd3f6e51d56a324412df83cc66266490",
+      "url": "https://github.com/boykopovar/AnyPS5/blob/bfbc55a45b18e2002695043b8531cc4b6a162406/docs/dev/debt/libSceHmd2.md",
+      "observations": [
+        "SetParamWithBuffer is distinct from SetParam; recorded layer strides differ (472 vs 328 bytes).",
+        "Size query returns two 64-bit values in RAX:RDX.",
+        "This implementation does not provide a working initialized VR runtime."
+      ]
+    },
+    {
+      "kind": "mutable_upstream_consumer_report",
+      "url": "https://github.com/boykopovar/AnyPS5/issues/7649#issuecomment-6274215852",
+      "author": "frankea",
+      "reported_updated_at": "2026-10-19T18:22:50Z",
+      "reviewed_on": "2026-10-28",
+      "commit": null,
+      "independently_reproduced": false,
+      "observations": [
+        "Author reports Horizon calibration rendering on local emulator modifications, not on a native replacement PS5 runtime.",
+        "HMD registration uses two entries per buffer and category 16; author did not observe the title directly flipping the HMD port.",
+        "Tracker query uses 48-byte parameters; result uses state/quality fields as well as pose.",
+        "Local fake behavior and example addresses do not establish portable ABI or 13.20 compatibility."
+      ]
+    }
+  ],
+  "decision": "Investigate process-local VR interface replacement plus virtual HMD registration/reprojection capture.",
+  "unresolved": [
+    "Exact native 13.20 contracts and live bindings",
+    "Initialization without physical headset",
+    "Complete texture format, submission and retirement semantics",
+    "Native low-latency stereo encoding",
+    "Measured motion-to-photon performance"
+  ]
+}

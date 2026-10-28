@@ -1,5 +1,80 @@
 # QuestBridge cloud handoff
 
+## Contract, capture and encoding continuation — 2026-10-28
+
+Decision: process-local substitution remains unproven, not disproven in principle;
+no native 13.20 runtime can be enabled. Read the continuation in
+docs/research/PSVR2_NATIVE_METHOD.md, PSVR2_NATIVE_CONTRACT_SOURCES.json and
+docs/testing/PSVR2_NATIVE_EXPERIMENTS.md. Spanish owner status:
+docs/testing/PSVR2_OWNER_NEXT.md. Every native/hardware capability remains false.
+
+Recovered the preceding eight-file milestone from recorded changes/commands in
+Codex chat "Find PSVR2 interception method" (durable ID
+01a1842d-5f95-7624-bfbd-4d9248f4d00b). That chat reports fcae046; its Git object
+was absent here and inaccessible on GitHub. File recovery is not commit identity.
+Owner said to ignore the absent caveman skill; use clear, simple Spanish. No skill
+or personal files were installed here.
+
+New source findings: Tracker2 explicitly has legacy/current 32/48-byte queries;
+this is not necessarily a conflict. Pad timestamp remains disputed: AnyPS5 asserts
++0x48, upstream Horizon report says +0x60. PS5VR engine can exhaust its 500-ms GPU
+poll and still submit/reset its marker; timeout is not retirement. Kyty Hmd2 is a
+PC emulator implementation, not a native display backend. Manifest pins 23 public
+text files whose cached bytes matched exact Git blobs. No third-party implementation,
+Sony/SDK/firmware/game material, offsets or hooks were imported into the project.
+
+New C++17 qb_vr_snapshot reads explicitly selected offline registration/plain/
+buffered source profiles (304/328/472 bytes) from bounded saved ranges. It does
+not decode T#s, capture pixels, correlate live frames or call Sony APIs. New
+common/video/capture.hpp implements actual linear CPU RGBA stereo copies and an
+offline frame/generation observation-order checker, not GPU synchronization.
+
+New encode-stereo.mjs performs real host libx264 encode, tee/framecrc timing and
+decode/content checks on synthetic stereo with at most two pending frames. Four
+runs/provenance: PSVR2_NATIVE_RESULTS.json. Cloud CPU quota: two equivalents.
+4000x2040: ~25.1 fps (2 threads), ~22.8 (4). 2000x1020: ~91.1 fps, but 25.6-ms
+p95 packet observation. No PS5/Quest performance inference or native encoder API.
+
+Validation: npm test 33/33; GCC14.2 Debug build; CTest 8/8 including optional real
+codec test; new C++ tests under ASan/UBSan passed. Snapshot CLI profiles/truncation/
+size limits and own Linux ELF import/boundary audit passed. Supported additional
+network permission enabled loopback checks. CI edited, not run remotely.
+No console/Quest contact, deployment, kernel write or firmware enablement.
+
+Remaining decisive experiments C1–C6 specify exact external evidence and failure
+alternatives. Need exact 13.20 module/caller metadata and a separately reviewed
+bounded original-call/GPU observation method; that collector does not yet exist.
+Never inject the standalone observer into a game or reuse the SDK-linked ELF.
+No PS VR2 purchase, Village install or repeated owner inventory is required.
+
+## Native interception method investigation — 2026-10-28
+
+Read docs/research/PSVR2_NATIVE_METHOD.md and its SOURCES.json before continuing.
+Selected implementation target is process-local VR consumer substitution plus a
+virtual HMD presentation/capture backend. Important new distinction: public player
+code explicitly flips after SetParam, but an upstream Horizon consumer report did
+not observe direct title flips to the HMD port. Capture cannot rely on flip hooks
+alone. Registered VR buffers contain layer/AGC descriptors, not linear pixels.
+Handle SetParamWithBuffer as well as SetParam; do not conflate their layer strides,
+registration entries or buffer-set/index associations. Metadata is not a GPU fence.
+No hooks or Sony ABI shims were implemented; 13.20 integration remains disabled.
+
+Expanded PSVR2_INTERFACE_MAP.json with source-backed lifecycle, optics, buffered
+submission and teardown candidates. New tools/diagnostics/psvr2-boundaries.mjs
+audits offline import reports for boundary observations and provider conflicts;
+reclassifies raw names/NIDs rather than trusting input claims. Its presence/missing
+results never establish callability, hook installation, stereo capture or coverage
+of other modules. No upstream implementation was imported.
+
+Validation: Node 31/31; clean GCC14 CMake build and native CTest 6/6. Default
+sandbox network cases failed and scanner subprocess timed out; the supported
+additional network permission allowed loopback and subprocess checks to pass.
+The auditor also ran end-to-end on our own render-test ELF: zero VR boundaries,
+no runtime enablement. No PS5/Quest execution or physical test was requested.
+Remaining work: exact 13.20 contracts/live-binding evidence, GPU descriptor/copy/
+retirement semantics and an accessible low-latency stereo encoder. Owner tests of
+the existing Quest/observer artifacts do not gate further public-source research.
+
 ## Current PS5 observer candidate — 2026-10-27
 
 New ps5/host/observer is a freestanding, no-SDK-CRT standalone observation candidate.

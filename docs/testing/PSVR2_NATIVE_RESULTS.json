@@ -1,0 +1,519 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-28",
+  "evidence_kind": "host_tests_and_synthetic_input_real_codec_execution",
+  "console_contacted": false,
+  "quest_contacted": false,
+  "runtime_bindings_enabled": false,
+  "ps5_capture_verified": false,
+  "ps5_encoder_verified": false,
+  "decision": "No enabled native 13.20 adapter. Process-local replacement remains an unproven research candidate, not refuted in principle.",
+  "host": {
+    "architecture": "x86_64",
+    "kernel": "6.18.55",
+    "cpu_quota": "200000 100000",
+    "packages": [
+      "ffmpeg\t7:7.1.5-0+deb13u1",
+      "libavcodec61:amd64\t7:7.1.5-0+deb13u1",
+      "libx264-164:amd64\t2:0.164.3108+git31e19f9-2+b1"
+    ]
+  },
+  "codec_libraries": [
+    {
+      "path": "/lib/x86_64-linux-gnu/libx264.so.164",
+      "sha256": "2965dc6471b4f72884fa17fc9c9ff8f43b604a0c6d7a2364ff40040e7181d9f6"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libavcodec.so.61",
+      "sha256": "c01e80460c07b27883a61c53e549755b9ff052071a83f4912ff285168719219d"
+    }
+  ],
+  "codec_runs": [
+    {
+      "schema_version": 1,
+      "evidence_kind": "host_software_encode_synthetic_input",
+      "options": {
+        "eyeWidth": 2000,
+        "height": 2040,
+        "frames": 48,
+        "fps": 90,
+        "threads": 2,
+        "pattern": "bars"
+      },
+      "ffmpeg_version": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+      "ffmpeg_executable_sha256": "e8a8d46f5225f3062cec7c07fb145d58ae73c603cb740dcd5bad34bfb54e455a",
+      "command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-probesize",
+        "32",
+        "-analyzeduration",
+        "0",
+        "-f",
+        "rawvideo",
+        "-pixel_format",
+        "yuv420p",
+        "-video_size",
+        "4000x2040",
+        "-framerate",
+        "90",
+        "-i",
+        "pipe:0",
+        "-map",
+        "0:v:0",
+        "-an",
+        "-c:v",
+        "libx264",
+        "-threads",
+        "2",
+        "-preset",
+        "ultrafast",
+        "-tune",
+        "zerolatency",
+        "-crf",
+        "23",
+        "-g",
+        "90",
+        "-bf",
+        "0",
+        "-x264-params",
+        "rc-lookahead=0:sync-lookahead=0:scenecut=0:aud=1:repeat-headers=1",
+        "-frames:v",
+        "48",
+        "-f",
+        "tee",
+        "[f=framecrc:flush_packets=1]pipe:1|[f=h264]/tmp/questbridge-encode-JX0LIC/synthetic-stereo.h264"
+      ],
+      "input_format": "side_by_side_yuv420p",
+      "max_pending_frames": 2,
+      "encoded_frames": 48,
+      "packets_observed_before_input_eof": 46,
+      "decoded_frames": 48,
+      "b_frames": 0,
+      "wall_ms": 1913.1750710000001,
+      "wall_fps_including_generation_startup_and_drain": 25.089183278407873,
+      "generation_ms": 332.4424959999999,
+      "packet_latency_ms": {
+        "first": 232.406699,
+        "median_after_first_4": 57.76583500000004,
+        "p95_after_first_4": 94.91869900000006,
+        "max": 232.406699
+      },
+      "latency_definition": "Start of raw frame write to receipt of completed encoded-packet checksum through tee/framecrc pipe; includes pipe/queue/mux observation. Not motion-to-photon.",
+      "decoded_first_frame_luma_mae": {
+        "left": 0,
+        "right": 0
+      },
+      "encoded_bytes": 448246,
+      "output_sha256": "a30851092258d67fd61282536fa2ab4eaa6446dcfdef9242413fea9861dcfbf3",
+      "output": "/tmp/questbridge-encode-JX0LIC/synthetic-stereo.h264",
+      "ps5_capture_verified": false,
+      "ps5_encoder_verified": false,
+      "quest_decode_verified": false,
+      "runtime_bindings_enabled": false,
+      "case": "target-final"
+    },
+    {
+      "schema_version": 1,
+      "evidence_kind": "host_software_encode_synthetic_input",
+      "options": {
+        "eyeWidth": 2000,
+        "height": 2040,
+        "frames": 48,
+        "fps": 90,
+        "threads": 4,
+        "pattern": "bars"
+      },
+      "ffmpeg_version": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+      "ffmpeg_executable_sha256": "e8a8d46f5225f3062cec7c07fb145d58ae73c603cb740dcd5bad34bfb54e455a",
+      "command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-probesize",
+        "32",
+        "-analyzeduration",
+        "0",
+        "-f",
+        "rawvideo",
+        "-pixel_format",
+        "yuv420p",
+        "-video_size",
+        "4000x2040",
+        "-framerate",
+        "90",
+        "-i",
+        "pipe:0",
+        "-map",
+        "0:v:0",
+        "-an",
+        "-c:v",
+        "libx264",
+        "-threads",
+        "4",
+        "-preset",
+        "ultrafast",
+        "-tune",
+        "zerolatency",
+        "-crf",
+        "23",
+        "-g",
+        "90",
+        "-bf",
+        "0",
+        "-x264-params",
+        "rc-lookahead=0:sync-lookahead=0:scenecut=0:aud=1:repeat-headers=1",
+        "-frames:v",
+        "48",
+        "-f",
+        "tee",
+        "[f=framecrc:flush_packets=1]pipe:1|[f=h264]/tmp/questbridge-encode-rWhucN/synthetic-stereo.h264"
+      ],
+      "input_format": "side_by_side_yuv420p",
+      "max_pending_frames": 2,
+      "encoded_frames": 48,
+      "packets_observed_before_input_eof": 47,
+      "decoded_frames": 48,
+      "b_frames": 0,
+      "wall_ms": 2103.6671739999997,
+      "wall_fps_including_generation_startup_and_drain": 22.817297618772468,
+      "generation_ms": 361.28133099999974,
+      "packet_latency_ms": {
+        "first": 173.607853,
+        "median_after_first_4": 69.24783400000001,
+        "p95_after_first_4": 96.13433499999996,
+        "max": 173.607853
+      },
+      "latency_definition": "Start of raw frame write to receipt of completed encoded-packet checksum through tee/framecrc pipe; includes pipe/queue/mux observation. Not motion-to-photon.",
+      "decoded_first_frame_luma_mae": {
+        "left": 0,
+        "right": 0
+      },
+      "encoded_bytes": 1417092,
+      "output_sha256": "0a080a3bea41ad8d28699c5b3e99439b6a316705b82c74c31aa25139ccd85ee6",
+      "output": "/tmp/questbridge-encode-rWhucN/synthetic-stereo.h264",
+      "ps5_capture_verified": false,
+      "ps5_encoder_verified": false,
+      "quest_decode_verified": false,
+      "runtime_bindings_enabled": false,
+      "case": "target-4"
+    },
+    {
+      "schema_version": 1,
+      "evidence_kind": "host_software_encode_synthetic_input",
+      "options": {
+        "eyeWidth": 1000,
+        "height": 1020,
+        "frames": 60,
+        "fps": 90,
+        "threads": 2,
+        "pattern": "bars"
+      },
+      "ffmpeg_version": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+      "ffmpeg_executable_sha256": "e8a8d46f5225f3062cec7c07fb145d58ae73c603cb740dcd5bad34bfb54e455a",
+      "command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-probesize",
+        "32",
+        "-analyzeduration",
+        "0",
+        "-f",
+        "rawvideo",
+        "-pixel_format",
+        "yuv420p",
+        "-video_size",
+        "2000x1020",
+        "-framerate",
+        "90",
+        "-i",
+        "pipe:0",
+        "-map",
+        "0:v:0",
+        "-an",
+        "-c:v",
+        "libx264",
+        "-threads",
+        "2",
+        "-preset",
+        "ultrafast",
+        "-tune",
+        "zerolatency",
+        "-crf",
+        "23",
+        "-g",
+        "90",
+        "-bf",
+        "0",
+        "-x264-params",
+        "rc-lookahead=0:sync-lookahead=0:scenecut=0:aud=1:repeat-headers=1",
+        "-frames:v",
+        "60",
+        "-f",
+        "tee",
+        "[f=framecrc:flush_packets=1]pipe:1|[f=h264]/tmp/questbridge-encode-MU07P1/synthetic-stereo.h264"
+      ],
+      "input_format": "side_by_side_yuv420p",
+      "max_pending_frames": 2,
+      "encoded_frames": 60,
+      "packets_observed_before_input_eof": 58,
+      "decoded_frames": 60,
+      "b_frames": 0,
+      "wall_ms": 658.829771,
+      "wall_fps_including_generation_startup_and_drain": 91.07056578352467,
+      "generation_ms": 131.08293300000076,
+      "packet_latency_ms": {
+        "first": 116.379742,
+        "median_after_first_4": 11.286655999999994,
+        "p95_after_first_4": 25.62545799999998,
+        "max": 116.379742
+      },
+      "latency_definition": "Start of raw frame write to receipt of completed encoded-packet checksum through tee/framecrc pipe; includes pipe/queue/mux observation. Not motion-to-photon.",
+      "decoded_first_frame_luma_mae": {
+        "left": 0,
+        "right": 0
+      },
+      "encoded_bytes": 84472,
+      "output_sha256": "dbbb1f7f36d3757999f3b110015f7af327e1f2635839305ee20b29cc0e5ab68f",
+      "output": "/tmp/questbridge-encode-MU07P1/synthetic-stereo.h264",
+      "ps5_capture_verified": false,
+      "ps5_encoder_verified": false,
+      "quest_decode_verified": false,
+      "runtime_bindings_enabled": false,
+      "case": "reduced"
+    },
+    {
+      "schema_version": 1,
+      "evidence_kind": "host_software_encode_synthetic_input",
+      "options": {
+        "eyeWidth": 320,
+        "height": 240,
+        "frames": 60,
+        "fps": 90,
+        "threads": 2,
+        "pattern": "noise"
+      },
+      "ffmpeg_version": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+      "ffmpeg_executable_sha256": "e8a8d46f5225f3062cec7c07fb145d58ae73c603cb740dcd5bad34bfb54e455a",
+      "command": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-probesize",
+        "32",
+        "-analyzeduration",
+        "0",
+        "-f",
+        "rawvideo",
+        "-pixel_format",
+        "yuv420p",
+        "-video_size",
+        "640x240",
+        "-framerate",
+        "90",
+        "-i",
+        "pipe:0",
+        "-map",
+        "0:v:0",
+        "-an",
+        "-c:v",
+        "libx264",
+        "-threads",
+        "2",
+        "-preset",
+        "ultrafast",
+        "-tune",
+        "zerolatency",
+        "-crf",
+        "23",
+        "-g",
+        "90",
+        "-bf",
+        "0",
+        "-x264-params",
+        "rc-lookahead=0:sync-lookahead=0:scenecut=0:aud=1:repeat-headers=1",
+        "-frames:v",
+        "60",
+        "-f",
+        "tee",
+        "[f=framecrc:flush_packets=1]pipe:1|[f=h264]/tmp/questbridge-encode-OzY4RG/synthetic-stereo.h264"
+      ],
+      "input_format": "side_by_side_yuv420p",
+      "max_pending_frames": 2,
+      "encoded_frames": 60,
+      "packets_observed_before_input_eof": 58,
+      "decoded_frames": 60,
+      "b_frames": 0,
+      "wall_ms": 210.88327900000002,
+      "wall_fps_including_generation_startup_and_drain": 284.51757903479864,
+      "generation_ms": 75.65166799999992,
+      "packet_latency_ms": {
+        "first": 81.07292299999997,
+        "median_after_first_4": 2.1701209999999946,
+        "p95_after_first_4": 7.073595000000012,
+        "max": 81.07292299999997
+      },
+      "latency_definition": "Start of raw frame write to receipt of completed encoded-packet checksum through tee/framecrc pipe; includes pipe/queue/mux observation. Not motion-to-photon.",
+      "decoded_first_frame_luma_mae": {
+        "left": 1.6545833333333333,
+        "right": 1.6614453125
+      },
+      "encoded_bytes": 968913,
+      "output_sha256": "17e62c7be2ee536918ccd1760b7c1aa2ba30d9729dc492dee070923e31134a37",
+      "output": "/tmp/questbridge-encode-OzY4RG/synthetic-stereo.h264",
+      "ps5_capture_verified": false,
+      "ps5_encoder_verified": false,
+      "quest_decode_verified": false,
+      "runtime_bindings_enabled": false,
+      "case": "noise"
+    }
+  ],
+  "excluded_exploratory_runs": [
+    "Initial parser failed on valid framecrc flags/side-data suffix; fixed against pinned muxer source.",
+    "Initial full-resolution generator used per-pixel work for simple bars; optimized and repeated. Earlier measurements are not the final comparison."
+  ],
+  "snapshot_cli": {
+    "fixture_kind": "invented_offline_metadata",
+    "cases": [
+      {
+        "profile": "registration",
+        "input_sha256": "9914b7a022745e8c21ca61278d2889760e85b25b2a5e3f8e3daf440f8bf00498",
+        "result": {
+          "evidence_kind": "offline_source_profile_metadata",
+          "layer_count": 2,
+          "stride": 304,
+          "option_bytes": 0,
+          "pixels_captured": false,
+          "firmware_13_20_verified": false,
+          "runtime_bindings_enabled": false
+        },
+        "one_byte_truncation_rejected": true
+      },
+      {
+        "profile": "plain",
+        "input_sha256": "233230efca73050a2e715e0106c9327a8510448d6789715b6db6aa65f26170ec",
+        "result": {
+          "evidence_kind": "offline_source_profile_metadata",
+          "layer_count": 2,
+          "stride": 328,
+          "option_bytes": 0,
+          "pixels_captured": false,
+          "firmware_13_20_verified": false,
+          "runtime_bindings_enabled": false
+        },
+        "one_byte_truncation_rejected": true
+      },
+      {
+        "profile": "buffered",
+        "input_sha256": "23b7dee458397b81fd84ab81fdb60ea6ec2f21e5da677d69009395326860fcd8",
+        "result": {
+          "evidence_kind": "offline_source_profile_metadata",
+          "layer_count": 2,
+          "stride": 472,
+          "option_bytes": 0,
+          "pixels_captured": false,
+          "firmware_13_20_verified": false,
+          "runtime_bindings_enabled": false
+        },
+        "one_byte_truncation_rejected": true
+      }
+    ],
+    "over_1_mib_rejected": true
+  },
+  "own_linux_elf_boundary_audit": {
+    "input": "qb_vr_capture_tests (host Linux executable, not PS5 module)",
+    "input_sha256": "433db8b8926b5057f52eae7b9e2b164f58c63b498d65aeae545bace54fb3960d",
+    "vr_candidate_imports": 0,
+    "audit": {
+      "schema_version": 1,
+      "evidence_kind": "offline_boundary_audit",
+      "groups": [
+        {
+          "boundary": "lifecycle",
+          "observations": [],
+          "status": "not_observed_in_this_snapshot"
+        },
+        {
+          "boundary": "tracking",
+          "observations": [],
+          "status": "not_observed_in_this_snapshot"
+        },
+        {
+          "boundary": "controller_state",
+          "observations": [],
+          "status": "not_observed_in_this_snapshot"
+        },
+        {
+          "boundary": "buffer_registration",
+          "observations": [],
+          "status": "not_observed_in_this_snapshot"
+        },
+        {
+          "boundary": "reprojection_submission",
+          "observations": [],
+          "status": "not_observed_in_this_snapshot"
+        },
+        {
+          "boundary": "explicit_flip",
+          "observations": [],
+          "status": "not_observed_in_this_snapshot"
+        },
+        {
+          "boundary": "display_timing",
+          "observations": [],
+          "status": "not_observed_in_this_snapshot"
+        }
+      ],
+      "limitations": [
+        "Missing imports may be in other PRXs, runtime resolution or indirect submissions.",
+        "Pointer relocations do not establish live slot contents, writability or a callable ABI.",
+        "SetParam must be correlated with registration and GPU completion; explicit flips are not required in every consumer.",
+        "Presence of every boundary still does not establish runtime coverage or stereo capture."
+      ],
+      "runtime_bindings_enabled": false,
+      "hardware_verified": false,
+      "interposition_verified": false,
+      "game_compatibility": "not_demonstrated"
+    }
+  },
+  "validation": {
+    "node_tests": {
+      "passed": 33,
+      "failed": 0
+    },
+    "native_ctest": {
+      "passed": 8,
+      "failed": 0,
+      "build_type": "Debug",
+      "host_encoder_test_enabled": true
+    },
+    "address_sanitizer_and_undefined_behavior_sanitizer": "new C++ metadata/copy/ordering tests passed",
+    "compatibility_validator": "passed",
+    "ci_workflow": "edited locally, no hosted run claimed",
+    "loopback_execution": "supported additional network permission",
+    "ctest_log_sha256": "4da302a85cd6c0aa35cefa8e02219a6d3d7ab23ad6a84a95773fe6de1bdcaa66"
+  },
+  "code_sha256": {
+    "common/video/capture.hpp": "397816d771e599aee33aaf43cf8c88c7249ef52758e1addc8e65123fb9d2b302",
+    "ps5/research/vr_snapshot.hpp": "67e57d3f9cb9d22bb3224d3895712508231f16a8517e9f2721da9c3ddf6b25e4",
+    "tools/diagnostics/vr-snapshot.cpp": "fac725e0cb6514e5cd8a08647fd6c071d4b7096535c9afe5422a19e7f19fe3e6",
+    "tools/diagnostics/encode-stereo.mjs": "0eea85d95dcabcdbaca6e174419a7f08557d6b98e10daa8538fae4ce3c176aea",
+    "tools/diagnostics/psvr2-boundaries.mjs": "44c602da9a763223f149b3ea1b52b0ba48eb3cb5b2e133357ec77d3c257934d1",
+    "tests/unit/vr_capture.cpp": "2a7a9f9557e4d0d69c8f5d253ab97c9570673c7bb936776f60864a0aa7fd62aa",
+    "tests/research/encode-stereo.test.mjs": "29876bfe50cd394533ec772a1daf46ae098b275da2ddbc29231c08017a63aa5f",
+    "tests/research/psvr2-boundaries.test.mjs": "fb260bde8e3b9617d2082759d8f7616c01c6038c01d1cd8b9d74c3878c06aa82"
+  },
+  "measurement_note": "Four saved codec comparisons precede only executable-path provenance reporting. Their recorded /usr/bin/ffmpeg SHA-256 identifies the executable; no PS5 performance inference. Node generation and OS scheduling affect packet observation latency.",
+  "recovered_prior_milestone": {
+    "reported_commit": "fcae046",
+    "git_object_available": false,
+    "method": "Recorded file changes and interface-catalog command from Codex chat Find PSVR2 interception method",
+    "commit_identity_verified": false
+  }
+}

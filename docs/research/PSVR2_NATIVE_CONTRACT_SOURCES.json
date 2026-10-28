@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-28",
+  "evidence_kind": "public_source_review",
+  "firmware_13_20_verified": false,
+  "runtime_bindings_enabled": false,
+  "sources": [
+    {
+      "repository": "mtp-24/PS5VR",
+      "commit": "209eb7f0160000507a0ca017842941b8e8e88f46",
+      "path": "app/src/app_vr.c",
+      "git_blob_sha": "7a39a99f682bc7d31f7ac6e041c08130b400196c",
+      "url": "https://github.com/mtp-24/PS5VR/blob/209eb7f0160000507a0ca017842941b8e8e88f46/app/src/app_vr.c",
+      "source_sha256": "39c1970758b47b3f06cc293f2973f40157e0416c593c8f234ece438ba1f70207"
+    },
+    {
+      "repository": "mtp-24/PS5VR",
+      "commit": "209eb7f0160000507a0ca017842941b8e8e88f46",
+      "path": "app/engine/media/src/eng_agc_runtime.c",
+      "git_blob_sha": "30d61fb565e1d6b034ec57b176b247c5aa550568",
+      "url": "https://github.com/mtp-24/PS5VR/blob/209eb7f0160000507a0ca017842941b8e8e88f46/app/engine/media/src/eng_agc_runtime.c",
+      "source_sha256": "014f86c9be89a54617f78a1b85be3d761fdfede8ac1e8dd9d03fa1aec6904328"
+    },
+    {
+      "repository": "mtp-24/PS5VR",
+      "commit": "209eb7f0160000507a0ca017842941b8e8e88f46",
+      "path": "docs/firmware-support.md",
+      "git_blob_sha": "a0260f1c09d74401add9652ee44dfcd655f1b887",
+      "url": "https://github.com/mtp-24/PS5VR/blob/209eb7f0160000507a0ca017842941b8e8e88f46/docs/firmware-support.md",
+      "source_sha256": "ac20e36cdcbc763bf00e89180d9771a4dbb22fe1d19eb379cd853d1fe6882d56"
+    },
+    {
+      "repository": "mtp-24/PS5VR",
+      "commit": "209eb7f0160000507a0ca017842941b8e8e88f46",
+      "path": "THIRD_PARTY_NOTICES.md",
+      "git_blob_sha": "fccafa0cffb363b1f12f38eba96cef41f8cbb50a",
+      "url": "https://github.com/mtp-24/PS5VR/blob/209eb7f0160000507a0ca017842941b8e8e88f46/THIRD_PARTY_NOTICES.md",
+      "source_sha256": "48ed017e833301198354dad591ba3088d1b49d355346a8cf661ed96722b5a585"
+    },
+    {
+      "repository": "boykopovar/AnyPS5",
+      "commit": "bfbc55a45b18e2002695043b8531cc4b6a162406",
+      "path": "core/libs/prx/libSceHmd2/include/Api.hpp",
+      "git_blob_sha": "141cd261280874654d2a3e7fb5cbc12408e61829",
+      "url": "https://github.com/boykopovar/AnyPS5/blob/bfbc55a45b18e2002695043b8531cc4b6a162406/core/libs/prx/libSceHmd2/include/Api.hpp",
+      "source_sha256": "13b8e41953938d56e6d8ff73747fef3d2e7ab89f7c5d259d93ffa8c95112bae7"
+    },
+    {
+      "repository": "boykopovar/AnyPS5",
+      "commit": "bfbc55a45b18e2002695043b8531cc4b6a162406",
+      "path": "core/libs/prx/libSceHmd2/Export.cpp",
+      "git_blob_sha": "82c55782b71657b604d56f160b49dc417740f0ac",
+      "url": "https://github.com/boykopovar/AnyPS5/blob/bfbc55a45b18e2002695043b8531cc4b6a162406/core/libs/prx/libSceHmd2/Export.cpp",
+      "source_sha256": "df7dc5de35fca813120e11f3b2f3d27aa3a2ab7545c385da3d5e12122c8b3d9d"
+    },
+    {
+      "repository": "boykopovar/AnyPS5",
+      "commit": "bfbc55a45b18e2002695043b8531cc4b6a162406",
+      "path": "core/libs/prx/libSceHmd2/Hmd2.hpp",
+      "git_blob_sha": "4623331f9182864541b67106c929d476bd0f015c",
+      "url": "https://github.com/boykopovar/AnyPS5/blob/bfbc55a45b18e2002695043b8531cc4b6a162406/core/libs/prx/libSceHmd2/Hmd2.hpp",
+      "source_sha256": "df7ba14a7a58aa28f1942a266b4e38bb9b03811265dc562e68c3871efca7e1c4"
+    },
+    {
+      "repository": "boykopovar/AnyPS5",
+      "commit": "bfbc55a45b18e2002695043b8531cc4b6a162406",
+      "path": "docs/dev/debt/libSceHmd2.md",
+      "git_blob_sha": "e8cbc5eacd3f6e51d56a324412df83cc66266490",
+      "url": "https://github.com/boykopovar/AnyPS5/blob/bfbc55a45b18e2002695043b8531cc4b6a162406/docs/dev/debt/libSceHmd2.md",
+      "source_sha256": "8dfa69162b1fbc78eded9b48231fbe06fb8b0756f2f3498df5d5e82ea02bc3a2"
+    },
+    {
+      "repository": "boykopovar/AnyPS5",
+      "commit": "bfbc55a45b18e2002695043b8531cc4b6a162406",
+      "path": "core/libs/prx/libSceVrTracker2/include/Api.hpp",
+      "git_blob_sha": "871f89b821f9646b760be212e10000caae929934",
+      "url": "https://github.com/boykopovar/AnyPS5/blob/bfbc55a45b18e2002695043b8531cc4b6a162406/core/libs/prx/libSceVrTracker2/include/Api.hpp",
+      "source_sha256": "c19f391f00095ccd23009f1aae91623feedb9a6e3c2dd8d8d2b1a54d57ab9ba3"
+    },
+    {
+      "repository": "boykopovar/AnyPS5",
+      "commit": "bfbc55a45b18e2002695043b8531cc4b6a162406",
+      "path": "core/libs/prx/libSceVrTracker2/Export.cpp",
+      "git_blob_sha": "f9246da31046d489dc57340d401a26652a168606",
+      "url": "https://github.com/boykopovar/AnyPS5/blob/bfbc55a45b18e2002695043b8531cc4b6a162406/core/libs/prx/libSceVrTracker2/Export.cpp",
+      "source_sha256": "37af58f0cdf25ed92e09a760e10327d33f48cdd804c138b3ed8bcce5048749a7"
+    },
+    {
+      "repository": "boykopovar/AnyPS5",
+      "commit": "bfbc55a45b18e2002695043b8531cc4b6a162406",
+      "path": "docs/dev/debt/libSceVrTracker2.md",
+      "git_blob_sha": "5bb664cbf1f0400147589da6c0cce998ae2148a4",
+      "url": "https://github.com/boykopovar/AnyPS5/blob/bfbc55a45b18e2002695043b8531cc4b6a162406/docs/dev/debt/libSceVrTracker2.md",
+      "source_sha256": "e139c8cc1c0d883f3e5155141a9456f3566f09e6019edf4469ddc23f0d6784fd"
+    },
+    {
+      "repository": "boykopovar/AnyPS5",
+      "commit": "bfbc55a45b18e2002695043b8531cc4b6a162406",
+      "path": "core/libs/prx/libScePad/include/Pad.hpp",
+      "git_blob_sha": "49154aa264970c1b736f1274d8c4b2817cc33b30",
+      "url": "https://github.com/boykopovar/AnyPS5/blob/bfbc55a45b18e2002695043b8531cc4b6a162406/core/libs/prx/libScePad/include/Pad.hpp",
+      "source_sha256": "0c25fcc4962966ddc455adb40354bf30bf8eeabc214e3fb694425d7334336159"
+    },
+    {
+      "repository": "boykopovar/AnyPS5",
+      "commit": "bfbc55a45b18e2002695043b8531cc4b6a162406",
+      "path": "core/libs/prx/libScePad/Export.cpp",
+      "git_blob_sha": "0787a07dbfe3b63d55e7419fa6d19d4ffe70d15d",
+      "url": "https://github.com/boykopovar/AnyPS5/blob/bfbc55a45b18e2002695043b8531cc4b6a162406/core/libs/prx/libScePad/Export.cpp",
+      "source_sha256": "d6135254c785ad08fabd2dc3bb54bcd92b7c0b90ad80ae490c69302aa71ff52a"
+    },
+    {
+      "repository": "boykopovar/AnyPS5",
+      "commit": "bfbc55a45b18e2002695043b8531cc4b6a162406",
+      "path": "LICENSE",
+      "git_blob_sha": "a66a55f9806c0500ee810a8b13c024f34a6b2e16",
+      "url": "https://github.com/boykopovar/AnyPS5/blob/bfbc55a45b18e2002695043b8531cc4b6a162406/LICENSE",
+      "source_sha256": "de124e5a899ae4074ebf5c0f790494178ab66d310606b86203d67a6f3ef45168"
+    },
+    {
+      "repository": "KytyPS5/KytyPS5",
+      "commit": "c528324d27bb6e6094d9efaf11fdbb88d27d8891",
+      "path": "src/libs/libHmd2.cpp",
+      "git_blob_sha": "186abc79040a1183e0077959e786d33e4fd569c3",
+      "url": "https://github.com/KytyPS5/KytyPS5/blob/c528324d27bb6e6094d9efaf11fdbb88d27d8891/src/libs/libHmd2.cpp",
+      "source_sha256": "f3f3439175f2d058cfb34bc20ee808bb207a8abfd8d293b1bb893001b43718dd"
+    },
+    {
+      "repository": "KytyPS5/KytyPS5",
+      "commit": "c528324d27bb6e6094d9efaf11fdbb88d27d8891",
+      "path": "LICENSE",
+      "git_blob_sha": "ecbc0593737be657aef92e3adcf3bcbd6fdb812e",
+      "url": "https://github.com/KytyPS5/KytyPS5/blob/c528324d27bb6e6094d9efaf11fdbb88d27d8891/LICENSE",
+      "source_sha256": "f9c375a1be4a41f7b70301dd83c91cb89e41567478859b77eef375a52d782505"
+    },
+    {
+      "repository": "bps2414/visor-ps5",
+      "commit": "b932610be7dfdd18b7d0ed3423b5ad59494a7582",
+      "path": "README.md",
+      "git_blob_sha": "ec79cc079d478dd0cf3ce473306140f0433b93ae",
+      "url": "https://github.com/bps2414/visor-ps5/blob/b932610be7dfdd18b7d0ed3423b5ad59494a7582/README.md",
+      "source_sha256": "0e420c07ed2649aba97f5e3f66eb2272a6d86fe5eca4bac9087e05b850815e47"
+    },
+    {
+      "repository": "jmelovich/ps5-gyroaim",
+      "commit": "3c62ed7041cdc6e113a1c6fcd523b3a1c146ea58",
+      "path": "README.md",
+      "git_blob_sha": "fd29537466181f8d54ad6b1e7fc28cf1e4244bc5",
+      "url": "https://github.com/jmelovich/ps5-gyroaim/blob/3c62ed7041cdc6e113a1c6fcd523b3a1c146ea58/README.md",
+      "source_sha256": "7754b423988451c96d874fd724ebdbcb2c58252164046af33d2a9def64515efe"
+    },
+    {
+      "repository": "jmelovich/ps5-gyroaim",
+      "commit": "3c62ed7041cdc6e113a1c6fcd523b3a1c146ea58",
+      "path": "payload/hook.c",
+      "git_blob_sha": "caf6849a0b8b1879e902fd1feb9e00fa2c8bc02b",
+      "url": "https://github.com/jmelovich/ps5-gyroaim/blob/3c62ed7041cdc6e113a1c6fcd523b3a1c146ea58/payload/hook.c",
+      "source_sha256": "4957ea2c78cdf1c03f1bec8df973e1110d9992597d6d048592a7018e63f8f24f"
+    },
+    {
+      "repository": "FFmpeg/FFmpeg",
+      "commit": "3a0867c2bfda4a4d4309ca1a8cbdc6175e67f587",
+      "path": "libavcodec/libx264.c",
+      "git_blob_sha": "409f45fc7db7af096f2bfe4bc46ba442472056c6",
+      "url": "https://github.com/FFmpeg/FFmpeg/blob/3a0867c2bfda4a4d4309ca1a8cbdc6175e67f587/libavcodec/libx264.c",
+      "source_sha256": "d83a14c85129902f8bc9c88f2fe67a4a9749fef7f9de4dfec34ced30fd27db3c"
+    },
+    {
+      "repository": "FFmpeg/FFmpeg",
+      "commit": "3a0867c2bfda4a4d4309ca1a8cbdc6175e67f587",
+      "path": "libavformat/framecrcenc.c",
+      "git_blob_sha": "ce306a6c498128528a69651ff50a140c98ab5a54",
+      "url": "https://github.com/FFmpeg/FFmpeg/blob/3a0867c2bfda4a4d4309ca1a8cbdc6175e67f587/libavformat/framecrcenc.c",
+      "source_sha256": "1815917366f801e7950da65b17f9a5e09ffcc76515d499f792e6c88a444543df"
+    },
+    {
+      "repository": "FFmpeg/FFmpeg",
+      "commit": "3a0867c2bfda4a4d4309ca1a8cbdc6175e67f587",
+      "path": "libavformat/tee.c",
+      "git_blob_sha": "1a2a8ead828a78ad43c22e4a7a96c9e575b96fc3",
+      "url": "https://github.com/FFmpeg/FFmpeg/blob/3a0867c2bfda4a4d4309ca1a8cbdc6175e67f587/libavformat/tee.c",
+      "source_sha256": "cd579f5cea192dbaad8e9dd8d7cc5891ff63f54b0f5b8a80e9e1bcbb66d57b3c"
+    },
+    {
+      "repository": "mirror/x264",
+      "commit": "31e19f92f00c7003fa115047ce50978bc98c3a0d",
+      "path": "common/base.c",
+      "git_blob_sha": "d302fed128140309094fdcd607dfa34efcff81f5",
+      "url": "https://github.com/mirror/x264/blob/31e19f92f00c7003fa115047ce50978bc98c3a0d/common/base.c",
+      "source_sha256": "5d2bab344d2ebc5dedab281f3a9903e03524938da62a869f6dbdffeb97d7301c"
+    }
+  ],
+  "mutable_report": {
+    "url": "https://github.com/boykopovar/AnyPS5/issues/7649#issuecomment-6274215852",
+    "author": "frankea",
+    "updated_at": "2026-10-19T18:22:50Z",
+    "reviewed_on": "2026-10-28",
+    "body_utf8_sha256": "939c0f882d6efe67a85656c90934d1d6209f6c8a1ba7c145881f136320137f86",
+    "independently_reproduced": false,
+    "conflict": "Pad timestamp +0x60 in report versus +0x48 in pinned AnyPS5 source; no target resolution"
+  }
+}

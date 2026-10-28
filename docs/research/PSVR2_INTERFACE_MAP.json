@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "date": "2026-10-26",
+  "date": "2026-10-28",
   "evidence_kind": "public_source_review",
   "runtime_bindings_enabled": false,
   "questbridge_hardware_tested": false,
@@ -32,7 +32,20 @@
         "sceHmd2ReprojectionEnableVrMode",
         "sceHmd2ReprojectionBeginFrame",
         "sceHmd2ReprojectionGetPredictedDisplayTime",
-        "sceHmd2ReprojectionSetParam"
+        "sceHmd2ReprojectionSetParam",
+        "sceHmd2Terminate",
+        "sceHmd2Close",
+        "sceHmd2GetDeviceInformationByHandle",
+        "sceHmd2GetFieldOfView",
+        "sceHmd2GetFieldOfViewWithoutHandle",
+        "sceHmd2ReprojectionQueryBufferSizeAlign",
+        "sceHmd2ReprojectionQueryDisplayBufferSizeAlign",
+        "sceHmd2ReprojectionSetParamWithBuffer",
+        "sceHmd2ReprojectionSetRenderConfig",
+        "sceHmd2ReprojectionDisableVrMode",
+        "sceHmd2ReprojectionTerminate",
+        "sceHmd2GazeGetResult",
+        "sceHmd2GazeGetResultForFoveatedRendering"
       ],
       "contract_status": "Declarations and call sites inspected in public projects; not validated on target firmware"
     },
@@ -43,7 +56,9 @@
         "sceVrTracker2QueryMemory",
         "sceVrTracker2Initialize",
         "sceVrTracker2RegisterDevice",
-        "sceVrTracker2GetResult"
+        "sceVrTracker2GetResult",
+        "sceVrTracker2UnregisterDevice",
+        "sceVrTracker2Finalize"
       ],
       "contract_status": "Consumer path inspected; no external pose injection established"
     },
@@ -63,7 +78,9 @@
         "sceVideoOutOpen",
         "sceVideoOutRegisterBuffers2",
         "sceVideoOutConfigureOutput",
-        "sceVideoOutSubmitFlip"
+        "sceVideoOutSubmitFlip",
+        "sceVideoOutClose",
+        "sceVideoOutUnregisterBuffers"
       ],
       "contract_status": "PS5VR submits its own buffers; no access to another native game's buffers established"
     },
@@ -205,5 +222,6 @@
       "git_blob_sha": "f288702d2fa16d3cdf0035b15a9fcbc552cd88e7",
       "url": "https://github.com/mtp-24/PS5VR/blob/209eb7f0160000507a0ca017842941b8e8e88f46/LICENSE"
     }
-  ]
+  ],
+  "native_method_report": "PSVR2_NATIVE_METHOD.md"
 }

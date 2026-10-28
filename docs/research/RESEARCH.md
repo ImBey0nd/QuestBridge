@@ -1,5 +1,23 @@
 # Research snapshot
 
+2026-10-28 continuation: [contract and feasibility decision](PSVR2_NATIVE_METHOD.md#continuation-contract-and-feasibility-decision-2026-10-28)
+keeps native substitution unproven and disabled. Reviewed 23 pinned public text
+files; found the Pad timestamp dispute and PS5VR GPU timeout fall-through. Added
+bounded offline layer snapshots for registration and both SetParam variants,
+real CPU stereo copying, observation-order checks and real host libx264/decode
+experiments. None is native PS5 integration. [Results](../testing/PSVR2_NATIVE_RESULTS.json)
+and [specific native evidence gates](../testing/PSVR2_NATIVE_EXPERIMENTS.md) record
+what can and cannot be concluded. [Spanish owner note](../testing/PSVR2_OWNER_NEXT.md).
+
+2026-10-28: [native VR interception method](PSVR2_NATIVE_METHOD.md) selects
+process-local VR interface replacement plus a virtual HMD output backend as the
+implementation target. Registration contains nested GPU descriptors; correlate
+both reprojection submission variants with actual GPU completion. Explicit game
+flips are not universal. Source evidence and an upstream consumer report are
+distinguished in [the evidence record](PSVR2_NATIVE_METHOD_SOURCES.json).
+The new offline boundary auditor and expanded source-name catalog do not install
+hooks or verify native compatibility. Encoding and exact 13.20 contracts remain open.
+
 Latest native transport: [C++ receiver and hardware boundary](../testing/NATIVE_RECEIVER.md). Pinned libc++/OpenSSL cross-builds produce a PS5 receiver ELF; host interoperability is tested, target behavior is unverified.
 
 Latest native development: [import interposition research](PS5_INTERPOSITION.md) and [offline C++ import inventory](../testing/PS5_IMPORTS.md). Public controller-hook code is available; no QuestBridge runtime interposition was executed.

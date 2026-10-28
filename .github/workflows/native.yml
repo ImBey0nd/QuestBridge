@@ -11,9 +11,9 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '24'
-      - run: sudo apt-get update && sudo apt-get install -y cmake g++ libssl-dev
+      - run: sudo apt-get update && sudo apt-get install -y cmake g++ libssl-dev ffmpeg
       - run: npm test
-      - run: cmake -S . -B "$RUNNER_TEMP/qb-build" -DCMAKE_BUILD_TYPE=Debug
+      - run: cmake -S . -B "$RUNNER_TEMP/qb-build" -DCMAKE_BUILD_TYPE=Debug -DQB_TEST_HOST_ENCODER=ON
       - run: cmake --build "$RUNNER_TEMP/qb-build" --parallel 2
       - run: ctest --test-dir "$RUNNER_TEMP/qb-build" --output-on-failure
       - run: node tools/diagnostics/validate.mjs
@@ -25,3 +25,5 @@ jobs:
           "$RUNNER_TEMP/transport-sanitized"
           c++ -std=c++17 -g -fsanitize=address,undefined -fno-omit-frame-pointer -I . -I common tests/unit/native.cpp -o "$RUNNER_TEMP/models-sanitized"
           "$RUNNER_TEMP/models-sanitized"
+          c++ -std=c++17 -g -fsanitize=address,undefined -fno-omit-frame-pointer -I . -I common tests/unit/vr_capture.cpp -o "$RUNNER_TEMP/vr-capture-sanitized"
+          "$RUNNER_TEMP/vr-capture-sanitized"
