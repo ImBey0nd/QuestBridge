@@ -9,9 +9,6 @@ Native discovery implementation: [read-only ELF import inventory](docs/testing/P
 
 Latest PS5 investigation: [PS VR2 detection and initialization](docs/research/PSVR2_DETECTION.md). Public PS5VR source recovered through a fork; native headset substitution remains unimplemented. [Offline log diagnostic](docs/testing/PSVR2_LOGS.md) separates logged statuses from hardware evidence.
 
-## Para el dueño
-
-Empieza por [LO_QUE_TENGO_QUE_HACER_YO.md](docs/LO_QUE_TENGO_QUE_HACER_YO.md): permisos de GitHub, pruebas físicas y qué resultados devolver.
 
 ## Run the working demo
 Requires Node.js 22 or newer. No npm dependencies or install step.
