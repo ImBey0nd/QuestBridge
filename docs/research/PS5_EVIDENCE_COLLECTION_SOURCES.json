@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-28",
+  "evidence_kind": "public_source_review_no_console_execution",
+  "owner_reports_existing_ftp": true,
+  "installed_ftp_identity": "Owner away from console; existing FTP and file transfers reported, exact build not yet identified. No action requested now.",
+  "console_contacted": false,
+  "runtime_bindings_enabled": false,
+  "verified_safe_complete_extractor": false,
+  "sources": [
+    {
+      "repository": "ps5-payload-dev/ftpsrv",
+      "path": "README.md",
+      "commit": "35bae1312b14840c0f95fab93be73d6daaa93bae",
+      "git_blob_sha": "ff97ae6b1e33eb1707309da521d064a8892327d6",
+      "url": "https://github.com/ps5-payload-dev/ftpsrv/blob/35bae1312b14840c0f95fab93be73d6daaa93bae/README.md",
+      "source_sha256": "356c4401a64f2f0e5134d8f97412cfb384547337e86a4090d2abec572b3b6729"
+    },
+    {
+      "repository": "ps5-payload-dev/ftpsrv",
+      "path": "main-prospero.c",
+      "commit": "35bae1312b14840c0f95fab93be73d6daaa93bae",
+      "git_blob_sha": "667c34ca88b3606e944826d808bb4705a5b2a679",
+      "url": "https://github.com/ps5-payload-dev/ftpsrv/blob/35bae1312b14840c0f95fab93be73d6daaa93bae/main-prospero.c",
+      "source_sha256": "e43811b994ac7bae8e1473506b2e247944fc109bc707f82e011e89d89b7fe57a"
+    },
+    {
+      "repository": "ps5-payload-dev/ftpsrv",
+      "path": "self-prospero.c",
+      "commit": "35bae1312b14840c0f95fab93be73d6daaa93bae",
+      "git_blob_sha": "ba1f81d992605111368d6281ad907096a7d82cce",
+      "url": "https://github.com/ps5-payload-dev/ftpsrv/blob/35bae1312b14840c0f95fab93be73d6daaa93bae/self-prospero.c",
+      "source_sha256": "f8936dfd2cff0a1f5be7a48813cbd57f9d83ed1a7bfa944ab1a0bf5a44b74b9d"
+    },
+    {
+      "repository": "ps5-payload-dev/ftpsrv",
+      "path": "cmd.c",
+      "commit": "35bae1312b14840c0f95fab93be73d6daaa93bae",
+      "git_blob_sha": "aa59ef49163d808ada6300d97d1326b5a26bcd7b",
+      "url": "https://github.com/ps5-payload-dev/ftpsrv/blob/35bae1312b14840c0f95fab93be73d6daaa93bae/cmd.c",
+      "source_sha256": "db9b53b530af09e7cd833ea8d95cbbe1a7bda82decb7473b497b1ec73c00a3e2"
+    },
+    {
+      "repository": "ps5-payload-dev/ftpsrv",
+      "path": "srv.c",
+      "commit": "35bae1312b14840c0f95fab93be73d6daaa93bae",
+      "git_blob_sha": "214875551b3441243fe748ee761c5b716a9c1366",
+      "url": "https://github.com/ps5-payload-dev/ftpsrv/blob/35bae1312b14840c0f95fab93be73d6daaa93bae/srv.c",
+      "source_sha256": "e311a4c1ca8d7c3ca4adbca2dacffda5997e223a135acf6f762d3adec198ddc5"
+    },
+    {
+      "repository": "ps5-payload-dev/ftpsrv",
+      "path": "Makefile.ps5",
+      "commit": "35bae1312b14840c0f95fab93be73d6daaa93bae",
+      "git_blob_sha": "d68d34ad474e206a97da1da0354f058049bf6f19",
+      "url": "https://github.com/ps5-payload-dev/ftpsrv/blob/35bae1312b14840c0f95fab93be73d6daaa93bae/Makefile.ps5",
+      "source_sha256": "64ee268717fdc39d242d06fbe8d146d75f0bc60cab637ac36c5ad12e8e642f4f"
+    },
+    {
+      "repository": "ps5-payload-dev/websrv",
+      "path": "README.md",
+      "commit": "7748df9d2a43822a5ebfda149f43d4f2696d640b",
+      "git_blob_sha": "0f6673547b815c6429acec891c0df8800979963f",
+      "url": "https://github.com/ps5-payload-dev/websrv/blob/7748df9d2a43822a5ebfda149f43d4f2696d640b/README.md",
+      "source_sha256": "1821b1f856dc1490b8e225ecb9ce20bb9df0069f6d6be3f7f2231f9fe75c0fcd"
+    },
+    {
+      "repository": "ps5-payload-dev/websrv",
+      "path": "src/fs.c",
+      "commit": "7748df9d2a43822a5ebfda149f43d4f2696d640b",
+      "git_blob_sha": "a8e491dba0356372dd5614f31b78582f3e159a3b",
+      "url": "https://github.com/ps5-payload-dev/websrv/blob/7748df9d2a43822a5ebfda149f43d4f2696d640b/src/fs.c",
+      "source_sha256": "30bfd98c7f1e31f4433b1f4e97d69b23b11de53e771691ecd0e6ce68743955e7"
+    },
+    {
+      "repository": "ps5-payload-dev/websrv",
+      "path": "src/websrv.c",
+      "commit": "7748df9d2a43822a5ebfda149f43d4f2696d640b",
+      "git_blob_sha": "e9e46d35326d649fb26d6c68f23645f78bacf401",
+      "url": "https://github.com/ps5-payload-dev/websrv/blob/7748df9d2a43822a5ebfda149f43d4f2696d640b/src/websrv.c",
+      "source_sha256": "73968c24e093763c2a6797040b71c75fd6ccfb5cd87a67e8c25c603593e095bd"
+    },
+    {
+      "repository": "ps5-payload-dev/websrv",
+      "path": "src/ps5/sys.c",
+      "commit": "7748df9d2a43822a5ebfda149f43d4f2696d640b",
+      "git_blob_sha": "b1af7c5d9c81429c3f94f8368f21bbe3f459e32d",
+      "url": "https://github.com/ps5-payload-dev/websrv/blob/7748df9d2a43822a5ebfda149f43d4f2696d640b/src/ps5/sys.c",
+      "source_sha256": "436862e120d1d14004fba2a435efb4e3f2fa226d13828f92141ccb311c1a7d9a"
+    },
+    {
+      "repository": "Pharaoh2k/ps5debug-NG",
+      "path": "README.md",
+      "commit": "a1a6cb2dae7544f892454f62046b7f70500ffa8e",
+      "git_blob_sha": "aaaff9c587f07ce0f657a463bfe0ef34ee4ced48",
+      "url": "https://github.com/Pharaoh2k/ps5debug-NG/blob/a1a6cb2dae7544f892454f62046b7f70500ffa8e/README.md",
+      "source_sha256": "8766e22e204dcdf937adc3ee609e820c8cce2fcc8995c266385324f203b4a2e6"
+    },
+    {
+      "repository": "Pharaoh2k/ps5debug-NG",
+      "path": "installer/source/main.c",
+      "commit": "a1a6cb2dae7544f892454f62046b7f70500ffa8e",
+      "git_blob_sha": "270100e0974790d4b55c20dc785a825b06ddb51c",
+      "url": "https://github.com/Pharaoh2k/ps5debug-NG/blob/a1a6cb2dae7544f892454f62046b7f70500ffa8e/installer/source/main.c",
+      "source_sha256": "c138fb239e1d66c5f8a176e75dca6065cd7bdce8b05178823bdaa4c0ba114809"
+    },
+    {
+      "repository": "Pharaoh2k/ps5debug-NG",
+      "path": "debugger/source/hijack_patch_init.c",
+      "commit": "a1a6cb2dae7544f892454f62046b7f70500ffa8e",
+      "git_blob_sha": "27e16eb127da737baf61d7cae1d45b40f622b3b7",
+      "url": "https://github.com/Pharaoh2k/ps5debug-NG/blob/a1a6cb2dae7544f892454f62046b7f70500ffa8e/debugger/source/hijack_patch_init.c",
+      "source_sha256": "b7c6cbb19784d983691ae349e446ba2f36d78c0e43e18dd3db0a0b0428ac2866"
+    },
+    {
+      "repository": "ps5-payload-dev/sdk",
+      "path": "crt/crt.c",
+      "commit": "a7685ce8e97ce1f8a4f38253a41d54241c9124f1",
+      "git_blob_sha": "3192d78715a5534b104769a4915a21001b2826e6",
+      "url": "https://github.com/ps5-payload-dev/sdk/blob/a7685ce8e97ce1f8a4f38253a41d54241c9124f1/crt/crt.c",
+      "source_sha256": "f0c9e81e740b6beeda3dd4a62e22751603b310b258b7bb7c0875a4cbdcaa212e"
+    },
+    {
+      "repository": "ps5-payload-dev/sdk",
+      "path": "crt/patch.c",
+      "commit": "a7685ce8e97ce1f8a4f38253a41d54241c9124f1",
+      "git_blob_sha": "5c34c4a5910cf3c174fad26c1b1498ae752f033f",
+      "url": "https://github.com/ps5-payload-dev/sdk/blob/a7685ce8e97ce1f8a4f38253a41d54241c9124f1/crt/patch.c",
+      "source_sha256": "a9cf1814874f3c2c4b337a23270a80ff159b2e6247f9781018bbe1def1845deb"
+    },
+    {
+      "repository": "idlesauce/ps5-self-pager",
+      "path": "README.md",
+      "commit": "e98146660633c82766df46b77025d9b2d9c36597",
+      "git_blob_sha": "f2e0428e1174f5ded0b7865d8b1116cf87b83203",
+      "url": "https://github.com/idlesauce/ps5-self-pager/blob/e98146660633c82766df46b77025d9b2d9c36597/README.md",
+      "source_sha256": "10ac354d24b0510bc5a30bfb1a301a0646da3bdd95d8b0bdf6873558961bacfa"
+    }
+  ]
+}

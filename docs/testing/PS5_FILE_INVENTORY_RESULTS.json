@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-28",
+  "evidence_kind": "local_inventory_host_validation",
+  "node_tests": {
+    "passed": 37,
+    "failed": 0
+  },
+  "native_ctest": {
+    "passed": 8,
+    "failed": 0
+  },
+  "compatibility_validator": "passed",
+  "browser": {
+    "product": "Chrome/154.0.8037.57",
+    "real_browser_execution": true,
+    "test_data": "invented 64-byte ELF header, no proprietary binary",
+    "test_origin": "authenticated loopback HTTP with random 256-bit route",
+    "devtools_transport": "local pipe, no debug TCP port",
+    "file_selection_hash_report_and_json_download": "passed",
+    "direct_file_url": "blocked by managed browser policy, not tested on owner PC"
+  },
+  "console_contacted": false,
+  "quest_contacted": false,
+  "new_ftp_or_debugger_deployed": false,
+  "target_firmware_verified": false,
+  "runtime_bindings_enabled": false,
+  "code_sha256": {
+    "tools/diagnostics/ps5-file-inventory.html": "707e5cb0edc6eabf0b3bdc3bd0d96168ce88cfbfb0b96186aff036861ced68da",
+    "tools/diagnostics/test-file-inventory.mjs": "5e5347128fb164f181c400cfcc9195d66a252b26c62119ed59302fc8e070c359",
+    "tests/research/ps5-file-inventory.test.mjs": "446bfd507d528fed198999e804e454ec75a29ce92024e6d871d32f92cd30dc63"
+  },
+  "primary_sources_verified": 16
+}

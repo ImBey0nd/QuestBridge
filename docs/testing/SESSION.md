@@ -402,3 +402,32 @@ No console/Quest contacted, no injection/deployment/exploit/kernel write, no ups
 implementation or proprietary material imported. Decision and independent native
 experiments C1–C6 are documented; all remaining decisive native conclusions require
 the concrete external evidence listed there. No new console-ready artifact.
+
+## 2026-10-28 — homebrew evidence-collection audit and local inventory
+
+Owner requests a safer path to collect/share PS5 evidence and a plain Spanish
+explanation of every necessary datum. Owner confirms existing FTP and legible
+file transfers but is away from console; no immediate physical action requested.
+Research note: docs/research/PS5_EVIDENCE_COLLECTION.md. Sixteen public primary
+source texts were matched to immutable Git blob IDs; sources/hashes recorded.
+
+Reviewed ftpsrv SELF auto-decryption (temporary kernel pager swap and temp file),
+startup AuthID change, websrv file reads versus startup/launcher effects,
+self-pager documented race and ps5debug-NG installer kernel patch/filter unlock/
+ShellCore injection. Upstream 13.20 claims are not owner-device evidence. No
+console program was executed; no firmware, modules, keys or games downloaded.
+
+Implemented standalone original Spanish HTML inventory of already copied local
+files: six whitelisted module names, 6 files/64-MiB each/256-MiB total, validation
+before reads, SHA256 and conservative header summary. Report excludes contents,
+paths and credentials; all target/runtime/decryption verification flags false.
+It is not a dumper, complete ELF validator, decrypter or VR trace collector.
+
+Validation: npm test 37/37; unchanged native CTest 8/8; compatibility validator
+passed. Four new tests run the HTML's exact script. Real Chromium154 functional
+test confirmed synthetic file selection, exact hash/report and JSON download.
+Direct file: navigation was rejected by managed browser policy; exact same HTML
+was tested on a temporary loopback HTTP origin protected by a random 256-bit path.
+Test used a DevTools pipe, not a debugging network server, and cleaned up its
+temporary profile/server/files. This does not claim file: testing on owner PC.
+No hosted CI run, target execution, permissions changes or runtime enablement.

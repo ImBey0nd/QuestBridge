@@ -1,5 +1,43 @@
 # QuestBridge cloud handoff
 
+## Evidence collection research and PC-only inventory — 2026-10-28
+
+Read docs/research/PS5_EVIDENCE_COLLECTION.md (Spanish) and its SOURCES.json.
+Owner confirms an existing FTP and successful transfers of legible files, but is
+away from home and cannot identify its build now. Do not require console access
+or re-request hardware inventory. Exact FTP banner/build remains a later targeted
+observation, not a gate for research or existing-PC-copy analysis.
+
+Reviewed 16 pinned primary homebrew source texts, matching their original bytes
+to Git blobs. ftpsrv defaults to per-connection SELF decryption; an ordinary RETR
+of SELF can temporarily change a kernel pager table and create a temporary file.
+Its startup changes AuthID. SELF is a toggle, not a reliable universal disable
+command across reconnections. websrv's ordinary /fs read path is useful if already
+active, but new startup can change credentials/install its launcher. self-pager
+documents the pager swap/race. ps5debug-NG claims 13.20 support but its installer
+can patch kernel, unlock a syscall filter and inject SceShellCore. None is certified
+as a complete read-only VR extractor. No tool was executed on PS5.
+
+New tools/diagnostics/ps5-file-inventory.html runs locally in a browser and hashes
+only selected existing PC copies of six whitelisted module names. It emits a JSON
+inventory with name/size/SHA256/header classification, no raw content/paths/keys.
+All firmware/decryption/ABI/runtime flags stay false; ELF header recognition is
+not complete decryption or provenance verification. No networking or decryption.
+It is only initial static inventory, not a VR/GPU trace collector or ELF parser.
+
+Validation: npm test 37/37; native CTest 8/8; compatibility records valid. Optional
+test-file-inventory.mjs used real Chromium154, synthetic bytes and a one-time
+authenticated loopback HTTP origin to check file selection/report/download.
+Managed browser blocks file: URLs; direct file opening was not tested here or on
+owner Windows. No bypass flags are needed/recommended for the distributed HTML.
+Reports/logs and exact limits are in the research note. No console/Quest contact,
+firmware enablement, upstream code import or proprietary binary collection.
+
+The note explains twelve required data categories and distinguishes static files
+from actual process, GPU, encoder and end-to-end observations. Prefer existing
+PC copies/text logs first; a new bounded observer needs a separately reviewed
+startup/contract, and game instrumentation must disclose its real effects.
+
 ## Contract, capture and encoding continuation — 2026-10-28
 
 Decision: process-local substitution remains unproven, not disproven in principle;

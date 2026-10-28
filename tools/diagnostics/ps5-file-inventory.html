@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>QuestBridge — inventario local</title>
+<style>
+body{font:17px/1.6 system-ui,sans-serif;max-width:780px;margin:40px auto;padding:0 20px;color:#19262c;background:#f5f7f8}h1{line-height:1.2}button,a.download{font:inherit;padding:10px 16px;background:#075c52;color:white;border:0;border-radius:6px;display:inline-block;margin:12px 8px 12px 0}button:disabled{opacity:.5}input{max-width:100%;font:inherit}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:white;padding:20px;border:1px solid #ccd5d9;border-radius:6px}small{display:block}a[hidden]{display:none}.notice{border-left:4px solid #075c52;padding-left:16px}
+</style>
+</head>
+<body>
+<h1>Qué copias tenemos en el computador</h1>
+<p class="notice">Este archivo funciona en tu navegador. No se conecta a la PS5, no ejecuta las bibliotecas y no las sube a Internet. Genera un informe pequeño con nombres, tamaños y huellas digitales.</p>
+<p>Usa solo archivos que <strong>ya hayas copiado a este computador</strong>. Esta herramienta no indica que descargarlos de la consola sea una operación sin cambios.</p>
+<ol>
+<li>Selecciona las copias de bibliotecas de la lista de abajo. No selecciones juegos ni copias completas de memoria.</li>
+<li>Pulsa <strong>Crear informe</strong>. Se comprueba la cabecera, que es el comienzo del archivo, y se calcula su huella digital.</li>
+<li>Descarga <strong>questbridge-inventario-local.json</strong>. Ese informe es lo que puedes compartir; las bibliotecas quedan en tu computador.</li>
+</ol>
+<p>Bibliotecas aceptadas: <code>libSceHmd2</code>, <code>libSceVrTracker2</code>, <code>libScePad</code>, <code>libSceVideoOut</code>, <code>libSceAgcDriver</code> y <code>libkernel</code>, terminadas en <code>.sprx</code>, <code>.prx</code> o <code>.elf</code>. Máximo 6 archivos, 64 MiB por archivo y 256 MiB en total.</p>
+<input id="files" type="file" multiple accept=".sprx,.prx,.elf" aria-label="Copias locales de bibliotecas">
+<div><button id="analyze" type="button">Crear informe</button><a class="download" id="download" hidden download="questbridge-inventario-local.json">Descargar informe</a></div>
+<pre id="status" role="status" aria-live="polite">Esperando archivos. La versión objetivo 13.20 fue declarada por el propietario; esta herramienta no la verifica.</pre>
+<small>Una cabecera ELF reconocida no prueba que la biblioteca esté completa, que su contenido esté descifrado, que proceda de 13.20 ni que sus interfaces funcionen. Una cabecera distinta tampoco prueba por sí sola que el archivo esté cifrado.</small>
+<script id="inventory-script">
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Original local file inventory. No Sony calls, network, code execution or decryption.
+'use strict';
+const allowedName = /^(libSceHmd2|libSceVrTracker2|libScePad|libSceVideoOut|libSceAgcDriver|libkernel)\.(sprx|prx|elf)$/i;
+function validateFiles(files) {
+  if (!files.length || files.length > 6) throw Error('Selecciona entre 1 y 6 bibliotecas de la lista.');
+  const seen = new Set(); let total = 0;
+  for (const file of files) {
+    if (!allowedName.test(file.name)) throw Error('Nombre fuera de la lista. No cambies el nombre de otro archivo para incluirlo.');
+    if (!Number.isSafeInteger(file.size) || file.size < 1 || file.size > 64 * 1024 * 1024) throw Error('Archivo vacío o mayor de 64 MiB.');
+    if (seen.has(file.name.toLowerCase())) throw Error('Hay nombres repetidos. Compara cada copia en un informe separado.');
+    seen.add(file.name.toLowerCase()); total += file.size;
+    if (total > 256 * 1024 * 1024) throw Error('La selección supera 256 MiB.');
+  }
+}
+function classifyHeader(bytes) {
+  const isElf = bytes.length >= 4 && bytes[0] === 127 && bytes[1] === 69 && bytes[2] === 76 && bytes[3] === 70;
+  if (!isElf) return { kind: 'not_plain_elf_header', note: 'Puede ser un contenedor u otro formato; no se infiere cifrado.' };
+  if (bytes.length < 64) return { kind: 'elf_header_truncated_or_unsupported', note: 'Cabecera ELF incompleta para el perfil de 64 bits.' };
+  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+  if (bytes[4] !== 2 || bytes[5] !== 1 || bytes[6] !== 1 || view.getUint32(20, true) !== 1 || view.getUint16(18, true) !== 62 || view.getUint16(52, true) !== 64)
+    return { kind: 'elf_header_truncated_or_unsupported', note: 'No coincide con la cabecera ELF64 little-endian AMD64 esperada.' };
+  return { kind: 'elf64_little_endian_amd64_header', object_type: view.getUint16(16, true), note: 'Solo se reconoce la cabecera; contenido, origen e interfaces sin verificar.' };
+}
+async function inventoryFiles(files) {
+  validateFiles(files); // Validate all selections before reading any bytes.
+  if (!globalThis.crypto?.subtle) throw Error('El navegador no ofrece SHA-256 en este contexto. Usa un navegador actualizado; no desactives sus protecciones.');
+  const reports = [];
+  for (const file of files) {
+    const bytes = new Uint8Array(await file.arrayBuffer());
+    if (bytes.length !== file.size) throw Error('El tamaño leído no coincide con el archivo seleccionado.');
+    const digest = await globalThis.crypto.subtle.digest('SHA-256', bytes);
+    const sha256 = Array.from(new Uint8Array(digest), n => n.toString(16).padStart(2, '0')).join('');
+    reports.push({ name: file.name, bytes: bytes.length, sha256, header: classifyHeader(bytes) });
+  }
+  return {
+    schema_version: 1, evidence_kind: 'owner_selected_existing_pc_file_metadata',
+    reported_target_firmware: '13.20', target_firmware_verified: false,
+    original_files_included: false, console_contacted: false, uploads_performed: false,
+    decryption_verified: false, module_abi_verified: false, runtime_bindings_enabled: false,
+    files: reports,
+    limitations: [
+      'La huella identifica la copia local, no prueba qué módulo se cargó en la PS5.',
+      'La cabecera no valida las tablas internas ni demuestra un descifrado completo.',
+      'No contiene rutas del computador, datos de los archivos, claves ni direcciones de consola.',
+      'No recoge llamadas del juego, imágenes VR, estados de GPU ni rendimiento.'
+    ]
+  };
+}
+globalThis.QbFileInventory = Object.freeze({ validateFiles, classifyHeader, inventoryFiles });
+const filesElement = document.getElementById('files');
+const buttonElement = document.getElementById('analyze');
+const downloadElement = document.getElementById('download');
+const statusElement = document.getElementById('status');
+let downloadUrl;
+buttonElement.addEventListener('click', async () => {
+  buttonElement.disabled = true; filesElement.disabled = true; downloadElement.hidden = true;
+  if (downloadUrl) { URL.revokeObjectURL(downloadUrl); downloadUrl = undefined; }
+  statusElement.textContent = 'Calculando el informe en este computador…';
+  try {
+    const report = await inventoryFiles(Array.from(filesElement.files));
+    const json = JSON.stringify(report, null, 2) + '\n';
+    downloadUrl = URL.createObjectURL(new Blob([json], { type: 'application/json' }));
+    downloadElement.href = downloadUrl; downloadElement.hidden = false;
+    statusElement.textContent = 'Informe creado. Las bibliotecas no se adjuntan.\n\n' + json;
+  } catch (error) { statusElement.textContent = error.message; }
+  finally { buttonElement.disabled = false; filesElement.disabled = false; }
+});
+</script>
+</body>
+</html>

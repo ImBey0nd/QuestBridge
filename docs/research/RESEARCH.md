@@ -1,5 +1,11 @@
 # Research snapshot
 
+2026-10-28 evidence collection: [Spanish homebrew-tool audit and twelve required data categories](PS5_EVIDENCE_COLLECTION.md)
+distinguishes existing FTP/static copies from process/GPU observations. ftpsrv SELF
+decryption and debugger installation have effects beyond file reading. New local
+HTML inventories selected PC copies without transmitting their contents; no new
+console-ready collector or enabled runtime. Sixteen source texts pinned and checked.
+
 2026-10-28 continuation: [contract and feasibility decision](PSVR2_NATIVE_METHOD.md#continuation-contract-and-feasibility-decision-2026-10-28)
 keeps native substitution unproven and disabled. Reviewed 23 pinned public text
 files; found the Pad timestamp dispute and PS5VR GPU timeout fall-through. Added
