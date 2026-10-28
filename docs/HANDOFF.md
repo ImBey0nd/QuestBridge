@@ -1,5 +1,63 @@
 # QuestBridge cloud handoff
 
+## Current PS5 observer candidate — 2026-10-27
+
+New ps5/host/observer is a freestanding, no-SDK-CRT standalone observation candidate.
+It checks the getpid instruction profile, reports via the existing libkernel stub,
+and terminates its new observation process. Never use it for game/system-process
+injection. No target execution occurred; actual standalone loader mode and stdout/
+completion remain the physical-test gate. See docs/testing/PS5_OBSERVER.md.
+The old SDK-linked native receiver/stdout ELFs retain their build-only restriction.
+This new candidate does not enable any VR API/firmware capability. Host callbacks
+are inert and ELF metadata/disassembly were inspected; no kernel-write code or
+SDK dynamic dependencies/relocations are linked. CI builds the target candidate.
+
+## Current implementation — Quest client 0.2.0 (2026-10-27)
+
+The Android app now has a real OpenXR session, stereo diagnostic renderer, head/Touch
+actions and optional authenticated v1 tracking transport. It is no longer merely
+the discovery-only APK described in older milestones. See docs/testing/QUEST_CLIENT.md.
+Physical Quest execution remains untested. No Sony runtime adapter, native stereo
+capture or PS5 game compatibility is enabled. The old SDK-based PS5 ELFs remain
+build-only; there is no new console-ready ELF. Do not request the owner inventory.
+
+Real host JVM tests exercise the exact Android transport with Node and C++ receivers,
+restarts, stale neutralization and forged/uncorrelated replies. Render math has a
+new native CTest. CI runs the Java interop test with the native receiver argument.
+The client owns no raw Sony structures or offsets. Pairing settings are consumed
+from process-local memory, not task Intent extras or saved preferences.
+
+
+## Owner correction — 2026-10-27
+
+Accept the confirmed environment: PS5 Fat / 13.20; Kstuff Lite 1.11 Beta; latest
+Relapse; Quest 2 targeting latest system software; original Quest 2 Touch controllers;
+no physical PS VR2. Resident Evil Village is not installed. The objective is a
+reusable system-level layer for ANY native PS VR2 game, with no required reference
+title. Universal compatibility remains a goal, not demonstrated functionality.
+Do not request the hardware inventory again or require buying PS VR2/installing
+a game to continue cloud research. Public source can be pinned independently of
+the owner's declaration of latest. Request a particular installed-build detail
+only when a concrete experiment depends on it. The previous intake tool is optional
+and must not become an artificial gate for ongoing research. See the updated
+PS5_ENVIRONMENT_BASELINE.json. Older entries below preserve historical evidence.
+
+## Latest continuation — 2026-10-27
+
+Added tools/diagnostics/ps5-environment.mjs, a bounded offline environment intake
+checker, with a blank template and instructions in docs/testing/PS5_ENVIRONMENT.md.
+It reports missing installed-environment declarations and does not count upstream
+references as installed evidence. All declarations still require source review;
+runtime/deployment flags remain false. The owner can continue using the Spanish
+text form; no JSON editing or new console action is required.
+
+Validation on this checkout: Node 24/24 and native CTest 4/4 passed, using the
+additional network permission for loopback UDP after the default sandbox returned
+bind EPERM. Fresh GCC 14.2/OpenSSL 3.5.7 host build in ignored build-intake/ passed.
+Blank-template CLI and compatibility validator passed. No console or Quest test,
+source/ABI verification, or game compatibility is claimed. Next PS5 integration
+step still needs the actual loader/build and authorized module/title metadata.
+
 Updated: 2026-10-26. Latest owner direction: investigate PS5 before further Quest app development. This file preserves the engineering context of the initial local conversation; it is a summary, not a complete chat transcript.
 
 ## Read first
@@ -12,7 +70,7 @@ Updated: 2026-10-26. Latest owner direction: investigate PS5 before further Ques
 
 ## Objective and owner preferences
 
-Develop an open-source compatibility system for standalone VR headsets replacing PS VR2 hardware while games execute natively on PS5. Initial requested hardware is original PS5, firmware 13.20, Relapse/KStuff, Quest 2 and Touch controllers. Resident Evil Village VR Mode is the reference title, not the whole scope. None of this hardware configuration has been tested by QuestBridge.
+Develop an open-source compatibility system for standalone VR headsets replacing PS VR2 hardware while games execute natively on PS5. Initial requested hardware is original PS5, firmware 13.20, Relapse/KStuff, Quest 2 and Touch controllers. The target is any native PS VR2 game; no specific reference title is required. None of this hardware configuration has been tested by QuestBridge.
 
 The owner does not program. Make routine engineering choices and continue useful independent work. Avoid repeatedly requesting permission for ordinary edits, builds, tests and permitted dependency installation. Ask only for genuinely missing credentials, physical actions or irreversible operations. Obey the active environment's approval restrictions. The owner wants cloud execution to keep their PC available. Explanations must be in Spanish and concise (caveman style); code, commands and repository documents may remain in English.
 
@@ -180,3 +238,25 @@ The original 8a81c3c identifier was superseded by attribution amendment.
 ## Main consolidation — 2026-10-26
 
 Owner requests integration of all functional work into main and an owner-facing Spanish manual. The native discovery branch was already merged as PR #2 (original main 4f04048ccaf4421616b8884f30542e6cbeea3c52). The Android branch's original tip a6b31d3d02adda7022d2397da4364fe7e9e7c4f6 is integrated with it, preserving the stronger PS5 build-only restriction. See docs/LO_QUE_TENGO_QUE_HACER_YO.md for manual steps. The owner clarified that Contributors names, not collaborator permissions, need correction, and explicitly confirmed that commits linked to ImNotBeyond are theirs and authorized correcting published history to ImBey0nd. Future commits use the verified ImBey0nd noreply identity and the existing Codex bot coauthor identity. Historical source URLs and evidence identifiers remain as originally recorded. No hardware work was performed.
+
+## Test artifact recovery and loader research — 2026-10-27
+
+Owner now explicitly requests both Quest and PS5 test artifacts; Quest work is no longer deferred. Applied uploaded caveman skill for concise chat. Recovered the verified hosted Quest APK and prepared artifacts/questbridge-quest-test-kit.zip with instructions. Source comparison and artifact hash recorded in docs/research/TEST_READINESS_2026-10-27.md. Rechecked pinned Relapse/SDK/PS5VR; inspected bundled Relapse loader offline. Its bootstrap argument block is distinct from application ELF arguments. The bundled loader source/ABI match remains unresolved; no PS5 ELF is labeled execution-ready. No hardware execution or compatibility claim. Research and artifact packaging only; no runtime code changed.
+
+## Connection investigation — 2026-10-27
+
+Reviewed physical display/USB separation, public host tracking streams, sensor/head calibration, authentication uncertainty and native runtime consumers. Pinned sources and evidence limits: docs/research/PSVR2_CONNECTION.md. Added original offline tools/diagnostics/psvr2-slam.mjs plus three synthetic tests. Native raw coordinates and unknown validity remain explicit; no device emulation/runtime replacement is claimed. Node 27/27 and native CTest 4/4 passed with loopback network permission. Sony headset kernel archive browser fetch timed out; no claim of reviewing its source. Native PS5 ABI/service/GPU ownership evidence remains missing.
+
+Authentication source follow-up: recovered public Sony module mirror orumin/psvr2-sie-kernel-modules at 9eab2ca28f2c63038a8743b93b5357d945faaad8. Reviewed device authentication interface/state and ioctl boundary to user-space response handling. This does not supply the user-space response algorithm or establish PS5 13.20 host policy. Official package equality remains unverified. Updated connection report; no authentication implementation imported or executed.
+
+Final clean Android build, signature, source commit and APK hash: docs/testing/QUEST_CLIENT_BUILD_2026-10-27.md. The owner explicitly authorized publishing this work to ImBey0nd/QuestBridge in a new branch with a draft PR after automatic review initially rejected an unapproved push.
+
+A finite, optional owner-run first test for the new Quest client and standalone observer candidate is prepared in docs/testing/OWNER_FIRST_RUN.md. It makes no console connection during development. Do not confuse this new observer with the previous SDK-linked receiver or Relapse bootstrap. Physical reports remain pending.
+
+Final functional snapshot d7f2f629ad8bbb0304b4e0e52b168b437ede85ba passed both
+hosted workflows (40593745905/40593745916). PR #3 is draft and attached to this chat.
+Local test packages are artifacts/questbridge-client-0.2.0-test-kit.zip and
+artifacts/questbridge-observer-candidate.zip. APK has real stereo/tracking/transport;
+observer is a standalone startup candidate, not a native receiver or VR adapter.
+Physical Quest result was requested asynchronously and remains pending. Do not
+claim target execution or re-request the hardware inventory.

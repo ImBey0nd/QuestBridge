@@ -1,7 +1,7 @@
 # QuestBridge
 Experimental open-source foundations for investigating standalone headsets with native PS5 VR games.
 
-**No PS VR2 game compatibility is implemented or demonstrated.** This repository currently provides a tested desktop communication prototype, native data/math/video utilities, a built Android OpenXR diagnostic APK (not tested on a headset), and a cross-compiled PS5 probe with audited startup limitations. Resident Evil Village VR Mode is an untested reference target.
+**No PS VR2 game compatibility is implemented or demonstrated.** This repository currently provides a tested desktop communication prototype, native data/math/video utilities, a built Android OpenXR stereo/tracking client with authenticated transport (not tested on a headset), and a cross-compiled PS5 probe with audited startup limitations. The goal is a reusable layer for any native PS VR2 game, with no required reference title.
 
 Native receiver milestone: [authenticated C++ transport and freshness handling](docs/testing/NATIVE_RECEIVER.md) now passes Node interoperability and cross-compiles to PS5. The ELF remains build-only. [Hardware evidence needed next](docs/testing/HARDWARE_NEXT.md).
 
@@ -46,7 +46,7 @@ Both default to 127.0.0.1:42420. For a private LAN experiment explicitly set QB_
 - common/: C++17 models, calibration, tracking wire codec, frame assembly; Node authenticated packet codec.
 - desktop/: real UDP diagnostic receiver and synthetic sender.
 - tests/: malformed packet, replay, network lifecycle and native validation checks.
-- headset/android-openxr/: Gradle/JNI OpenXR runtime probe, **APK built and linted; device execution untested**.
+- headset/android-openxr/: OpenXR stereo/tracking diagnostic client, **APK built and linted; device execution untested**.
 - ps5/host/native/: authenticated C++ receiver, cross-compiled PS5 ELF; no VR integration.
 - ps5/host/: cross-compiled SDK probe, **build-only** because default SDK startup patches kernel state; see docs/testing/PS5_BUILD.md.
 - ps5/runtime/: unavailable adapter and explicitly named offline mock.
@@ -62,3 +62,5 @@ License: GPL-3.0-or-later for original project code. Upstream projects remain un
 Latest cloud validation: 20 Node tests and 4 native CTests pass. Native ELF metadata and transport tests also pass AddressSanitizer/UndefinedBehaviorSanitizer; VR fixtures are synthetic. Earlier local C++/Node payload fixture validation also passed. The Windows demo measured about63 tracking updates/s against a nominal90Hz setting; see docs/testing/SESSION.md.
 
 Android cloud build/lint and APK evidence: [CLOUD_2026-10-26.md](docs/testing/CLOUD_2026-10-26.md). The combined CI validates both the native receiver and Android probe.
+
+Quest client 0.2.0 diagnostic scene and tracking/PC receiver procedure: [QUEST_CLIENT.md](docs/testing/QUEST_CLIENT.md). No native PS5 VR game compatibility is demonstrated.

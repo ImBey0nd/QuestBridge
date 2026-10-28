@@ -5,9 +5,20 @@ authenticated C++ receiver, Node interoperability, freshness/neutral fallback,
 native sanitizers, cross-compiled C++ runtimes/OpenSSL and PS5 receiver linking.
 None establishes PS VR2 replacement or execution on the owner's PS5.
 
-## First hardware-dependent step
+## Confirmed environment and later hardware evidence
 
-Record the actual console/loading environment and obtain authorized local metadata.
+The owner confirmed the inventory on 2026-10-27. Do not ask them to fill it again.
+Continue source research with these facts. The table distinguishes optional later
+experiment details from the accepted development environment; it is not a checklist
+the owner must complete before cloud work can continue.
+
+For development-side intake, [PS5_ENVIRONMENT.md](PS5_ENVIRONMENT.md) provides a
+bounded offline completeness checker and a blank JSON template. The owner's text
+form remains sufficient. A complete declaration still requires source review and
+does not enable execution or prove hardware compatibility.
+
+For a concrete hardware experiment, identify only the specific extra observation
+needed to justify that experiment. No new physical action is requested now.
 Do not transmit the current receiver or old stdout ELF: both link the SDK CRT that
 patches kernel state before main. Existing no-kernel-write/no-deployment constraints
 remain in force. No new exploit execution or installation is requested here.
@@ -16,12 +27,14 @@ Use the console's own system-information screen and existing loader/homebrew log
 
 | Item | Record | Current evidence |
 | --- | --- | --- |
-| Console | Exact model/revision | Owner reports PS5 Fat; exact revision not observed |
-| Firmware | Full displayed version/build | Owner reports 13.20; full build not observed |
-| Relapse/KStuff | Exact installed version/build or source commit | Unknown |
+| Console | Exact revision only if needed by an experiment | Owner confirms PS5 Fat |
+| Firmware | Full build only if needed for ABI verification | Owner confirms 13.20 |
+| Relapse/KStuff | Pin source/build when reviewing startup | Owner confirms latest Relapse and Kstuff Lite 1.11 Beta |
 | ELF loader | Actual loader name, build/source, stdout behavior and existing logs | Unknown |
 | VR modules | Names, sizes, build identifiers/hashes if available through existing authorized tooling | Public-source candidates only |
-| Reference game | Region/title identifier and exact installed version | Resident Evil Village VR Mode requested; identifier unverified |
+| Games | Identity/version when a later test title is selected | No required reference title; Resident Evil Village not installed |
+| Headset/controllers | Runtime build only when needed by a device test | Quest 2, latest software target, original Touch controllers |
+| Physical PS VR2 | No purchase or connected baseline required | Owner has none |
 
 Share metadata/text results only. Keep proprietary module/game files and credentials
 local. A hash of an encrypted file, decrypted ELF and live mapped image identifies
@@ -36,9 +49,12 @@ reported as unavailable, not replaced with assumptions.
 
 ## Recorded owner environment and upstream baseline
 
-The owner reports a PS5 Fat running firmware 13.20 and prefers current upstream
-Relapse/KStuff versions. Installed versions and any completed update remain unknown.
-The full system build, exact revision and actual loader identity are still needed.
+The owner confirms PS5 Fat / firmware 13.20, Kstuff Lite 1.11 Beta, latest
+Relapse, Quest 2 with original controllers, and no physical PS VR2. Target the latest
+Quest 2 system software. Do not equate the word latest with an immutable source
+commit; pin public sources during research and ask about a particular installed
+build only if a specific experiment depends on it. Any native PS VR2 game is in
+scope; installing Resident Evil Village is not a prerequisite.
 
 [PS5_ENVIRONMENT_BASELINE.json](../research/PS5_ENVIRONMENT_BASELINE.json) separates
 this report from the public reference metadata checked on 2026-10-26. KStuff Lite's

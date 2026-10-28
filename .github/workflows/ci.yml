@@ -19,6 +19,7 @@ jobs:
           npm test
           cmake -S . -B build
           cmake --build build
+          node tools/diagnostics/test-android-transport.mjs build/qb_native_receiver
           ctest --test-dir build --output-on-failure
           node tools/diagnostics/cross-language.mjs
           node tools/diagnostics/validate.mjs
@@ -44,6 +45,21 @@ jobs:
           sdkmanager 'platforms;android-35' 'build-tools;34.0.0' 'ndk;27.2.12479018' 'cmake;3.22.1'
       - name: Build and lint Android runtime probe
         run: tools/build/android.sh
+      - name: Build standalone PS5 observer candidate without SDK CRT
+        run: |
+          export QB_CLANG="$ANDROID_HOME/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/bin/clang"
+          export QB_LLD="$ANDROID_HOME/ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/bin/ld.lld"
+          bash tools/build/ps5-observer.sh "$RUNNER_TEMP/questbridge-observer"
+          git rev-parse HEAD > "$RUNNER_TEMP/questbridge-observer/source-commit.txt"
+          python3 -m venv "$RUNNER_TEMP/observer-emulation"
+          "$RUNNER_TEMP/observer-emulation/bin/python" -m pip install unicorn==2.1.4
+          "$RUNNER_TEMP/observer-emulation/bin/python" tools/diagnostics/test-ps5-observer.py "$RUNNER_TEMP/questbridge-observer/questbridge-observer.elf" > "$RUNNER_TEMP/questbridge-observer/emulation.json"
+      - name: Retain standalone observer candidate and inspection
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: questbridge-observer-candidate
+          path: ${{ runner.temp }}/questbridge-observer/
       - name: Retain probe APK and reports
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

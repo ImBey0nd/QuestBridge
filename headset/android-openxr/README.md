@@ -1,3 +1,17 @@
+# QuestBridge Android diagnostic client
+
+Version 0.2.0-diagnostic adds a real OpenXR stereo session, a fixed scene, head/Touch
+tracking and optional authenticated v1 transport to the existing desktop/native
+receiver. Physical headset execution is not yet tested. Native PS5 VR integration,
+video streaming/decoding and haptics remain unavailable.
+
+Start with [QUEST_CLIENT.md](../../docs/testing/QUEST_CLIENT.md) for current build,
+PC receiver and physical Quest test instructions. The discovery-only probe remains
+available in the launcher. Source below describes the earlier build milestone;
+its probe-only limitations are historical, not this version's full feature list.
+
+## Earlier discovery-probe build evidence
+
 # Android/OpenXR runtime probe
 
 Status: **debug APK compiled, linked, packaged, signature checked and linted in Linux cloud on 2026-10-26**. No headset installation or execution has been performed.

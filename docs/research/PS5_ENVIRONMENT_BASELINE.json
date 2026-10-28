@@ -9,10 +9,17 @@
     "firmware_short": "13.20",
     "firmware_full_build": null,
     "installed_relapse_commit": null,
-    "installed_kstuff_version": null,
+    "installed_kstuff_version": "Kstuff Lite 1.11 Beta",
     "installed_loader_identity": null,
-    "preference": "Latest upstream versions; owner may update if needed",
-    "update_performed": false
+    "preference": "Target current Relapse and latest Quest 2 software; broad native PS VR2 game compatibility without a required reference title",
+    "update_performed": false,
+    "installed_kstuff_release_url": "https://github.com/EchoStretch/kstuff-lite/releases/tag/v1.11",
+    "installed_relapse_version_report": "Latest version, as reported by owner on 2026-10-27; exact commit not pinned",
+    "headset": "Meta Quest 2",
+    "headset_software_target": "Latest Quest 2 system software; exact installed build not supplied",
+    "controllers": "Original Quest 2 Touch controllers",
+    "physical_psvr2_available": false,
+    "resident_evil_village_installed": false
   },
   "upstream_references": {
     "relapse": {
@@ -59,10 +66,17 @@
     "game_compatibility_verified": false
   },
   "next_required_evidence": [
-    "Full console firmware/build and exact model revision",
-    "Actual installed Relapse/KStuff identifiers",
-    "Actual loader identity/source and existing stdout logs",
-    "Authorized VR module/title metadata"
+    "Resolve loader startup/call contract from the reported Relapse source; request a specific installed-build identifier only if a concrete experiment depends on it",
+    "Authorized VR module metadata needed to verify native runtime interfaces",
+    "Per-title identity/version only when a game is installed and selected for a later physical test"
   ],
-  "interpretation": "Owner report is not a hardware observation. Public support claims do not establish QuestBridge compatibility. No update, console contact, deployment or exploit execution occurred."
+  "interpretation": "Environment and installed version names are owner declarations accepted for development planning. Latest is not an immutable source identity. Public support claims do not establish QuestBridge compatibility. No project hardware test or update occurred. Do not ask the owner to repeat the hardware inventory.",
+  "owner_report_updated_date": "2026-10-27",
+  "project_scope": {
+    "goal": "Compatibility with any native PS VR2 game through a reusable system-level layer",
+    "required_reference_game": null,
+    "physical_psvr2_required": false,
+    "verified_compatible_games": [],
+    "interpretation": "Any game is the engineering goal, not a claim that universal compatibility is implemented or guaranteed."
+  }
 }

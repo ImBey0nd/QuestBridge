@@ -1,23 +1,4 @@
 {
   "schema_version": 1,
-  "games": [
-    {
-      "name": "Resident Evil Village VR Mode",
-      "title_identifier": null,
-      "game_version": null,
-      "ps5_firmware": "13.20",
-      "headset": "Meta Quest 2",
-      "required_features": [],
-      "required_features_verified": false,
-      "launch_status": "not_tested",
-      "rendering_status": "not_tested",
-      "tracking_status": "not_tested",
-      "controller_status": "not_tested",
-      "known_issues": [
-        "No implemented PS VR2 runtime replacement or native stereo capture"
-      ],
-      "evidence": [],
-      "test_date": null
-    }
-  ]
+  "games": []
 }

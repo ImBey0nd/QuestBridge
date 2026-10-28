@@ -227,3 +227,107 @@ Worked entirely in managed Linux cloud from uploaded commit b72b393cf715162dec52
 Current blockers: no headset/console access; no Android device execution, XR session/tracking/renderer or game compatibility result. PS5 ELF compilation is recorded separately above. PS5 VR interfaces and native stereo access on firmware 13.20 remain unverified. Unknown firmware remains disabled. No exploit, patch or console deployment was attempted.
 
 Next concrete experiment: install this exact APK on an authorized Quest 2 and capture runtime name/result, OS version and startup/lifecycle logs. Next independent cloud implementation: OpenXR session/actions/diagnostic rendering, the PS5 probes have since been compiled but remain build-only. Prioritize PS5 VR interface evidence as the central feasibility gate; see [FEASIBILITY.md](../FEASIBILITY.md).
+# Environment intake continuation — 2026-10-27
+
+Added an offline JSON environment completeness checker, blank template, developer
+instructions and four tests. Rejects malformed schema, invalid origins, oversized
+input and invalid UTF-8; public references cannot fill installed-environment gaps.
+Complete declarations remain awaiting source review, with runtime/deployment off.
+Summaries omit submitted values and evidence references.
+
+Actual checks: Node 24/24; fresh GCC 14.2/OpenSSL 3.5.7 host build; native CTest
+4/4; blank-template CLI; compatibility validator; git diff whitespace check.
+Initial default-sandbox Node integration tests failed on bind EPERM at loopback;
+rerun with additional network permission passed, as did native/Node UDP CTest.
+No hardware access, firmware enabling, console execution or Quest changes.
+
+## Owner environment and scope correction — 2026-10-27
+
+Recorded the owner's installed Kstuff Lite 1.11 Beta and latest Relapse declaration,
+Quest 2/latest-system target, original Touch controllers, no PS VR2 and no installed
+Resident Evil Village. Updated AGENTS, handoff, master brief, architecture, hardware
+procedure and Spanish owner guide so subsequent sessions do not repeat the inventory
+request. The intake tool is optional, not a gate for continued cloud work.
+
+Scope is ANY native PS VR2 game through reusable runtime integration. Removed the
+unselected Resident Evil reference entry; games.json is empty until a real test
+candidate is selected. No game compatibility or hardware result is asserted.
+Validation: compatibility/firmware validator, JSON parsing and git diff whitespace.
+Documentation/data changes only; no runtime or transport code changed.
+
+## Test artifact recovery and loader research — 2026-10-27
+
+Owner now explicitly requests both Quest and PS5 test artifacts; Quest work is no longer deferred. Applied uploaded caveman skill for concise chat. Recovered the verified hosted Quest APK and prepared artifacts/questbridge-quest-test-kit.zip with instructions. Source comparison and artifact hash recorded in docs/research/TEST_READINESS_2026-10-27.md. Rechecked pinned Relapse/SDK/PS5VR; inspected bundled Relapse loader offline. Its bootstrap argument block is distinct from application ELF arguments. The bundled loader source/ABI match remains unresolved; no PS5 ELF is labeled execution-ready. No hardware execution or compatibility claim. Research and artifact packaging only; no runtime code changed.
+
+## Connection investigation — 2026-10-27
+
+Reviewed physical display/USB separation, public host tracking streams, sensor/head calibration, authentication uncertainty and native runtime consumers. Pinned sources and evidence limits: docs/research/PSVR2_CONNECTION.md. Added original offline tools/diagnostics/psvr2-slam.mjs plus three synthetic tests. Native raw coordinates and unknown validity remain explicit; no device emulation/runtime replacement is claimed. Node 27/27 and native CTest 4/4 passed with loopback network permission. Sony headset kernel archive browser fetch timed out; no claim of reviewing its source. Native PS5 ABI/service/GPU ownership evidence remains missing.
+
+Authentication source follow-up: recovered public Sony module mirror orumin/psvr2-sie-kernel-modules at 9eab2ca28f2c63038a8743b93b5357d945faaad8. Reviewed device authentication interface/state and ioctl boundary to user-space response handling. This does not supply the user-space response algorithm or establish PS5 13.20 host policy. Official package equality remains unverified. Updated connection report; no authentication implementation imported or executed.
+
+## Actual Quest client development — 2026-10-27
+
+Implemented OpenXR NativeActivity with EGL/GLES3, two eye swapchains, predicted-time
+view/head/Touch pose sampling, canonical tracking flags, analog/button actions and
+fixed geometry/grip markers. Added optional Java HMAC/session tracking sender using
+the existing protocol and C++ encoder, stale neutralization, reply timeout/re-pair,
+pause invalidation and lifecycle teardown without an Activity-monitor deadlock.
+Receiver settings are one-use process memory, never Intent extras/preferences.
+
+Host validation: Node 27/27, native CTest 5/5 (including new inverse-view/asymmetric
+projection test), JVM transport interop with Node/C++ receivers, receiver restart,
+invalid samples, stale neutralization and adversarial receive cases passed.
+Android assembly/lint passed during development. Final clean build/signature/hash
+will be recorded with the packaged APK evidence. This recreated environment uses
+Java 21.0.12.1 with JDK compiler modules, Gradle 8.9, AGP 8.7.3, SDK35, Build Tools
+34.0.0 and NDK 27.2.12479018. No physical headset or console was contacted.
+
+Offline follow-up on the bundled Relapse loader: its nested image at file offset
+0x40000 has a code reference to getpid NID HoLVWNanBBc and stores that resolver's
+result into argument offset zero, corroborating the public reference loader's
+getpid convention. This narrows the contract; it does not verify the live installed
+loader or make the SDK CRT's automatic kernel patches acceptable. No speculative
+replacement startup or console deployment was added.
+
+## Standalone observer candidate — 2026-10-27
+
+Added original freestanding observer C/AMD64 startup, outside the SDK CRT. Reviewed
+getpid first-argument evidence in the bundled Relapse image and public loader.
+Checks the supplied stub instruction profile before calls; reports through bounded
+stdout writes; new standalone process exits rather than returning into an unknown
+placeholder entry. Unsupported profiles trap in the standalone process. Must never
+be injected into a game/system process. No physical execution or upload occurred.
+
+Built with NDK r27c clang/lld targeting freestanding x86_64-unknown-freebsd. Automated
+ELF audit confirms DYN/AMD64, 16 KiB-aligned load segments, executable entry, no
+interpreter, no WX load segment, zero dynamic dependencies/relocations. Original
+source and generated text disassembly were reviewed; only validated libkernel
+function/stub transfers remain. Host observer tests use inert callbacks. Native
+CTest 6/6 passed. Actual loader mode/stdout/completion is still unverified; candidate
+is not labeled console-tested or a PS5 receiver/runtime. CI now retains it separately.
+
+Compiled observer follow-up: Unicorn2.1.4 executed the actual ELF in 19 synthetic
+syscall-model cases. Full/short/error/zero/overreported writes, getpid failure,
+null arguments and all 12 prefix mutations passed, with stack-only guest writes
+and no unexpected syscall sites/numbers. Unsupported profiles trap without calls;
+valid profiles exit the standalone guest process. This is CPU-model evidence, not
+PS5 execution. The fresh hosted observer ELF from Actions run40591865118 exactly
+matches the local artifact SHA256 da11946e155bdbab9ad18d810d3577856b6efe811d56d7a79d21f46f24fec661.
+The default raw-ELF server branch also calls a function using rfork_thread in the
+bundled image; documented separately from bootstrap injection. CI now runs the
+compiled-ELF model and retains its report.
+
+Final client lifecycle review corrected normal runtime-requested exit: NativeActivity
+is now explicitly finished when XR requests exit before Android destruction. Without
+that request, returning from the native thread could leave an inactive activity.
+This needs device observation alongside the other lifecycle tests. The alternative
+PS5SDK CRT was also reviewed: it assumes a resolver callback and is not a replacement
+for the observed getpid-first loader convention. No code was imported. A finite
+owner-run hardware experiment is documented without any cloud console connection.
+
+Final clean Quest APK from d7f2f629ad8bbb0304b4e0e52b168b437ede85ba:
+9c57a6b0dd5abdecbca4c461c69f4dc897d90854f2b35e4c38fa747df64a255e.
+Clean assembly/lint and signature verification passed after the normal-exit fix.
+Both hosted workflows for that functional snapshot passed, including JVM transport
+and compiled observer CPU-model checks. Run40593745916 retains APK12775202859 and
+observer12775512264 separately. No physical test result has been received.

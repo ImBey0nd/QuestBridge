@@ -28,7 +28,7 @@ Develop a reusable compatibility layer allowing jailbroken PlayStation 5 console
 
 The long-term goal is broad compatibility across the PS VR2 game library.
 
-Resident Evil Village VR Mode is the initial reference game, NOT the only supported game.
+Owner update (2026-10-27): target ANY native PS VR2 game through a reusable system-level compatibility layer. No required reference title; Resident Evil Village is not installed. Broad compatibility is the goal, not an established result.
 
 Avoid game-specific patches wherever system-level compatibility is technically possible.
 
@@ -44,10 +44,12 @@ The first physical test environment is:
 
 - Console: Original PlayStation 5 (Fat).
 - Firmware: 13.20.
-- Exploit: Relapse.
-- Homebrew environment: KStuff.
-- Headset: Meta Quest 2.
-- Controllers: Quest 2 Touch controllers.
+- Exploit: latest Relapse (owner report; pin source commits independently).
+- Homebrew environment: Kstuff Lite 1.11 Beta.
+- Headset: Meta Quest 2, targeting the latest system software.
+- Controllers: original Quest 2 Touch controllers.
+- Physical PS VR2: not available; do not require purchasing one.
+- Installed reference game: none required; Resident Evil Village not installed.
 - Development workstation: Windows with Visual Studio Code.
 - Connection: Local network, initially Wi-Fi or Ethernet where appropriate.
 
@@ -263,7 +265,7 @@ Each entry should track:
 - Known issues.
 - Evidence and test date.
 
-Resident Evil Village VR Mode is the initial reference target.
+There is no mandatory reference title. Add evidence for individual games when actually tested.
 
 The database must support future titles without changing the core architecture.
 
@@ -407,7 +409,7 @@ Keep synthetic video streaming separate from actual PS5 VR rendering integration
 
 ### PHASE 6 — FIRST GAME EXPERIMENT
 
-Use Resident Evil Village VR Mode as the first reference title.
+Select an available PS VR2 title only when the reusable runtime and video path are ready for physical testing. Do not require installing Resident Evil Village to develop the shared layer.
 
 Attempt to determine:
 
@@ -545,7 +547,7 @@ A successful network connection is not equivalent to game compatibility.
 
 A successful stereo video stream is not equivalent to native PS VR2 functionality.
 
-A successful Resident Evil Village demonstration is not equivalent to universal compatibility.
+A successful demonstration in one game is not equivalent to universal compatibility.
 
 Treat broad compatibility as a progressively validated engineering goal.
 
